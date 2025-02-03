@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour
 {
+    [SerializeField] private int damageAmount = 1;
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.GetComponent<EnemyAi>()) {
-            Debug.Log("Enemy Hit");
+        if (other.gameObject.GetComponent<EnemyHealth>()) {
+            EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>();
+            enemyHealth.TakeDamage(damageAmount);
         }
     }
 }
