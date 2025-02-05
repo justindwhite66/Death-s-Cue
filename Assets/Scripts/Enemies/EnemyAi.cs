@@ -5,10 +5,6 @@ using UnityEngine;
 public class EnemyAi : MonoBehaviour
 {
     [SerializeField] private float roamChangeDirFloat = 2f;
-<<<<<<< HEAD
-=======
-   
->>>>>>> f0b96baac953bb05828a27e9b67a15bd46d13800
    private enum State {
     Roaming
    }
