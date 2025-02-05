@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-   public bool FacingLeft {get {return facingLeft;}  }
+
+   public bool FacingLeft {get {return facingLeft;}}
+
    public static PlayerController Instance;
    [SerializeField] private float moveSpeed = 1f;
    [SerializeField] private float dashSpeed = 4f;
@@ -30,6 +32,7 @@ public class PlayerController : MonoBehaviour
       playerControls.Combat.Dash.performed += _ => Dash();
       startingMoveSpeed = moveSpeed;
    }
+
 
    private void OnEnable(){
     playerControls.Enable();
@@ -66,17 +69,21 @@ public class PlayerController : MonoBehaviour
       facingLeft = false;
    }
   }
-  private void Dash(){
-   if (!isDashing){
+
+
+  private void Dash() {
+    if (!isDashing) {
+
       isDashing = true;
       moveSpeed *= dashSpeed;
       myTrailRenderer.emitting = true;
       StartCoroutine(EndDashRoutine());
+    }
    }
 
-  }
 
   private IEnumerator EndDashRoutine() {
+
         float dashTime = .2f;
         float dashCD = .25f;
         yield return new WaitForSeconds(dashTime);
@@ -84,6 +91,5 @@ public class PlayerController : MonoBehaviour
         myTrailRenderer.emitting = false;
         yield return new WaitForSeconds(dashCD);
         isDashing = false;
-    }
-
+ }
 }

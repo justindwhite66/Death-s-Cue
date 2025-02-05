@@ -20,7 +20,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     public InputActionAsset asset { get; }
     public @PlayerControls()
     {
-        asset = InputActionAsset.FromJson(@"{
+asset = InputActionAsset.FromJson(@"{
     ""name"": ""Player Controls"",
     ""maps"": [
         {
