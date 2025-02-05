@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+<<<<<<< HEAD
    public bool FacingLeft {get {return facingLeft;}}
+=======
+   public bool FacingLeft {get {return facingLeft;}  }
+>>>>>>> f0b96baac953bb05828a27e9b67a15bd46d13800
    public static PlayerController Instance;
    [SerializeField] private float moveSpeed = 1f;
    [SerializeField] private float dashSpeed = 4f;
@@ -25,6 +29,10 @@ public class PlayerController : MonoBehaviour
     rb = GetComponent<Rigidbody2D>();
     myAnimator = GetComponent<Animator>();
     mySpriteRender = GetComponent<SpriteRenderer>();
+   }
+   private void Start(){
+      playerControls.Combat.Dash.performed += _ => Dash();
+      startingMoveSpeed = moveSpeed;
    }
 
    private void Start(){
@@ -67,18 +75,30 @@ public class PlayerController : MonoBehaviour
       facingLeft = false;
    }
   }
+<<<<<<< HEAD
 
   private void Dash() {
     if (!isDashing) {
+=======
+  private void Dash(){
+   if (!isDashing){
+>>>>>>> f0b96baac953bb05828a27e9b67a15bd46d13800
       isDashing = true;
       moveSpeed *= dashSpeed;
       myTrailRenderer.emitting = true;
       StartCoroutine(EndDashRoutine());
    }
+<<<<<<< HEAD
 }
 
 
  private IEnumerator EndDashRoutine() {
+=======
+
+  }
+
+  private IEnumerator EndDashRoutine() {
+>>>>>>> f0b96baac953bb05828a27e9b67a15bd46d13800
         float dashTime = .2f;
         float dashCD = .25f;
         yield return new WaitForSeconds(dashTime);
@@ -86,5 +106,10 @@ public class PlayerController : MonoBehaviour
         myTrailRenderer.emitting = false;
         yield return new WaitForSeconds(dashCD);
         isDashing = false;
+<<<<<<< HEAD
  }
+=======
+    }
+
+>>>>>>> f0b96baac953bb05828a27e9b67a15bd46d13800
 }
