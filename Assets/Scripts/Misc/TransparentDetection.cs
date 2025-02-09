@@ -30,10 +30,10 @@ public class TransparentDetection : MonoBehaviour
    }
 
    private void OnTriggerExit2D(Collider2D other) {
-    if (spriteRenderer){
+    if (spriteRenderer && (spriteRenderer.gameObject.activeSelf && spriteRenderer.enabled)){
         StartCoroutine(FadeRoutine(spriteRenderer, fadeTime, spriteRenderer.color.a, 1f));   
     }
-    else if (tileMap){
+    else if (tileMap && tileMap.isActiveAndEnabled){
         StartCoroutine(FadeRoutine(tileMap, fadeTime, tileMap.color.a, 1f));
     }
    }
