@@ -19,7 +19,7 @@ public class TransparentDetection : MonoBehaviour
    }
 
    private void OnTriggerEnter2D(Collider2D other) {
-    if(other.gameObject.GetComponent<PlayerController>()){
+    if(other.CompareTag("Player")){
         if (spriteRenderer && gameObject.activeInHierarchy){
              StartCoroutine(FadeRoutine(spriteRenderer, fadeTime, spriteRenderer.color.a, transparencyAmount));
         } else if (tileMap && gameObject.activeInHierarchy){
@@ -30,11 +30,13 @@ public class TransparentDetection : MonoBehaviour
    }
 
    private void OnTriggerExit2D(Collider2D other) {
-    if (spriteRenderer && (spriteRenderer.gameObject.activeInHierarchy && spriteRenderer.enabled)){
-        StartCoroutine(FadeRoutine(spriteRenderer, fadeTime, spriteRenderer.color.a, 1f));   
-    }
-    else if (tileMap && tileMap.isActiveAndEnabled){
-        StartCoroutine(FadeRoutine(tileMap, fadeTime, tileMap.color.a, 1f));
+    if(other.CompareTag("Player")){
+        if (spriteRenderer && (spriteRenderer.gameObject.activeInHierarchy && spriteRenderer.enabled)){
+         StartCoroutine(FadeRoutine(spriteRenderer, fadeTime, spriteRenderer.color.a, 1f));   
+        }
+     else if (tileMap && tileMap.isActiveAndEnabled){
+         StartCoroutine(FadeRoutine(tileMap, fadeTime, tileMap.color.a, 1f));
+        }
     }
    }
 

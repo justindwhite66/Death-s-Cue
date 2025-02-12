@@ -89,11 +89,7 @@
                 {
                     "name": "Dash",
                     "type": "Button",
-<<<<<<< HEAD
-                    "id": "c7fbdf9a-70a8-47de-884c-f7818b9de611",
-=======
                     "id": "17f83d23-8272-4d9d-97c4-7137e57ad926",
->>>>>>> f0b96baac953bb05828a27e9b67a15bd46d13800
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -114,16 +110,124 @@
                 },
                 {
                     "name": "",
-<<<<<<< HEAD
-                    "id": "c05acb69-5331-49bf-97f5-b81c8d7b0804",
-=======
                     "id": "c8f3488f-7379-41d7-bd72-b2773464da26",
->>>>>>> f0b96baac953bb05828a27e9b67a15bd46d13800
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Inventory",
+            "id": "16784dc3-49ba-4bfc-ae15-e3d4c30b6b3a",
+            "actions": [
+                {
+                    "name": "Keyboard",
+                    "type": "Value",
+                    "id": "da53283e-b540-4a36-a3b1-678b8cf819c9",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "ScrollUp",
+                    "type": "Value",
+                    "id": "3d98cf78-7da2-4c33-a0da-db63e20b9240",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "ScrollDown",
+                    "type": "Value",
+                    "id": "4fa70a4c-c02b-4c77-a956-0c4aff17cfb9",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "86d27f17-5ce1-4721-9894-0b22d67b0523",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "Scale",
+                    "groups": "",
+                    "action": "Keyboard",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "049af461-b892-4bdf-af27-fe4f01b6e9b1",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "Scale(factor=2)",
+                    "groups": "",
+                    "action": "Keyboard",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f10e55ff-a753-47eb-ae93-8e1f159cd3bd",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "Scale(factor=3)",
+                    "groups": "",
+                    "action": "Keyboard",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "caedc0c0-ce25-4280-a5a0-659fbf6a2d18",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "Scale(factor=4)",
+                    "groups": "",
+                    "action": "Keyboard",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f9d5e20e-afbb-438e-875d-fa326b6797d3",
+                    "path": "<Keyboard>/5",
+                    "interactions": "",
+                    "processors": "Scale(factor=5)",
+                    "groups": "",
+                    "action": "Keyboard",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e6040e49-02ba-40ea-ac6e-f4f960dc3388",
+                    "path": "<Mouse>/scroll/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ScrollUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "58ef8b02-a89b-4170-96d0-1862acdac4b1",
+                    "path": "<Mouse>/scroll/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ScrollDown",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
