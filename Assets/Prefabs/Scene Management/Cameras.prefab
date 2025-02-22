@@ -121,7 +121,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3461225992234505917}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.9209976, y: 1.01515, z: -10.005932}
+  m_LocalPosition: {x: 13.680998, y: -0.07485001, z: -10.005932}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -259,10 +259,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -15.357814, y: 8.941268}
-      - {x: -15.27113, y: -8.973236}
-      - {x: 15.330846, y: -9.004483}
-      - {x: 15.195113, y: 9.075723}
+    - - {x: -18.27901, y: 15.431222}
+      - {x: -18.281267, y: -18.27121}
+      - {x: 22.622066, y: -18.36935}
+      - {x: 22.405022, y: 15.816695}
   m_UseDelaunayMesh: 0
 --- !u!1 &4843103234129980725
 GameObject:
@@ -292,7 +292,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4843103234129980725}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.8065956, y: 1.0101199, z: -10.005932}
+  m_LocalPosition: {x: 10.056924, y: -0.082130015, z: -10.005932}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -469,7 +469,7 @@ Transform:
   - {fileID: 2756774471994852731}
   - {fileID: 5823341301498503211}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6342401396684479443
 GameObject:
@@ -530,6 +530,7 @@ GameObject:
   m_Component:
   - component: {fileID: 893508624101814428}
   - component: {fileID: 705352115871122193}
+  - component: {fileID: 9124371631184822422}
   m_Layer: 0
   m_Name: State-Driven Camera
   m_TagString: Untagged
@@ -590,3 +591,26 @@ MonoBehaviour:
       m_RotationOrder: 4
   m_CustomBlends: {fileID: 0}
   m_ParentHash: []
+--- !u!114 &9124371631184822422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7506185545377444354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ApplyAfter: 2
+  m_ChannelMask: 1
+  m_Gain: 1
+  m_Use2DDistance: 0
+  m_UseCameraSpace: 1
+  m_ReactionSettings:
+    m_SecondaryNoise: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_Duration: 1
+    m_NoiseOffsets: {x: 0, y: 0, z: 0}

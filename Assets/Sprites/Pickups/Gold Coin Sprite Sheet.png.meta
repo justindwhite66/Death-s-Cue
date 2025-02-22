@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b707aa3a65dfae24aac580c6d7387e47
+guid: f7ebd67556d8dae41a78dd7ad284cff3
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Grape Walk Sheet_0
+      name: Gold Coin Sprite Sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 64
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +137,83 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8c29bda808a700c4d9b2803ce9621e03
-      internalID: 111058703
+      spriteID: 975b24e8d042f6f49bd1d8cc1d698b68
+      internalID: -988324308
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Grape Walk Sheet_1
+      name: Gold Coin Sprite Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a43d12ef82c96684c850b372efa0a67d
+      internalID: -1607878040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold Coin Sprite Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19fbbf4e4f2ef934b8744cb03c4222ca
+      internalID: 213125445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold Coin Sprite Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8719b3a1e85e46b409b8e23d2d44d716
+      internalID: -27640220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold Coin Sprite Sheet_4
       rect:
         serializedVersion: 2
         x: 64
         y: 0
-        width: 64
-        height: 64
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,20 +221,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 94281bc594bf5e74584b88189b1b3d1d
-      internalID: 495655436
+      spriteID: 85ae9d41e61f9a546b0979afb77d2168
+      internalID: 1040692979
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Grape Walk Sheet_2
+      name: Gold Coin Sprite Sheet_5
       rect:
         serializedVersion: 2
-        x: 128
+        x: 80
         y: 0
-        width: 64
-        height: 64
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,20 +242,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 49cd65791c3be1e4e893219c0757a2a1
-      internalID: -224412493
+      spriteID: 55cd0f61edadc00429318528a2ddca61
+      internalID: -250118601
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Grape Walk Sheet_3
+      name: Gold Coin Sprite Sheet_6
       rect:
         serializedVersion: 2
-        x: 192
+        x: 96
         y: 0
-        width: 64
-        height: 64
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,8 +263,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9efa2845b5d3e8f4ab1e33aad5add9c5
-      internalID: 622654401
+      spriteID: a6bcb514ed8b4c2418c4f4a4d4dd053d
+      internalID: 9201508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold Coin Sprite Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 929541f02357cfd4ea5370c4f84ce02b
+      internalID: -1583873698
       vertices: []
       indices: 
       edges: []
@@ -217,10 +301,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Grape Walk Sheet_0: 111058703
-      Grape Walk Sheet_1: 495655436
-      Grape Walk Sheet_2: -224412493
-      Grape Walk Sheet_3: 622654401
+      Gold Coin Sprite Sheet_0: -988324308
+      Gold Coin Sprite Sheet_1: -1607878040
+      Gold Coin Sprite Sheet_2: 213125445
+      Gold Coin Sprite Sheet_3: -27640220
+      Gold Coin Sprite Sheet_4: 1040692979
+      Gold Coin Sprite Sheet_5: -250118601
+      Gold Coin Sprite Sheet_6: 9201508
+      Gold Coin Sprite Sheet_7: -1583873698
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -5,10 +5,11 @@ using UnityEngine;
 public class EnemyAi : MonoBehaviour
 {
     [SerializeField] private float roamChangeDirFloat = 2f;
-    [SerializeField] private float attackRange = 5f;
+    [SerializeField] private float attackRange = 0f;
     [SerializeField] private MonoBehaviour enemyType;
     [SerializeField] private float attackCooldown = 2f;
     [SerializeField] private bool stopMovingWhileAttacking = false;
+    [SerializeField] private float roamCooldown = 1.5f;
 
     private bool canAttack = true;
 
@@ -67,7 +68,8 @@ public class EnemyAi : MonoBehaviour
     private void Attacking() {
         if (Vector2.Distance(transform.position, PlayerController.Instance.transform.position) > attackRange)
         {
-            state = State.Roaming;
+            canAttack = false;
+            StartCoroutine(StartRoamRoutine());
         }
 
         if (attackRange != 0 && canAttack) {
@@ -85,10 +87,17 @@ public class EnemyAi : MonoBehaviour
         }
     }
 
+    private IEnumerator StartRoamRoutine(){
+        yield return new WaitForSeconds(roamCooldown);
+        state = State.Roaming;
+        canAttack = true;
+    }
+
     private IEnumerator AttackCooldownRoutine() {
         yield return new WaitForSeconds(attackCooldown);
         canAttack = true;
     }
+    
 
     private Vector2 GetRoamingPosition() {
         timeRoaming = 0f;
