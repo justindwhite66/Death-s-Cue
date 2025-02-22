@@ -22297,6 +22297,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 388516132874294714, guid: ec7f141eb8f08a9489977f2b14b26c0c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10.0513115
+      objectReference: {fileID: 0}
     - target: {fileID: 705352115871122193, guid: ec7f141eb8f08a9489977f2b14b26c0c, type: 3}
       propertyPath: m_Follow
       value: 
@@ -23465,6 +23469,83 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1462812746642390593, guid: 286283a8570ebb1448ca5af09c326071, type: 3}
   m_PrefabInstance: {fileID: 1599360306}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1303947897
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1745617573701059280, guid: 385d90301b1ca7a40aa4425588e2056e, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745617573701059280, guid: 385d90301b1ca7a40aa4425588e2056e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745617573701059280, guid: 385d90301b1ca7a40aa4425588e2056e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745617573701059280, guid: 385d90301b1ca7a40aa4425588e2056e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745617573701059280, guid: 385d90301b1ca7a40aa4425588e2056e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745617573701059280, guid: 385d90301b1ca7a40aa4425588e2056e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745617573701059280, guid: 385d90301b1ca7a40aa4425588e2056e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745617573701059280, guid: 385d90301b1ca7a40aa4425588e2056e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745617573701059280, guid: 385d90301b1ca7a40aa4425588e2056e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745617573701059280, guid: 385d90301b1ca7a40aa4425588e2056e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745617573701059280, guid: 385d90301b1ca7a40aa4425588e2056e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2761430120221057008, guid: 385d90301b1ca7a40aa4425588e2056e, type: 3}
+      propertyPath: restTime
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2761430120221057008, guid: 385d90301b1ca7a40aa4425588e2056e, type: 3}
+      propertyPath: burstCount
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2761430120221057008, guid: 385d90301b1ca7a40aa4425588e2056e, type: 3}
+      propertyPath: bulletMoveSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2761430120221057008, guid: 385d90301b1ca7a40aa4425588e2056e, type: 3}
+      propertyPath: projectilesPerBurst
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8353367449962127221, guid: 385d90301b1ca7a40aa4425588e2056e, type: 3}
+      propertyPath: m_Name
+      value: Ghost
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 385d90301b1ca7a40aa4425588e2056e, type: 3}
 --- !u!4 &1327894759 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2116232240456678320, guid: 3c03a8186daa73341891a36a8f158eea, type: 3}
