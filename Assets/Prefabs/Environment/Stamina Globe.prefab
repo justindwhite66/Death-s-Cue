@@ -164,16 +164,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickUpType: 1
   pickUpDistance: 5
-  moveSpeedAcceleration: 0.1
-  moveSpeed: 2
+  moveSpeedAcceleration: 1
+  moveSpeed: 1
   animCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.98428345
+      value: 0.0047187805
+      inSlope: -1.9898641
+      outSlope: -1.9898641
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.06382049
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   heightY: 1.5
-  popDuration: 1
+  popDuration: 0.5
+  pickUpLifetime: 5
 --- !u!114 &1209538262317684154
 MonoBehaviour:
   m_ObjectHideFlags: 0

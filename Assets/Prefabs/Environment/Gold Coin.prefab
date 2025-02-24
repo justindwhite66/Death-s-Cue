@@ -215,6 +215,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   heightY: 1.5
   popDuration: 0.5
+  pickUpLifetime: 5
 --- !u!114 &9222289990192419515
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -42,7 +42,7 @@ Transform:
   m_Children:
   - {fileID: 8181763800210678038}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1102126002919405490
 SpriteRenderer:
@@ -268,10 +268,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 4967771683981118066, guid: bace6ae77fe1e6a428c560b332f29fe0, type: 3}
-  bulletMoveSpeed: 0.1
-  burstCount: 1
+  bulletMoveSpeed: 6
+  burstCount: 7
   timeBetweenBursts: 0.1
-  restTime: 1
+  restTime: 0.1
   projectilesPerBurst: 1
   angleSpread: 0
   startingDistance: 0.1
