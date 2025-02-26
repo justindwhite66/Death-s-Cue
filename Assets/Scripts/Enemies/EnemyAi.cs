@@ -103,4 +103,6 @@ public class EnemyAi : MonoBehaviour
         timeRoaming = 0f;
         return new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
     }
+
+
 }

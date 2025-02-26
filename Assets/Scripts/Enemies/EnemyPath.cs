@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using Unity.VisualScripting;
 
 public class EnemyPath : MonoBehaviour
 {
@@ -11,6 +13,7 @@ public class EnemyPath : MonoBehaviour
    private Knockback knockback;
    private SpriteRenderer spriteRenderer;
    private Animator animator;
+   public event Action OnDestinationReached;
 
    private void Awake(){
       knockback = GetComponent<Knockback>();
@@ -32,30 +35,17 @@ public class EnemyPath : MonoBehaviour
         }
 
      }
-
-    /*private void FixedUpdate()
-    {
-        if (knockback.GettingKnockedBack){return ;}
-
-        rb.MovePosition(rb.position + moveDir * (moveSpeed * Time.fixedDeltaTime));
-
-        UpdateAnimation();
-    }*/
+     
 
     public void MoveTo(Vector2 TargetPosition){
+      
     moveDir = TargetPosition;
+   
    }
-
-   private void UpdateAnimation(){
-      if (moveDir != Vector2.zero){
-         animator.SetFloat("MoveX", moveDir.x);
-         animator.SetFloat("MoveY", moveDir.y);
-         
-      }
-
-   }
+ 
 
    public void StopMoving(){
       moveDir = Vector3.zero;
    }
+
 }
