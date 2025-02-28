@@ -25,4 +25,12 @@ public class SpriteFade : MonoBehaviour
 
         Destroy(gameObject);
     }
+
+    public void ResetSpriteAlpha(){
+        if (spriteRenderer != null){
+            Color color = spriteRenderer.color;
+            color.a = .02f;
+            spriteRenderer.color = color;
+        }
+    }
 }

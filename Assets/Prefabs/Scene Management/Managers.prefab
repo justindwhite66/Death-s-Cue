@@ -77,8 +77,9 @@ Transform:
   - {fileID: 1721687098672052043}
   - {fileID: 6676571190920039036}
   - {fileID: 9159901167125434614}
+  - {fileID: 9059989774541304945}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5301744126790279370
 MonoBehaviour:
@@ -92,6 +93,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b74353a0dc5f5a448bb747b1d19fad70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &4469099306282210014
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9059989774541304945}
+  - component: {fileID: 2955542854240389316}
+  m_Layer: 0
+  m_Name: Teleport Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9059989774541304945
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4469099306282210014}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4610363868209731894}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2955542854240389316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4469099306282210014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52f2435ac9ba8eb4dbeb214e2c37985c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teleportFieldPrefab: {fileID: 2606110239911276568, guid: 560ecf9575956474a9e060d5377cd159, type: 3}
+  currentField: {fileID: 0}
 --- !u!1 &6939017810599524762
 GameObject:
   m_ObjectHideFlags: 0

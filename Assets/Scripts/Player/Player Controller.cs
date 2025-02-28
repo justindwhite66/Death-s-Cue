@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class PlayerController : Singleton<PlayerController>
@@ -12,6 +13,12 @@ public class PlayerController : Singleton<PlayerController>
    [SerializeField] private float dashSpeed = 4f;
    [SerializeField] private TrailRenderer myTrailRenderer;
    [SerializeField] private Transform weaponCollider;
+   [SerializeField] private float teleportRange = 8f;
+   [SerializeField] private float teleportCooldownTime = 1.5f;
+   [SerializeField] private GameObject teleportFieldPrefab;
+   [SerializeField] private float fieldDestroyDelay = 3f;
+   
+   
 
    private PlayerControls playerControls;
    private Vector2 movement;
@@ -19,9 +26,15 @@ public class PlayerController : Singleton<PlayerController>
    private Animator myAnimator;
    private SpriteRenderer mySpriteRender;
    private Knockback knockback;
+   
+   private Camera mainCamera;
+   
    private float startingMoveSpeed;
    private bool facingLeft = false;
    private bool isDashing = false;
+   private bool isTeleporting = false;
+   
+   private float teleportCooldownTimer = 0f;
 
    protected override void Awake(){
     base.Awake();
@@ -30,9 +43,11 @@ public class PlayerController : Singleton<PlayerController>
     myAnimator = GetComponent<Animator>();
     mySpriteRender = GetComponent<SpriteRenderer>();
     knockback = GetComponent<Knockback>();
+    mainCamera = Camera.main;
    }
    private void Start(){
       playerControls.Combat.Dash.performed += _ => Dash();
+      playerControls.Movement.Teleport.performed += _ => AttemptTeleport();
       startingMoveSpeed = moveSpeed;
       ActiveInventory.Instance.EquipStartingWeapon();
    }
@@ -107,4 +122,39 @@ public class PlayerController : Singleton<PlayerController>
         yield return new WaitForSeconds(dashCD);
         isDashing = false;
  }
+
+ private void AttemptTeleport(){
+   if (isTeleporting) {
+      return;
+   }
+
+   GameObject teleportField = TeleportationManager.Instance.currentField;
+   if (teleportField == null) {return;}
+
+   TeleportField fieldComponenet = teleportField.GetComponent<TeleportField>();
+   Vector3 targetPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+   targetPosition.z = 0f;
+
+   if (Vector3.Distance(teleportField.transform.position, targetPosition) <= fieldComponenet.GetRadius()){
+      transform.position = targetPosition;
+      StartTeleportCooldown();
+   }
+ }
+ private void StartTeleportCooldown(){
+   if (!isTeleporting){
+      StartCoroutine(TeleportCooldownRoutine());
+   }
+ }
+ private IEnumerator TeleportCooldownRoutine(){
+   isTeleporting = true;
+   teleportCooldownTimer = teleportCooldownTime;
+
+   while (teleportCooldownTimer> 0){
+      teleportCooldownTimer -= Time.deltaTime;
+      yield return null;
+   }
+   isTeleporting = false;
+ }
+
+
 }

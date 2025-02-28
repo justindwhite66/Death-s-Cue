@@ -140,6 +140,10 @@ MonoBehaviour:
   dashSpeed: 4
   myTrailRenderer: {fileID: 1355788245251337289}
   weaponCollider: {fileID: 3263194381365041602}
+  teleportRange: 8
+  teleportCooldownTime: 1.5
+  teleportFieldPrefab: {fileID: 0}
+  fieldDestroyDelay: 3
 --- !u!95 &6924798095020172619
 Animator:
   serializedVersion: 5
