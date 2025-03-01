@@ -33,11 +33,9 @@ public class TeleportField : MonoBehaviour
             {
                 StopCoroutine(fadeCoroutine);
                 fadeCoroutine = null;
-                isFading = false;
 
-                // Restore full opacity if it was fading
-                spriteFade.ResetSpriteAlpha();
             }
+            spriteFade.StopFade();
         }
     }
 
@@ -47,8 +45,8 @@ public class TeleportField : MonoBehaviour
 
         if (!playerInside) // Ensure player is still outside
         {
-            isFading = true;
-            yield return StartCoroutine(spriteFade.SlowFadeRoutine()); // Start fade animation
+            spriteFade.StartFade();
+            yield return new WaitForSeconds(spriteFade.fadeTime); // Start fade animation
 
             if (!playerInside) // Check again before destroying
             {
