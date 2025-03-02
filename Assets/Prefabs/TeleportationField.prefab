@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8776983101922766149
 SpriteRenderer:
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cbf1a0c185b6154d86369a3d4d234f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeTime: 1
+  FadeTime: 0.4
 --- !u!114 &5290651982938214287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,3 +113,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fieldRadius: 4
   fadeDelay: 5
+  baseLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  restrictedLayersMask:
+    serializedVersion: 2
+    m_Bits: 1536

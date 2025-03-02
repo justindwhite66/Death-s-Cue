@@ -43,7 +43,7 @@ Transform:
   - {fileID: 3263194381365041602}
   - {fileID: 7952948768326304438}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5621486845635952941
 SpriteRenderer:
@@ -141,7 +141,7 @@ MonoBehaviour:
   myTrailRenderer: {fileID: 1355788245251337289}
   weaponCollider: {fileID: 3263194381365041602}
   teleportRange: 8
-  teleportCooldownTime: 1.5
+  teleportCooldownTime: 0.3
   teleportFieldPrefab: {fileID: 0}
   fieldDestroyDelay: 3
 --- !u!95 &6924798095020172619

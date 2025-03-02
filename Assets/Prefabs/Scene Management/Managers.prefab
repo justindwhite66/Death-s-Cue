@@ -79,7 +79,7 @@ Transform:
   - {fileID: 9159901167125434614}
   - {fileID: 9059989774541304945}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5301744126790279370
 MonoBehaviour:
@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teleportFieldPrefab: {fileID: 2606110239911276568, guid: 560ecf9575956474a9e060d5377cd159, type: 3}
-  currentField: {fileID: 0}
+  currentField: {fileID: 2606110239911276568, guid: 560ecf9575956474a9e060d5377cd159, type: 3}
 --- !u!1 &6939017810599524762
 GameObject:
   m_ObjectHideFlags: 0

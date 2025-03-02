@@ -1,34 +1,59 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class TeleportationManager : MonoBehaviour
+public class TeleportationManager : Singleton<TeleportationManager>
 {
-   public static TeleportationManager Instance {get; private set;}
+   
    [SerializeField] private GameObject teleportFieldPrefab;
    public GameObject currentField;
+   
 
-   /*protected override void Awake() {
+   protected override void Awake() {
     base.Awake();
-    if (Instance == null)
-        Instance = this;
-   }*/
-
-   private void Awake() {
-    
-    if (Instance == null)
-        Instance = this;
+    SceneManager.sceneLoaded += OnSceneLoaded;
    }
+   
+
+ 
 
     private void Start()
     {
-        SpawnTeleportField();
+        StartCoroutine(SpawnTeleportFieldWithDelay());
     }
 
     public void SpawnTeleportField(){
-        if (currentField == null){return;}
+        
 
-        Vector3 spawnPos = PlayerController.Instance.transform.position;
-        currentField = Instantiate(teleportFieldPrefab, spawnPos, Quaternion.identity);
+        
+
+        if (PlayerController.Instance == null)
+        {
+            Debug.LogWarning("PlayerController not found, delaying teleport field spawn...");
+            StartCoroutine(SpawnTeleportFieldWithDelay());
+            return;
+        }
+        
+        Vector3 spawnPosition = PlayerController.Instance.transform.position;
+        
+        currentField = Instantiate(teleportFieldPrefab, spawnPosition, Quaternion.identity);
+        
     }
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode){
+        
+        StartCoroutine(SpawnTeleportFieldWithDelay());
+    }
+
+    private IEnumerator SpawnTeleportFieldWithDelay()
+    {
+        yield return new WaitForSeconds(0.3f); // Small delay to let the player be positioned
+        SpawnTeleportField();
+    }
+    
+    private void OnDestroy() {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+  
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpriteFade : MonoBehaviour
 {
-    public float fadeTime = .4f;
+    public float FadeTime = .4f;
     private SpriteRenderer spriteRenderer;
     private Coroutine fadeCoroutine;
     private bool isFading = false;
@@ -19,12 +19,12 @@ public class SpriteFade : MonoBehaviour
         float elapsedTime = 0;
         float startValue = spriteRenderer.color.a;
 
-        while (elapsedTime < fadeTime){
+        while (elapsedTime < FadeTime){
             if (!isFading) {
                 yield break;
             }
         elapsedTime += Time.deltaTime;
-        float newAlpha = Mathf.Lerp(startValue, 0f, elapsedTime / fadeTime);
+        float newAlpha = Mathf.Lerp(startValue, 0f, elapsedTime / FadeTime);
         spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, newAlpha);
         yield return null;
         }

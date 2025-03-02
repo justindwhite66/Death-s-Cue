@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : Singleton<PlayerController>
 {
@@ -55,12 +56,20 @@ public class PlayerController : Singleton<PlayerController>
 
    private void OnEnable(){
     playerControls.Enable();
+    SceneManager.sceneLoaded += OnSceneLoaded;
    }
 
     void OnDisable()
     {
         playerControls.Disable();
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+{
+    playerControls.Disable();
+    playerControls.Enable(); // Reset input actions to prevent missing references
+}
 
     private void Update(){
     PlayerInput();
@@ -87,6 +96,13 @@ public class PlayerController : Singleton<PlayerController>
 
    }
   private void AdjustPlayerFacingDirection(){
+
+   if (Camera.main == null)
+    {
+        Debug.LogWarning("Camera.main is null, trying to reassign...");
+        return; // Prevents errors when the camera is destroyed
+    }
+
    Vector3 mousePos = Input.mousePosition;
    Vector3 playerScreenPoint = Camera.main.WorldToScreenPoint(transform.position);
 
@@ -128,16 +144,29 @@ public class PlayerController : Singleton<PlayerController>
       return;
    }
 
-   GameObject teleportField = TeleportationManager.Instance.currentField;
-   if (teleportField == null) {return;}
+   if (Camera.main == null)
+    {
+        Debug.LogWarning("Camera.main is null! Waiting to reassign...");
+        return; // Prevents teleportation until camera is assigned
+    }
 
-   TeleportField fieldComponenet = teleportField.GetComponent<TeleportField>();
-   Vector3 targetPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-   targetPosition.z = 0f;
+   Vector3 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    targetPosition.z = 0f;
 
-   if (Vector3.Distance(teleportField.transform.position, targetPosition) <= fieldComponenet.GetRadius()){
+    GameObject teleportField = TeleportationManager.Instance.currentField;
+    if (teleportField == null) return;
+
+    TeleportField fieldComponent = teleportField.GetComponent<TeleportField>();
+
+   if (Vector3.Distance(teleportField.transform.position, targetPosition) <= fieldComponent.GetRadius()){
+      if (fieldComponent.IsValidTeleportLocation(targetPosition)){
       transform.position = targetPosition;
       StartTeleportCooldown();
+      }
+      else{
+        Debug.Log("Invalid teleport location! Cannot teleport onto water or foreground.");
+
+      }
    }
  }
  private void StartTeleportCooldown(){

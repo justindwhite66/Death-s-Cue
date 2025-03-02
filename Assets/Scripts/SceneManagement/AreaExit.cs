@@ -12,17 +12,17 @@ public class AreaExit : MonoBehaviour
         if(other.gameObject.GetComponent<PlayerController>()){
             SceneManagement.Instance.SetTransitionName(sceneTransitionName);
             UIFade.Instance.FadeToBlack();
+
+            if (TeleportationManager.Instance.currentField != null){
+                Destroy(TeleportationManager.Instance.currentField);
+                TeleportationManager.Instance.currentField = null;
+            }
             StartCoroutine(LoadSceneRoutine());
         }
     }
 
     private IEnumerator LoadSceneRoutine() {
-        while (waitToLoadTime >= 0) 
-        {
-            waitToLoadTime -= Time.deltaTime;
-            yield return null;
-        }
-
+        yield return new WaitForSeconds(waitToLoadTime);
         SceneManager.LoadScene(sceneToLoad);
     }
 
