@@ -115,7 +115,7 @@ MonoBehaviour:
   fadeDelay: 5
   baseLayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   restrictedLayersMask:
     serializedVersion: 2
     m_Bits: 1536

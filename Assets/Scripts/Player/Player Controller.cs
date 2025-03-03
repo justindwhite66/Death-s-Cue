@@ -158,17 +158,20 @@ public class PlayerController : Singleton<PlayerController>
 
     TeleportField fieldComponent = teleportField.GetComponent<TeleportField>();
 
-   if (Vector3.Distance(teleportField.transform.position, targetPosition) <= fieldComponent.GetRadius()){
-      if (fieldComponent.IsValidTeleportLocation(targetPosition)){
-      transform.position = targetPosition;
-      StartTeleportCooldown();
-      }
-      else{
-        Debug.Log("Invalid teleport location! Cannot teleport onto water or foreground.");
-
-      }
-   }
- }
+   if (Vector3.Distance(teleportField.transform.position, targetPosition) <= fieldComponent.GetRadius())
+    {
+        // Check if the teleportation location is restricted
+        if (fieldComponent.IsValidTeleportLocation(targetPosition))
+        {
+            transform.position = targetPosition;
+            StartTeleportCooldown();
+        }
+        else
+        {
+            Debug.Log("Invalid teleport location! Cannot teleport onto water or foreground.");
+        }
+    }
+}
  private void StartTeleportCooldown(){
    if (!isTeleporting){
       StartCoroutine(TeleportCooldownRoutine());

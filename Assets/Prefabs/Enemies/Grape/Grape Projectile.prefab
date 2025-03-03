@@ -161,7 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c7e19a32eec02e4b902d5129a0da893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 1.7
+  duration: 0.8
   animCurve:
     serializedVersion: 2
     m_Curve:
@@ -195,6 +195,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  heightY: 6
+  heightY: 5
   grapeProjectileShadow: {fileID: 5797798329309501751, guid: 770a3a7e1f5332e4f854291e37824e53, type: 3}
   splatterPrefab: {fileID: 5815894182519678704, guid: 3af25e4ad4a76be4998532beb40052e6, type: 3}

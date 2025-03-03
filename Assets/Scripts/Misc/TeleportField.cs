@@ -53,13 +53,19 @@ public class TeleportField : MonoBehaviour
         }
     }
 
-    public bool IsValidTeleportLocation(Vector3 position){
-        Collider2D baseTile = Physics2D.OverlapPoint(position, baseLayerMask);
+public bool IsValidTeleportLocation(Vector3 position)
+{
+    float checkRadius = 0.1f; // Small detection radius
 
-        Collider2D restrictedTile = Physics2D.OverlapPoint(position, restrictedLayersMask);
+    // Check if the target position has a restricted layer (Water or Foreground)
+    Collider2D restrictedTile = Physics2D.OverlapCircle(position, checkRadius, restrictedLayersMask);
 
-        return baseTile != null && restrictedTile == null;
-    }
+    return restrictedTile == null; // Valid if NO restricted tile is detected
+}
+
+
+
+
 
     private IEnumerator FadeAndDestroy()
     {

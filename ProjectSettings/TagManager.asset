@@ -13,10 +13,10 @@ TagManager:
   - UI
   - Sword
   - 
-  - BaseLayer
+  - 
   - WaterLayer
   - ForegroundLayer
-  - 
+  - IgnorePhysics
   - 
   - 
   - 
