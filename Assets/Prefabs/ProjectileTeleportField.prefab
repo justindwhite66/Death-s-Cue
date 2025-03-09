@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5290651982938214287}
   - component: {fileID: 8721890151857944431}
   m_Layer: 0
-  m_Name: TeleportationField
+  m_Name: ProjectileTeleportField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,11 +29,11 @@ Transform:
   m_GameObject: {fileID: 2606110239911276568}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.6292877, y: 0.70794475, z: 0}
-  m_LocalScale: {x: 8, y: 8, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8776983101922766149
 SpriteRenderer:
@@ -112,12 +112,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2909a0caffd574c40a0cb71282ea7051, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fieldRadius: 4
+  fieldRadius: 2
   fadeDelay: 5
   restrictedLayersMask:
     serializedVersion: 2
     m_Bits: 1536
-  smallTeleportPrefab: {fileID: 2606110239911276568, guid: 6278ddfced8f22f48bcfbbe78a99134b, type: 3}
+  smallTeleportPrefab: {fileID: 2606110239911276568}
 --- !u!58 &8721890151857944431
 CircleCollider2D:
   m_ObjectHideFlags: 0

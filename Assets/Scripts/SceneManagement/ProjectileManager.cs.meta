@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: 2909a0caffd574c40a0cb71282ea7051
+guid: 2ec1b6cd95ead9944ae0fec0880f0ffc
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - smallTeleportPrefab: {fileID: 2606110239911276568, guid: 6278ddfced8f22f48bcfbbe78a99134b, type: 3}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

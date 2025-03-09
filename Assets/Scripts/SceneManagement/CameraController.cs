@@ -10,6 +10,10 @@ public class CameraController : Singleton<CameraController>
     protected override void Awake()
     {
         base.Awake();
+
+        if (transform.parent != null){
+            transform.SetParent(null);
+        }
         DontDestroyOnLoad(gameObject); // Prevents the camera from being destroyed
     }
 

@@ -25,9 +25,6 @@ public class TeleportationManager : Singleton<TeleportationManager>
 
     public void SpawnTeleportField(){
         
-
-        
-
         if (PlayerController.Instance == null)
         {
             Debug.LogWarning("PlayerController not found, delaying teleport field spawn...");

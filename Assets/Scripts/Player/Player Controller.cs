@@ -153,22 +153,17 @@ public class PlayerController : Singleton<PlayerController>
    Vector3 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
     targetPosition.z = 0f;
 
-    GameObject teleportField = TeleportationManager.Instance.currentField;
-    if (teleportField == null) return;
+   TeleportField[] teleportFields = FindObjectsOfType<TeleportField>();
 
-    TeleportField fieldComponent = teleportField.GetComponent<TeleportField>();
-
-   if (Vector3.Distance(teleportField.transform.position, targetPosition) <= fieldComponent.GetRadius())
+    // Check if the target position is inside any teleport field
+    foreach (TeleportField field in teleportFields)
     {
-        // Check if the teleportation location is restricted
-        if (fieldComponent.IsValidTeleportLocation(targetPosition))
+        if (Vector3.Distance(field.transform.position, targetPosition) <= field.GetRadius())
         {
+           
             transform.position = targetPosition;
             StartTeleportCooldown();
-        }
-        else
-        {
-            Debug.Log("Invalid teleport location! Cannot teleport onto water or foreground.");
+            return;
         }
     }
 }
