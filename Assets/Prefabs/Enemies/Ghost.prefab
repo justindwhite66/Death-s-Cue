@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 7390656210198334722}
   - component: {fileID: 2761430120221057008}
   - component: {fileID: -5117179461219558723}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ghost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ Transform:
   m_Children:
   - {fileID: 8181763800210678038}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1102126002919405490
 SpriteRenderer:
@@ -174,7 +174,7 @@ MonoBehaviour:
   attackRange: 7
   enemyType: {fileID: 2761430120221057008}
   attackCooldown: 2
-  stopMovingWhileAttacking: 0
+  stopMovingWhileAttacking: 1
   roamCooldown: 1.5
 --- !u!114 &3719140219343187240
 MonoBehaviour:
@@ -268,15 +268,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 4967771683981118066, guid: bace6ae77fe1e6a428c560b332f29fe0, type: 3}
-  bulletMoveSpeed: 6
-  burstCount: 7
-  timeBetweenBursts: 0.1
-  restTime: 0.1
-  projectilesPerBurst: 1
-  angleSpread: 0
-  startingDistance: 0.1
-  stagger: 0
-  oscillate: 0
+  bulletMoveSpeed: 4
+  burstCount: 1
+  timeBetweenBursts: 0.31
+  restTime: 3
+  projectilesPerBurst: 3
+  angleSpread: 28
+  startingDistance: 0.5
+  stagger: 1
+  oscillate: 1
 --- !u!114 &-5117179461219558723
 MonoBehaviour:
   m_ObjectHideFlags: 0

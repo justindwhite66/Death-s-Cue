@@ -113,11 +113,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fieldRadius: 4
-  fadeDelay: 5
+  fadeDelay: 2
   restrictedLayersMask:
     serializedVersion: 2
     m_Bits: 1536
   smallTeleportPrefab: {fileID: 2606110239911276568, guid: 6278ddfced8f22f48bcfbbe78a99134b, type: 3}
+  isSmallField: 0
 --- !u!58 &8721890151857944431
 CircleCollider2D:
   m_ObjectHideFlags: 0

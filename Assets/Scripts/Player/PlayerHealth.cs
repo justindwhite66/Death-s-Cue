@@ -16,6 +16,7 @@ public class PlayerHealth : Singleton<PlayerHealth>
 
     private int currentHealth;
     public bool isDead {get; private set;}
+    public bool isTeleporting{get; private set;}
     private bool canTakeDamage = true;
     private Knockback knockback;
     private Flash flash;
@@ -43,11 +44,12 @@ public class PlayerHealth : Singleton<PlayerHealth>
     {
         EnemyAi enemy = collision.gameObject.GetComponent<EnemyAi>();
 
-        if (enemy){
+        if (enemy && !isTeleporting){
             TakeDamage(1, collision.transform);
         }
     }
     public void TakeDamage(int damageAmount, Transform hitTransform){
+        if (PlayerController.Instance != null && PlayerController.Instance.IsInvincible()){ return;}
         if (!canTakeDamage) {return ;}
 
         ScreenShakeManager.Instance.ShakeScreen();
@@ -59,6 +61,8 @@ public class PlayerHealth : Singleton<PlayerHealth>
         UpdateHealthSlider();
         CheckPlayerDeath();
     }
+   
+
 
     public void HealDamage(){
         if (currentHealth < maxHealth){
