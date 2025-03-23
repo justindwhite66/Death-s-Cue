@@ -7,7 +7,6 @@ public class TeleportField : MonoBehaviour
     [SerializeField] private float fadeDelay = 3f; // Time before fade starts
     [SerializeField] private LayerMask restrictedLayersMask;
     [SerializeField] private GameObject smallTeleportPrefab;
-    [SerializeField] private bool isSmallField = false;
     private bool playerInside = true;
     private SpriteFade spriteFade;
     private Coroutine fadeCoroutine;
@@ -71,21 +70,7 @@ public bool IsValidTeleportLocation(Vector3 position)
 private void OnTriggerExit2D(Collider2D other) {
     Projectile projectile = other.GetComponent<Projectile>();
     if (projectile != null){
-        if (projectile.TrackingCancelled){
-            return;
-        }
-        
         StartCoroutine(CheckProjectileCollision(projectile));
-    }
-}
-private void OnTriggerEnter2D(Collider2D other)
-{
-    Projectile projectile = other.GetComponent<Projectile>();
-
-    if (projectile != null && isSmallField)
-    {
-        
-        projectile.TrackingCancelled = true; // NEW: Cancel tracking
     }
 }
 
@@ -111,15 +96,22 @@ private void SpawnSmallField(Vector3 position)
 {
     if (smallTeleportPrefab != null)
     {
-        
+        Debug.Log($"Spawning small teleport field at {position}");
         GameObject newField = Instantiate(smallTeleportPrefab, position, Quaternion.identity);
 
-        TeleportField fieldComponent = newField.GetComponent<TeleportField>();
-        if (fieldComponent != null){
-            fieldComponent.isSmallField = true;
+        if (newField != null)
+        {
+            Debug.Log($"Small teleport field successfully instantiated at {position}");
+        }
+        else
+        {
+            Debug.LogError($"Teleport field instantiation failed at {position}");
         }
     }
-    
+    else
+    {
+        Debug.LogError("smallTeleportFieldPrefab is NULL! Assign a prefab in the Inspector.");
+    }
 }
 
     private IEnumerator FadeAndDestroy()
@@ -131,6 +123,7 @@ private void SpawnSmallField(Vector3 position)
     // Check if this is the MAIN teleport field before spawning a new one
     if (TeleportationManager.Instance.currentField == this.gameObject)
     {
+        Debug.Log("Main teleport field disappeared, spawning new one.");
         TeleportationManager.Instance.SpawnTeleportField();
     }
 

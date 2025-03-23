@@ -5,7 +5,7 @@ using UnityEngine;
 public class Flash : MonoBehaviour
 {
  [SerializeField] private Material whiteFlashMat;
- [SerializeField] private float restoreDefaultMatTime = .1f;
+ [SerializeField] private float restoreDefaultMatTime = .2f;
  private Material defaultMat;
  private SpriteRenderer spriteRenderer;
 

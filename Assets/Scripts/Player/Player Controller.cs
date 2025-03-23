@@ -12,16 +12,12 @@ public class PlayerController : Singleton<PlayerController>
 
    [SerializeField] private float moveSpeed = 1f;
    [SerializeField] private float dashSpeed = 4f;
-   [SerializeField] private float dashDuration = .2f;
-   [SerializeField] private float dashCooldown = 0.25f;
    [SerializeField] private TrailRenderer myTrailRenderer;
    [SerializeField] private Transform weaponCollider;
    [SerializeField] private float teleportRange = 8f;
    [SerializeField] private float teleportCooldownTime = 1.5f;
    [SerializeField] private GameObject teleportFieldPrefab;
    [SerializeField] private float fieldDestroyDelay = 3f;
-   [SerializeField] private float invincibilityTimer = 0.2f;
-   [SerializeField] private Collider2D invincibilityDamageCollider;
    
    
 
@@ -38,7 +34,6 @@ public class PlayerController : Singleton<PlayerController>
    private bool facingLeft = false;
    private bool isDashing = false;
    private bool isTeleporting = false;
-   private bool isInvincible = false;
    
    private float teleportCooldownTimer = 0f;
 
@@ -129,31 +124,18 @@ public class PlayerController : Singleton<PlayerController>
       moveSpeed *= dashSpeed;
       myTrailRenderer.emitting = true;
       StartCoroutine(EndDashRoutine());
-      StartCoroutine(DashInvincibilityRoutine());
     }
-   }
-
-   private IEnumerator DashInvincibilityRoutine(){
-      isInvincible = true;
-      if (invincibilityDamageCollider != null){
-         invincibilityDamageCollider.enabled = true;
-      }
-
-      yield return new WaitForSeconds(invincibilityTimer);
-
-      if (invincibilityDamageCollider != null)
-         invincibilityDamageCollider.enabled = false;
-      
-      isInvincible = false;
    }
 
 
   private IEnumerator EndDashRoutine() {
 
-        yield return new WaitForSeconds(dashDuration);
+        float dashTime = .2f;
+        float dashCD = .25f;
+        yield return new WaitForSeconds(dashTime);
         moveSpeed = startingMoveSpeed;
         myTrailRenderer.emitting = false;
-        yield return new WaitForSeconds(dashCooldown);
+        yield return new WaitForSeconds(dashCD);
         isDashing = false;
  }
 
@@ -164,7 +146,8 @@ public class PlayerController : Singleton<PlayerController>
 
    if (Camera.main == null)
     {
-        return; 
+        Debug.LogWarning("Camera.main is null! Waiting to reassign...");
+        return; // Prevents teleportation until camera is assigned
     }
 
    Vector3 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -177,34 +160,18 @@ public class PlayerController : Singleton<PlayerController>
     {
         if (Vector3.Distance(field.transform.position, targetPosition) <= field.GetRadius())
         {
+           
             transform.position = targetPosition;
-            StartCoroutine(InvincibilityRoutine());
             StartTeleportCooldown();
             return;
         }
     }
 }
-
-private IEnumerator InvincibilityRoutine(){
-   isInvincible = true;
-   if(invincibilityDamageCollider != null)
-      invincibilityDamageCollider.enabled = true;
-
-   yield return new WaitForSeconds(invincibilityTimer);
-
-   if (invincibilityDamageCollider != null)
-      invincibilityDamageCollider.enabled = false;
-   
-   isInvincible = false;
-}
-
-
  private void StartTeleportCooldown(){
    if (!isTeleporting){
       StartCoroutine(TeleportCooldownRoutine());
    }
  }
-
  private IEnumerator TeleportCooldownRoutine(){
    isTeleporting = true;
    teleportCooldownTimer = teleportCooldownTime;
@@ -215,7 +182,6 @@ private IEnumerator InvincibilityRoutine(){
    }
    isTeleporting = false;
  }
- public bool IsInvincible(){
-   return isInvincible;
- }
+
+
 }
