@@ -10,6 +10,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] private bool isEnemyProjectile = false;
     [SerializeField] private float projectileRange = 10f;
     [SerializeField] private float collisionIgnoreTime = 1f;
+    public bool TrackingCancelled {get; set;} = false;
 
     private Vector3 startPosition;
     private Collider2D projectileCollider;
@@ -48,11 +49,6 @@ public class Projectile : MonoBehaviour
 
 private void OnTriggerEnter2D(Collider2D other)
 {
-    
-
-    // If the impact was already recorded, do not process again
-   
-
     EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
     Indestructible indestructible = other.GetComponent<Indestructible>();
     PlayerHealth player = other.GetComponent<PlayerHealth>();
@@ -65,6 +61,7 @@ private void OnTriggerEnter2D(Collider2D other)
         {
             player?.TakeDamage(1, transform);
             Instantiate(particleOnHitPrefabVFX, transform.position, transform.rotation);
+            Destroy(gameObject);
         }
         else if (indestructible != null)
         {
@@ -113,4 +110,3 @@ private void OnTriggerEnter2D(Collider2D other)
     Destroy(gameObject);
 }
 }
-

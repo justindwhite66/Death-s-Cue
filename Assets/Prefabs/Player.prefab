@@ -138,12 +138,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 4
   dashSpeed: 4
+  dashDuration: 0.2
+  dashCooldown: 0.25
   myTrailRenderer: {fileID: 1355788245251337289}
   weaponCollider: {fileID: 3263194381365041602}
   teleportRange: 8
   teleportCooldownTime: 1.5
   teleportFieldPrefab: {fileID: 0}
   fieldDestroyDelay: 3
+  invincibilityTimer: 0.2
+  invincibilityDamageCollider: {fileID: 0}
 --- !u!95 &6924798095020172619
 Animator:
   serializedVersion: 5
