@@ -12723,6 +12723,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3697032788831909153, guid: d1eedb5894b82e84abd5dd6d1c333414, type: 3}
+      propertyPath: teleportCooldownTime
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 7880078023362730199, guid: d1eedb5894b82e84abd5dd6d1c333414, type: 3}
       propertyPath: m_RootOrder
       value: 5

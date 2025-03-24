@@ -123,8 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
-<<<<<<< HEAD
-=======
 --- !u!1001 &3234514
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55262,4 +55260,3 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec87abb449749a04c8704e8a8fbe8a7e, type: 3}
->>>>>>> parent of c5e9e40 (teleportation update)
