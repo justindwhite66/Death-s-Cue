@@ -26,13 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6589234197375261413}
-  m_LocalRotation: {x: -0, y: -0, z: 0.7296435, w: 0.68382776}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7296433, w: 0.683828}
   m_LocalPosition: {x: 0.47, y: 0.74, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 93.713}
 --- !u!212 &831830974717648890
 SpriteRenderer:
@@ -121,5 +121,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slashAnimPrefab: {fileID: 7397257365466597414, guid: 14e56f2b5ebaf904c84a648c367b99a1, type: 3}
   slashAnimSpawnPoint: {fileID: 0}
-  swordAttackCD: 0.5
+  swordAttackCD: 1
   weaponInfo: {fileID: 11400000, guid: 059dd4b8b34399f49819298eb277a41d, type: 2}
+  parryWindow: 0.6

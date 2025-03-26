@@ -42,7 +42,7 @@ Transform:
   m_Children:
   - {fileID: 8181763800210678038}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1102126002919405490
 SpriteRenderer:
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roamChangeDirFloat: 2
-  attackRange: 7
+  attackRange: 12
   enemyType: {fileID: 2761430120221057008}
   attackCooldown: 2
   stopMovingWhileAttacking: 0
@@ -268,15 +268,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 4967771683981118066, guid: bace6ae77fe1e6a428c560b332f29fe0, type: 3}
-  bulletMoveSpeed: 6
-  burstCount: 7
-  timeBetweenBursts: 0.1
-  restTime: 0.1
-  projectilesPerBurst: 1
-  angleSpread: 0
-  startingDistance: 0.1
-  stagger: 0
-  oscillate: 0
+  bulletMoveSpeed: 8
+  burstCount: 1
+  timeBetweenBursts: 0.31
+  restTime: 1
+  projectilesPerBurst: 4
+  angleSpread: 49
+  startingDistance: 0.5
+  stagger: 1
+  oscillate: 1
 --- !u!114 &-5117179461219558723
 MonoBehaviour:
   m_ObjectHideFlags: 0

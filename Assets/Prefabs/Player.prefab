@@ -42,8 +42,9 @@ Transform:
   - {fileID: 5629181891390377641}
   - {fileID: 3263194381365041602}
   - {fileID: 7952948768326304438}
+  - {fileID: 2387288620314629782}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5621486845635952941
 SpriteRenderer:
@@ -143,11 +144,11 @@ MonoBehaviour:
   myTrailRenderer: {fileID: 1355788245251337289}
   weaponCollider: {fileID: 3263194381365041602}
   teleportRange: 8
-  teleportCooldownTime: 1.5
+  teleportCooldownTime: 0.3
   teleportFieldPrefab: {fileID: 0}
   fieldDestroyDelay: 3
-  invincibilityTimer: 0.2
-  invincibilityDamageCollider: {fileID: 0}
+  invincibilityTimer: 0.4
+  invincibilityDamageCollider: {fileID: 3456908943991950460}
 --- !u!95 &6924798095020172619
 Animator:
   serializedVersion: 5
@@ -408,6 +409,87 @@ Transform:
   m_Father: {fileID: 5629181891390377641}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4356001758168286915
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2387288620314629782}
+  - component: {fileID: 3456908943991950460}
+  - component: {fileID: 5826174524733988215}
+  m_Layer: 0
+  m_Name: InvincibilityCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2387288620314629782
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4356001758168286915}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7880078023362730199}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &3456908943991950460
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4356001758168286915}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.013462126, y: 0.27372837}
+  m_Size: {x: 0.79616535, y: 0.97307587}
+  m_Direction: 0
+--- !u!114 &5826174524733988215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4356001758168286915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed15c80e11e34704785aeaf875dacfdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 3
 --- !u!1 &4623284270120758179
 GameObject:
   m_ObjectHideFlags: 0

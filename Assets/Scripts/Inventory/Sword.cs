@@ -10,10 +10,13 @@ public class Sword : MonoBehaviour, IWeapon
     [SerializeField] private Transform slashAnimSpawnPoint;
     [SerializeField] private float swordAttackCD = .5f;
         [SerializeField] private WeaponInfo weaponInfo;
+    [SerializeField] private float parryWindow = 0.2f;
+
 
     private Animator myAnimator;
     private Transform weaponCollider;
     private GameObject slashAnim;
+    private bool isParrying = false;
     private void Awake(){
         
 
@@ -38,14 +41,19 @@ public class Sword : MonoBehaviour, IWeapon
             
             myAnimator.SetTrigger("Attack");
             weaponCollider.gameObject.SetActive(true);
+            isParrying = true;
             slashAnim = Instantiate(slashAnimPrefab, slashAnimSpawnPoint.position, Quaternion.identity);
             slashAnim.transform.parent = this.transform.parent;
             
         
     }
+
+    
+
     
     public void DoneAttackingAnimEvent(){
         weaponCollider.gameObject.SetActive(false);
+        isParrying = false;
     }
 
     public void SwingUpFlipAnim(){
@@ -79,6 +87,9 @@ public class Sword : MonoBehaviour, IWeapon
 
         }
 
+   }
+   public bool IsParrying(){
+    return isParrying;
    }
 
   
