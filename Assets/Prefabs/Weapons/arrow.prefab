@@ -293,7 +293,7 @@ MonoBehaviour:
   particleOnHitPrefabVFX: {fileID: 3942932078270590173, guid: 249c75f35c3a327408e16b6596e2ea9b, type: 3}
   isEnemyProjectile: 0
   projectileRange: 10
-  collisionIgnoreTime: 0.1
+  collisionIgnoreTime: 0
   passedThroughField: 0
 --- !u!114 &3145401269488113906
 MonoBehaviour:

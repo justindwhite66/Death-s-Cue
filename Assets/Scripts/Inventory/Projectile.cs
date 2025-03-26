@@ -11,12 +11,12 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float projectileRange = 10f;
     [SerializeField] private float collisionIgnoreTime = 1f;
     public bool TrackingCancelled {get; set;} = false;
+     
 
     private Vector3 startPosition;
     private Collider2D projectileCollider;
 
     public bool passedThroughField = false;
-    private bool hasRecordedImpact = false;
 
     private void Start() {
         startPosition = transform.position;
@@ -55,7 +55,6 @@ private void OnTriggerEnter2D(Collider2D other)
 
     if (!other.isTrigger && (enemyHealth || indestructible || player))
     {
-        hasRecordedImpact = true;
         // Only mark impact as recorded AFTER confirming the correct collision logic
         if ((player && isEnemyProjectile) || (enemyHealth && !isEnemyProjectile))
         {
@@ -109,4 +108,12 @@ private void OnTriggerEnter2D(Collider2D other)
 
     Destroy(gameObject);
 }
+
+    public bool IsEnemyProjectile(){
+        return isEnemyProjectile;
+    }
+
+    public void SetIsEnemyProjectile(bool value){
+        isEnemyProjectile = value;
+    }
 }
