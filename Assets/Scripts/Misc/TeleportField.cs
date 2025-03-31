@@ -141,4 +141,11 @@ private void SpawnSmallField(Vector3 position)
     {
         return fieldRadius;
     }
+
+    public bool IsValidTeleportLocation(Vector3 position, LayerMask restrictedLayersMask)
+    {
+        float checkRadius = 0.1f;
+        Collider2D restrictedTile = Physics2D.OverlapCircle(position, checkRadius, restrictedLayersMask);
+        return restrictedTile == null;
+    }
 }

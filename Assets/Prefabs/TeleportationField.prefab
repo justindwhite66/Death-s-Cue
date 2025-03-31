@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.0047169924, g: 0.06997829, b: 1, a: 0.019607844}
   m_FlipX: 0
@@ -118,6 +118,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1536
   smallTeleportPrefab: {fileID: 2606110239911276568, guid: 6278ddfced8f22f48bcfbbe78a99134b, type: 3}
+  isSmallField: 0
 --- !u!58 &8721890151857944431
 CircleCollider2D:
   m_ObjectHideFlags: 0
