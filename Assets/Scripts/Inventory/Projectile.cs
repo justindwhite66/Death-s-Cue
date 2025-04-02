@@ -64,15 +64,12 @@ private void OnTriggerEnter2D(Collider2D other)
         }
         else if (indestructible != null)
         {
-           
             if (ProjectileManager.Instance != null)
             {
-               
                 ProjectileManager.Instance.SetLastDestroyedProjectile(transform.position, true);
             }
         }else{
             if (ProjectileManager.Instance != null){
-                
                 ProjectileManager.Instance.SetLastDestroyedProjectile(transform.position, false);
             }
         }
