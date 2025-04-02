@@ -177,6 +177,9 @@ public class PlayerController : Singleton<PlayerController>
     {
         if (Vector3.Distance(field.transform.position, targetPosition) <= field.GetRadius())
         {
+         if (!field.IsValidTeleportLocation(targetPosition)){
+            return;
+         }
             transform.position = targetPosition;
             StartCoroutine(InvincibilityRoutine());
             StartTeleportCooldown();
