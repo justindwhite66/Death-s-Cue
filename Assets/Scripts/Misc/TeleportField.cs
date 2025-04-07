@@ -110,10 +110,8 @@ private IEnumerator CheckProjectileCollision(Projectile projectile)
 private void SpawnSmallField(Vector3 position)
 {
     if (smallTeleportPrefab != null)
-    {
-        
+    { 
         GameObject newField = Instantiate(smallTeleportPrefab, position, Quaternion.identity);
-
         TeleportField fieldComponent = newField.GetComponent<TeleportField>();
         if (fieldComponent != null){
             fieldComponent.isSmallField = true;

@@ -174,7 +174,7 @@ MonoBehaviour:
   attackRange: 12
   enemyType: {fileID: 2761430120221057008}
   attackCooldown: 2
-  stopMovingWhileAttacking: 0
+  stopMovingWhileAttacking: 1
   roamCooldown: 1.5
 --- !u!114 &3719140219343187240
 MonoBehaviour:
@@ -253,7 +253,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_SortAtRoot: 0
 --- !u!114 &2761430120221057008
 MonoBehaviour:
