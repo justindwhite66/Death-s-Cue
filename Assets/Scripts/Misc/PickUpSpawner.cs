@@ -10,7 +10,7 @@ public class PickUpSpawner : MonoBehaviour
     [SerializeField] private float pickUpLifetime = 3f;
 
     public void DropItems(){
-        int pickUpNumber = Random.Range(1,6);
+        int pickUpNumber = Random.Range(1,4);
 
         switch (pickUpNumber){
 
