@@ -486,11 +486,11 @@ InputManager:
     axis: 5
     joyNum: 0
   - serializedVersion: 3
-    m_Name: ToggleLootMenu
+    m_Name: TogglePauseMenu
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: q
+    positiveButton: p
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
