@@ -41,3 +41,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 548114743
+    locked: 0
+  - name: Ground
+    uniqueID: 1480005827
+    locked: 0
+  - name: Decor-L1
+    uniqueID: 1444402077
+    locked: 0
+  - name: SolidObjects
+    uniqueID: 165386177
+    locked: 0
+  - name: Decor-L2
+    uniqueID: 3575404099
+    locked: 0
