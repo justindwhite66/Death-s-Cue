@@ -86,6 +86,29 @@ public class PauseMenuManager : MonoBehaviour
             return;
         }
         
+        // Set the canvas to ignore timescale
+        Canvas canvas = pauseCanvas.GetComponent<Canvas>();
+        if (canvas != null)
+        {
+            canvas.overrideSorting = true;
+            canvas.sortingOrder = 10; // High value to ensure it renders on top
+        }
+        
+        // Configure the GraphicRaycaster to ignore timescale
+        GraphicRaycaster raycaster = pauseCanvas.GetComponent<GraphicRaycaster>();
+        if (raycaster != null)
+        {
+            raycaster.ignoreReversedGraphics = false;
+        }
+        
+        // Add this component to handle input when timescale is 0
+        if (!pauseCanvas.TryGetComponent<CanvasGroup>(out var canvasGroup))
+        {
+            canvasGroup = pauseCanvas.AddComponent<CanvasGroup>();
+        }
+        canvasGroup.interactable = true;
+        canvasGroup.blocksRaycasts = true;
+        
         if (mainMenuPanel == null)
         {
             return;

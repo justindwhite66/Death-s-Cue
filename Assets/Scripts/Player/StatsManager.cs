@@ -9,8 +9,8 @@ public class StatsManager : MonoBehaviour
     //[Header("Health Stats")]
     //[SerializeField] public int maxShield;
     //[SerializeField] public int currentShield;
-    //[SerializeField] public int maxHealth = 3;
-    //public int currentHealth;
+    [SerializeField] public int maxHealth = 3;
+    [SerializeField] public int currentHealth;
 
     [Header("Movement Stats")]
     [SerializeField] public float moveSpeed = 1f;
