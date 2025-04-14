@@ -8,4 +8,14 @@ public class LootSO : ScriptableObject
   public string lootName;
   [TextArea] public string lootDescription;
   public Sprite lootIcon;
+
+  public bool isGold;
+
+  [Header("Loot Stats")]
+  public int currentHealth;
+  public int maxHealth;
+  public float moveSpeed;
+
+  [Header("Temporary Stats")]
+  public float duration;
 }

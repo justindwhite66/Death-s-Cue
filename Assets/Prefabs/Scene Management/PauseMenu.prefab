@@ -3499,7 +3499,7 @@ MonoBehaviour:
   equipmentBackButton: {fileID: 5656998953321159312}
   statsBackButton: {fileID: 7249064273533500094}
   settingsBackButton: {fileID: 5714603238245847322}
-  titleSceneName: Shop
+  titleSceneName: Title
 --- !u!1 &7109306741598113540
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,18 +9,12 @@ public class StatsUI : MonoBehaviour
 
     private void Start()
     {
-        // Initialize the stats panel with the current stats
-        UpdateMaxHealth();
-        UpdateCurrentHealth();
-        UpdateMoveSpeed();
+        UpdateAllStats();
     }
 
     private void Update()
     {
-        // Update the stats panel in real-time
-        UpdateMaxHealth();
-        UpdateCurrentHealth();
-        UpdateMoveSpeed();
+        UpdateAllStats();
     }
 
     public void UpdateMaxHealth()
@@ -36,5 +30,12 @@ public class StatsUI : MonoBehaviour
     public void UpdateMoveSpeed()
     {
         statValue[2].GetComponent<TMP_Text>().text = StatsManager.Instance.moveSpeed.ToString();
+    }
+
+    public void UpdateAllStats()
+    {
+        UpdateMaxHealth();
+        UpdateCurrentHealth();
+        UpdateMoveSpeed();
     }
 }
