@@ -10,19 +10,15 @@ using Unity.VisualScripting;
 
 public class PlayerHealth : Singleton<PlayerHealth>
 {
-    [SerializeField] private int maxHealth = 3;
     [SerializeField] private float knockBackThrustAmount = 10f;
     [SerializeField] private float damageRecoveryTime = 1f;
 
-    private int currentHealth;
     public bool isDead {get; private set;}
     public bool isTeleporting{get; private set;}
     private bool canTakeDamage = true;
     private Knockback knockback;
     private Flash flash;
-    private Slider healthSlider;
 
-    const string HEALTH_TEXT = "Health Slider";
     const string TOWN_TEXT = "Town_Scene";
     readonly int DEATH_HASH = Animator.StringToHash("Death");
 
@@ -36,8 +32,7 @@ public class PlayerHealth : Singleton<PlayerHealth>
     void Start()
     {
         isDead = false;
-        currentHealth = maxHealth;
-        UpdateHealthSlider();
+        StatsManager.Instance.currentHealth = StatsManager.Instance.maxHealth;
     }
 
     void OnCollisionStay2D(Collision2D collision)
@@ -56,18 +51,16 @@ public class PlayerHealth : Singleton<PlayerHealth>
         knockback.GetKnockedBack(hitTransform, knockBackThrustAmount);
         StartCoroutine(flash.FlashRoutine());
         canTakeDamage = false;
-        currentHealth -= damageAmount;
+        StatsManager.Instance.currentHealth -= damageAmount;
         StartCoroutine(DamageRecoveryRoutine());
-        UpdateHealthSlider();
         CheckPlayerDeath();
     }
    
 
 
     public void HealDamage(){
-        if (currentHealth < maxHealth){
-        currentHealth += 1;
-        UpdateHealthSlider();
+        if (StatsManager.Instance.currentHealth < StatsManager.Instance.maxHealth){
+        StatsManager.Instance.currentHealth += 1;
         }
     }
 
@@ -77,10 +70,10 @@ public class PlayerHealth : Singleton<PlayerHealth>
     }
 
     private void CheckPlayerDeath(){
-        if (currentHealth <= 0 && !isDead){
+        if (StatsManager.Instance.currentHealth <= 0 && !isDead){
             isDead = true;
             Destroy(ActiveWeapon.Instance.gameObject);
-            currentHealth = 0;
+            StatsManager.Instance.currentHealth = 0;
             GetComponent<Animator>().SetTrigger(DEATH_HASH);
             StartCoroutine(DeathLoadSceneRoutine());
         }
@@ -90,13 +83,5 @@ public class PlayerHealth : Singleton<PlayerHealth>
         Destroy(gameObject);
         Stamina.Instance.ReplenshStaminaOnDeath();
         SceneManager.LoadScene(TOWN_TEXT);
-    }
-
-    private void UpdateHealthSlider(){
-        if (healthSlider == null){
-            healthSlider = GameObject.Find(HEALTH_TEXT).GetComponent<Slider>();
-        }
-        healthSlider.maxValue = maxHealth;
-        healthSlider.value = currentHealth;
     }
 }
