@@ -32,7 +32,7 @@ public class PauseMenuManager : MonoBehaviour
     [SerializeField] private Button settingsBackButton;
 
     // Scene to load when quitting
-    [SerializeField] private string titleSceneName = "Shop";
+    [SerializeField] private string titleSceneName = "Title";
 
     // Tracking variables
     private bool isPaused = false;
@@ -49,8 +49,24 @@ public class PauseMenuManager : MonoBehaviour
         
         // Register callback for pause action
         playerControls.UI.Pause.performed += ctx => {
+            // Don't allow P to toggle the menu if we're in a sub-panel
+            if (IsAnySubPanelActive())
+            {
+                // Ignore pause input when in a sub-panel
+                return;
+            }
+            
             TogglePauseMenu();
         };
+    }
+
+    // Add this helper method to check if any sub-panel is active
+    private bool IsAnySubPanelActive()
+    {
+        return (lootPanel != null && lootPanel.activeSelf) ||
+               (equipmentPanel != null && equipmentPanel.activeSelf) ||
+               (statsPanel != null && statsPanel.activeSelf) ||
+               (settingsPanel != null && settingsPanel.activeSelf);
     }
 
     void OnEnable()
@@ -63,6 +79,13 @@ public class PauseMenuManager : MonoBehaviour
         {
             playerControls = new PlayerControls();
             playerControls.UI.Pause.performed += ctx => {
+                // Don't allow P to toggle the menu if we're in a sub-panel
+                if (IsAnySubPanelActive())
+                {
+                    // Ignore pause input when in a sub-panel
+                    return;
+                }
+                
                 TogglePauseMenu();
             };
             playerControls.UI.Enable();

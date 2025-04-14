@@ -159,7 +159,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.02085, y: 0.0010373}
-  m_SizeDelta: {x: 2289.2, y: 905.8}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &434709632
 MonoBehaviour:
@@ -235,8 +235,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 798.5206, y: -339}
-  m_SizeDelta: {x: -1673.248, y: -594.474}
+  m_AnchoredPosition: {x: 668.1988, y: -402.6}
+  m_SizeDelta: {x: -1375.6307, y: -576.3302}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &881333994
 MonoBehaviour:
@@ -282,8 +282,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1862099894}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+      - m_Target: {fileID: 1862099896}
+        m_TargetAssemblyTypeName: TitleMenu, Assembly-CSharp
         m_MethodName: PlayGame
         m_Mode: 1
         m_Arguments:
@@ -540,8 +540,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 582.4, y: 345.2}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 417, y: 407}
+  m_SizeDelta: {x: 89.399, y: 98}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1325941644
 MonoBehaviour:
@@ -593,7 +593,7 @@ GameObject:
   - component: {fileID: 1862099892}
   - component: {fileID: 1862099891}
   - component: {fileID: 1862099895}
-  - component: {fileID: 1862099894}
+  - component: {fileID: 1862099896}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -675,18 +675,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1862099894
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1862099890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 188de206c65d9094cba7b03c5b540070, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1862099895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -731,3 +719,15 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!114 &1862099896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862099890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 188de206c65d9094cba7b03c5b540070, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

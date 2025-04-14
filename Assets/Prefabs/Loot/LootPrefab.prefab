@@ -187,7 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd00f8867aa7effb1a2ebcad26139d45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemSO: {fileID: 0}
+  lootSO: {fileID: 0}
   sr: {fileID: 2580071805539910570}
   anim: {fileID: 7146825561519720619}
-  quantity: 2
+  quantity: 1
