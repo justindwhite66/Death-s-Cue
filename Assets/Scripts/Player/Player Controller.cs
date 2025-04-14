@@ -10,7 +10,6 @@ public class PlayerController : Singleton<PlayerController>
 
    public bool FacingLeft {get {return facingLeft;}}
 
-   [SerializeField] private float moveSpeed = 1f;
    [SerializeField] private float dashSpeed = 4f;
    [SerializeField] private float dashDuration = .2f;
    [SerializeField] private float dashCooldown = 0.25f;
@@ -54,7 +53,7 @@ public class PlayerController : Singleton<PlayerController>
    private void Start(){
       playerControls.Combat.Dash.performed += _ => Dash();
       playerControls.Movement.Teleport.performed += _ => AttemptTeleport();
-      startingMoveSpeed = moveSpeed;
+      startingMoveSpeed = StatsManager.Instance.moveSpeed;
       ActiveInventory.Instance.EquipStartingWeapon();
    }
 
@@ -97,7 +96,7 @@ public class PlayerController : Singleton<PlayerController>
    }
    private void Move(){
       if(knockback.GettingKnockedBack || PlayerHealth.Instance.isDead) {return;}
-      rb.MovePosition(rb.position + movement * (moveSpeed * Time.fixedDeltaTime));
+      rb.MovePosition(rb.position + movement * (StatsManager.Instance.moveSpeed * Time.fixedDeltaTime));
 
    }
   private void AdjustPlayerFacingDirection(){
@@ -126,7 +125,7 @@ public class PlayerController : Singleton<PlayerController>
     if (!isDashing && Stamina.Instance.CurrentStamina > 0) {
       Stamina.Instance.UseStamina();
       isDashing = true;
-      moveSpeed *= dashSpeed;
+      StatsManager.Instance.moveSpeed *= dashSpeed;
       myTrailRenderer.emitting = true;
       StartCoroutine(EndDashRoutine());
       StartCoroutine(DashInvincibilityRoutine());
@@ -151,7 +150,7 @@ public class PlayerController : Singleton<PlayerController>
   private IEnumerator EndDashRoutine() {
 
         yield return new WaitForSeconds(dashDuration);
-        moveSpeed = startingMoveSpeed;
+        StatsManager.Instance.moveSpeed = startingMoveSpeed;
         myTrailRenderer.emitting = false;
         yield return new WaitForSeconds(dashCooldown);
         isDashing = false;
