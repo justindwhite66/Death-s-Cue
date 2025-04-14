@@ -1,21 +1,20 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine.SceneManagement;
-using UnityEngine.InputSystem; // For new Input System
+using UnityEngine.InputSystem;
 
 public class PauseMenuManager : MonoBehaviour
 {
     // References to all menu panels
     [Header("Menu Panels")]
-    [SerializeField] private GameObject pauseCanvas;        // Your main canvas
-    [SerializeField] private GameObject mainMenuPanel;      // Panel with all buttons
-    [SerializeField] private GameObject lootPanel;          // Inventory panel
-    [SerializeField] private GameObject equipmentPanel;     // Equipment panel
-    [SerializeField] private GameObject statsPanel;         // Stats panel
-    [SerializeField] private GameObject settingsPanel;      // Settings panel
+    [SerializeField] private GameObject pauseCanvas;        // Main canvas
+    [SerializeField] private GameObject mainMenuPanel;      // Main panel
+    [SerializeField] private GameObject lootPanel;          // Inventory
+    [SerializeField] private GameObject equipmentPanel;     // Equipment
+    [SerializeField] private GameObject statsPanel;         // Stats
+    [SerializeField] private GameObject settingsPanel;      // Settings
 
     // References to all buttons
     [Header("Buttons")]
@@ -36,46 +35,89 @@ public class PauseMenuManager : MonoBehaviour
     [SerializeField] private string titleSceneName = "Shop";
 
     // Tracking variables
-    private bool isPaused;
+    private bool isPaused = false;
     private GameObject currentActivePanel;
     private float previousTimeScale;
 
     // Input System
     private PlayerControls playerControls;
 
-    // Add traditional input support as a fallback
-    [SerializeField] private KeyCode alternativePauseKey = KeyCode.P;
-
     void Awake()
     {
         // Initialize input system
         playerControls = new PlayerControls();
         
-        // Register callback for pause action with more detailed logging
+        // Register callback for pause action
         playerControls.UI.Pause.performed += ctx => {
-            Debug.Log("Pause key pressed via Input System - context: " + ctx);
             TogglePauseMenu();
         };
     }
 
     void OnEnable()
     {
-        // Enable both the UI action map and Player action map if applicable
+        // Enable the UI action map
         playerControls.UI.Enable();
-        Debug.Log("PauseMenuManager UI controls enabled");
+        
+        // Make sure playerControls exists and is properly initialized
+        if (playerControls == null)
+        {
+            playerControls = new PlayerControls();
+            playerControls.UI.Pause.performed += ctx => {
+                TogglePauseMenu();
+            };
+            playerControls.UI.Enable();
+        }
     }
 
     void OnDisable()
     {
-        playerControls.UI.Disable();
+        // Disable the UI action map
+        if (playerControls != null)
+        {
+            playerControls.UI.Disable();
+        }
     }
 
     void Start()
     {
-        // Hide all panels at start
-        pauseCanvas.SetActive(false);
+        // Check all key references
+        if (pauseCanvas == null)
+        {
+            return;
+        }
         
-        // Hide all panels and back buttons
+        if (mainMenuPanel == null)
+        {
+            return;
+        }
+
+        // Initialize the pause menu
+        isPaused = false;
+
+        // Ensure pauseCanvas is always enabled
+        pauseCanvas.SetActive(true);
+        
+        // Hide all panels except pauseCanvas
+        HideAllPanels();
+        
+        // Set main menu as default (but don't show it yet)
+        currentActivePanel = mainMenuPanel;
+        
+        // Add listeners to all buttons
+        SetupButtonListeners();
+        
+        // Make sure input is enabled
+        if (playerControls != null && !playerControls.UI.enabled)
+        {
+            playerControls.UI.Enable();
+        }
+    }
+
+    // Hide all panels but keep pauseCanvas active
+    private void HideAllPanels()
+    {
+        if (mainMenuPanel) mainMenuPanel.SetActive(false);
+        
         if (lootPanel) lootPanel.SetActive(false);
         if (lootBackButton) lootBackButton.gameObject.SetActive(false);
 
@@ -87,72 +129,59 @@ public class PauseMenuManager : MonoBehaviour
 
         if (settingsPanel) settingsPanel.SetActive(false);
         if (settingsBackButton) settingsBackButton.gameObject.SetActive(false);
-        
-        // Set main menu as default
-        currentActivePanel = mainMenuPanel;
-        
-        // Add listeners to all buttons
-        SetupButtonListeners();
-        
-        // Additional debug
-        Debug.Log("PauseMenuManager started. Pause key should be working now.");
     }
 
     void SetupButtonListeners()
     {
-        // FIXED: Ensure buttons match their correct panels
         if (inventoryButton != null)
-            inventoryButton.onClick.AddListener(() => OpenSubMenu(lootPanel, lootBackButton));
+            inventoryButton.onClick.AddListener(
+                () => OpenSubMenu(lootPanel, lootBackButton)
+            );
         else
-            Debug.LogError("Inventory button is not assigned in the inspector!");
+            Debug.LogError("Inventory button is not assigned in inspector!");
             
         if (equipmentButton != null)
-            equipmentButton.onClick.AddListener(() => OpenSubMenu(equipmentPanel, equipmentBackButton));
+            equipmentButton.onClick.AddListener(
+                () => OpenSubMenu(equipmentPanel, equipmentBackButton)
+            );
         else
-            Debug.LogError("Equipment button is not assigned in the inspector!");
+            Debug.LogError("Equipment button is not assigned in inspector!");
             
         if (statsButton != null)
-            statsButton.onClick.AddListener(() => OpenSubMenu(statsPanel, statsBackButton));
+            statsButton.onClick.AddListener(
+                () => OpenSubMenu(statsPanel, statsBackButton)
+            );
         else
-            Debug.LogError("Stats button is not assigned in the inspector!");
+            Debug.LogError("Stats button is not assigned in inspector!");
             
         if (settingsButton != null)
-            settingsButton.onClick.AddListener(() => OpenSubMenu(settingsPanel, settingsBackButton));
+            settingsButton.onClick.AddListener(
+                () => OpenSubMenu(settingsPanel, settingsBackButton)
+            );
         else
-            Debug.LogError("Settings button is not assigned in the inspector!");
+            Debug.LogError("Settings button is not assigned in inspector!");
             
         if (quitButton != null)
             quitButton.onClick.AddListener(ReturnToTitleScreen);
         else
-            Debug.LogError("Quit button is not assigned in the inspector!");
+            Debug.LogError("Quit button is not assigned in inspector!");
         
         // Back buttons
-        if (lootBackButton) lootBackButton.onClick.AddListener(BackToMainMenu);
-        if (equipmentBackButton) equipmentBackButton.onClick.AddListener(BackToMainMenu);
-        if (statsBackButton) statsBackButton.onClick.AddListener(BackToMainMenu);
-        if (settingsBackButton) settingsBackButton.onClick.AddListener(BackToMainMenu);
-        
-        Debug.Log("All button listeners set up correctly");
-    }
-    
-    // Add traditional input checking as fallback
-    void Update()
-    {
-        // Check for traditional input as a fallback
-        if (Input.GetKeyDown(alternativePauseKey))
-        {
-            Debug.Log("Pause key pressed via traditional input system");
-            TogglePauseMenu();
-        }
+        if (lootBackButton) 
+            lootBackButton.onClick.AddListener(BackToMainMenu);
+        if (equipmentBackButton) 
+            equipmentBackButton.onClick.AddListener(BackToMainMenu);
+        if (statsBackButton) 
+            statsBackButton.onClick.AddListener(BackToMainMenu);
+        if (settingsBackButton) 
+            settingsBackButton.onClick.AddListener(BackToMainMenu);
     }
 
     public void TogglePauseMenu()
-    {
-        Debug.Log("TogglePauseMenu called. Current state: " + isPaused);
-        
-        // Toggle the pause state first
-        isPaused = !isPaused;
-        Debug.Log("Pause state toggled to: " + isPaused);
+    {   
+        // Toggle pause state based on main menu panel visibility
+        bool mainMenuActive = mainMenuPanel != null && mainMenuPanel.activeSelf;
+        isPaused = !mainMenuActive;
         
         if (isPaused)
         {
@@ -162,12 +191,16 @@ public class PauseMenuManager : MonoBehaviour
             // Pause the game
             Time.timeScale = 0f;
             
-            // Show pause menu
-            pauseCanvas.SetActive(true);
-            Debug.Log("pauseCanvas activated: " + pauseCanvas.activeSelf);
-            
-            // Ensure start with main menu
-            ShowOnlyPanel(mainMenuPanel);
+            // Show main menu panel
+            if (mainMenuPanel != null)
+            {
+                mainMenuPanel.SetActive(true);
+                currentActivePanel = mainMenuPanel;
+            }
+            else
+            {
+                Debug.LogError("mainMenuPanel is null!");
+            }
             
             // Make cursor visible
             Cursor.lockState = CursorLockMode.None;
@@ -178,35 +211,18 @@ public class PauseMenuManager : MonoBehaviour
             // Unpause the game
             Time.timeScale = previousTimeScale;
             
-            // Hide all menus
-            pauseCanvas.SetActive(false);
-            if (lootPanel) lootPanel.SetActive(false);
-            if (lootBackButton) lootBackButton.gameObject.SetActive(false);
-            
-            if (equipmentPanel) equipmentPanel.SetActive(false);
-            if (equipmentBackButton) equipmentBackButton.gameObject.SetActive(false);
-            
-            if (statsPanel) statsPanel.SetActive(false);
-            if (statsBackButton) statsBackButton.gameObject.SetActive(false);
-            
-            if (settingsPanel) settingsPanel.SetActive(false);
-            if (settingsBackButton) settingsBackButton.gameObject.SetActive(false);
-
-            Debug.Log("Pause menu closed. TimeScale restored to " + previousTimeScale);
+            // Hide all panels but keep pauseCanvas active
+            HideAllPanels();
         }
     }
 
     void OpenSubMenu(GameObject panel, Button backButton)
     {
         // Additional check for null references
-        if (panel == null) {
+        if (panel == null)
+        {
             Debug.LogError("Trying to open a null panel!");
             return;
-        }
-        
-        if (backButton == null) {
-            Debug.LogWarning("Back button is null when opening submenu!");
-            // Continue anyway as we might not need the back button
         }
         
         // Hide main menu panel
@@ -216,13 +232,11 @@ public class PauseMenuManager : MonoBehaviour
         panel.SetActive(true);
         if (backButton != null) backButton.gameObject.SetActive(true);
         currentActivePanel = panel;
-        
-        Debug.Log("Opened submenu: " + panel.name);
     }
 
     void BackToMainMenu()
     {
-        // Hide all submenus and their back buttons
+        // Hide all submenus
         if (lootPanel) lootPanel.SetActive(false);
         if (lootBackButton) lootBackButton.gameObject.SetActive(false);
 
@@ -238,53 +252,6 @@ public class PauseMenuManager : MonoBehaviour
         // Show main menu
         mainMenuPanel.SetActive(true);
         currentActivePanel = mainMenuPanel;
-        
-        Debug.Log("Returned to main menu");
-    }
-
-    void ShowOnlyPanel(GameObject panel)
-    {
-        // Additional check for null references
-        if (panel == null) {
-            Debug.LogError("Trying to show a null panel!");
-            return;
-        }
-        
-        // Hide all panels and their back buttons
-        mainMenuPanel.SetActive(false);
-        
-        if (lootPanel && lootPanel != panel) {
-            lootPanel.SetActive(false);
-            if (lootBackButton) lootBackButton.gameObject.SetActive(false);
-        }
-        
-        if (equipmentPanel && equipmentPanel != panel) {
-            equipmentPanel.SetActive(false);
-            if (equipmentBackButton) equipmentBackButton.gameObject.SetActive(false);
-        }
-        
-        if (statsPanel && statsPanel != panel) {
-            statsPanel.SetActive(false);
-            if (statsBackButton) statsBackButton.gameObject.SetActive(false);
-        }
-        
-        if (settingsPanel && settingsPanel != panel) {
-            settingsPanel.SetActive(false);
-            if (settingsBackButton) settingsBackButton.gameObject.SetActive(false);
-        }
-        
-        // Show only the requested panel
-        panel.SetActive(true);
-        
-        // Show the corresponding back button if needed
-        if (panel == lootPanel && lootBackButton) lootBackButton.gameObject.SetActive(true);
-        else if (panel == equipmentPanel && equipmentBackButton) equipmentBackButton.gameObject.SetActive(true);
-        else if (panel == statsPanel && statsBackButton) statsBackButton.gameObject.SetActive(true);
-        else if (panel == settingsPanel && settingsBackButton) settingsBackButton.gameObject.SetActive(true);
-        
-        currentActivePanel = panel;
-        
-        Debug.Log("Showing only panel: " + panel.name);
     }
 
     void ReturnToTitleScreen()
