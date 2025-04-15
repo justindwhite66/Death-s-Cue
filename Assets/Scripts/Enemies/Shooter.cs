@@ -19,8 +19,16 @@ public class Shooter : MonoBehaviour, IEnemy
     [Tooltip("Stagger has to be enabled for oscillate to work properly.")]
     [SerializeField] private bool oscillate;
 
+    private Animator myAnimator;
+    private SpriteRenderer spriteRenderer;
+    readonly int ATTACK_HASH = Animator.StringToHash("Attack");
+
     private bool isShooting = false;
 
+    private void Awake() {
+    myAnimator = GetComponent<Animator>();
+    spriteRenderer = GetComponent<SpriteRenderer>();
+    }   
     private void OnValidate(){
         if (oscillate) {stagger = true;}
         if (!oscillate) {stagger = false;}
@@ -33,7 +41,14 @@ public class Shooter : MonoBehaviour, IEnemy
         if (bulletMoveSpeed <=0) { bulletMoveSpeed = 0.1f;}
     }
     public void Attack() {
+        myAnimator.SetTrigger(ATTACK_HASH);
+        if (transform.position.x - PlayerController.Instance.transform.position.x <0)
+        spriteRenderer.flipX = false;
+        else{
+            spriteRenderer.flipX = true;
+        }
         if (!isShooting) {
+            
             StartCoroutine(ShootRoutine());
         }
     }
