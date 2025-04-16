@@ -8,16 +8,18 @@ public class Staff : MonoBehaviour, IWeapon
     [SerializeField] private GameObject magicLaser;
     [SerializeField] private Transform magicLaserSpawnPoint;
 
+    private SpriteRenderer spriteRenderer;
     private Animator myAnimator;
 
     readonly int AttackHash = Animator.StringToHash("Attack");
 
     private void Awake() {
         myAnimator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Update() {
-        MouseFollowWithOffset();
+        //MouseFollowWithOffset();
     }
 
     public void Attack() {
@@ -34,22 +36,24 @@ public class Staff : MonoBehaviour, IWeapon
         return weaponInfo;
     }
 
-    private void MouseFollowWithOffset()
+   
+
+   /* private void MouseFollowWithOffset()
     {
         Vector3 mousePos = Input.mousePosition;
         Vector3 playerScreenPoint = Camera.main.WorldToScreenPoint(PlayerController.Instance.transform.position);
 
-        float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
+       float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
 
         if (mousePos.x < playerScreenPoint.x)
         {
-            ActiveWeapon.Instance.transform.rotation = Quaternion.Euler(0, -180, angle);
+            ActiveWeapon.Instance.transform.rotation = Quaternion.Euler(0, -180, 0);
         }
         else
         {
-            ActiveWeapon.Instance.transform.rotation = Quaternion.Euler(0, 0, angle);
+            ActiveWeapon.Instance.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
-    }
+    }*/
 
     
 }

@@ -101,11 +101,6 @@ public class PlayerController : Singleton<PlayerController>
    }
   private void AdjustPlayerFacingDirection(){
 
-   if (Camera.main == null)
-    {
-        Debug.LogWarning("Camera.main is null, trying to reassign...");
-        return; // Prevents errors when the camera is destroyed
-    }
 
    Vector3 mousePos = Input.mousePosition;
    Vector3 playerScreenPoint = Camera.main.WorldToScreenPoint(transform.position);

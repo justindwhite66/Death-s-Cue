@@ -35,7 +35,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2537296756279434796
 SpriteRenderer:
@@ -57,7 +57,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 755ebe43145dddd4ebb7d8a95dd250d0, type: 2}
+  - {fileID: 2100000, guid: fe81db6a116b7c84e9fa8051a815c939, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -188,3 +188,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cbf1a0c185b6154d86369a3d4d234f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FadeTime: 0.4

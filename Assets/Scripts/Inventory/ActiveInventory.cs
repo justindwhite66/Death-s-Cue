@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ActiveInventory : Singleton<ActiveInventory>
 {
@@ -70,10 +71,30 @@ public class ActiveInventory : Singleton<ActiveInventory>
          return;
       }
 
-      GameObject newWeapon = Instantiate(weaponToSpawn, ActiveWeapon.Instance.transform.position, Quaternion.identity);
-      ActiveWeapon.Instance.transform.rotation = Quaternion.Euler(0,0,0);
-      newWeapon.transform.parent = ActiveWeapon.Instance.transform;
+      Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+      mousePos.z = 0f;
+      Vector3 direction = mousePos - ActiveWeapon.Instance.transform.position;
+      float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-      ActiveWeapon.Instance.NewWeapon(newWeapon.GetComponent<MonoBehaviour>());
+
+    
+      GameObject newWeapon = Instantiate(weaponToSpawn, ActiveWeapon.Instance.transform.position, Quaternion.Euler(0f, 0f, angle));
+      Debug.Log($"Spawning {weaponInfo.weaponPrefab} at angle {angle} with flip: {(weaponInfo.flipOnLeftSide && Mathf.Abs(angle) > 90f)}");
+
+       newWeapon.transform.localScale = Vector3.one;
+      if (weaponInfo.flipOnLeftSide && Mathf.Abs(angle) > 90f)
+      {
+        newWeapon.transform.localScale = new Vector3(1f, -1f, 1f);
+      }
+
+      if (weaponInfo.flipXWhenLeft && Mathf.Abs(angle) > 90f)
+      {
+      Vector3 currentScale = newWeapon.transform.localScale;
+      newWeapon.transform.localScale = new Vector3(-currentScale.x, currentScale.y, currentScale.z);
+      }
+ActiveWeapon.Instance.transform.rotation = Quaternion.Euler(0, 0, 0);
+newWeapon.transform.parent = ActiveWeapon.Instance.transform;
+ActiveWeapon.Instance.NewWeapon(newWeapon.GetComponent<MonoBehaviour>());
+
    }
 }

@@ -6,6 +6,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 22f;
+    [SerializeField] private GameObject smallTeleportPrefab;
     [SerializeField] private GameObject particleOnHitPrefabVFX;
     [SerializeField] private bool isEnemyProjectile = false;
     [SerializeField] private float projectileRange = 10f;
@@ -59,9 +60,11 @@ private void OnTriggerEnter2D(Collider2D other)
         if ((player && isEnemyProjectile) || (enemyHealth && !isEnemyProjectile))
         {
             player?.TakeDamage(1, transform);
+            enemyHealth?.TakeDamage(1);
             Instantiate(particleOnHitPrefabVFX, transform.position, transform.rotation);
             Destroy(gameObject);
         }
+        
         else if (indestructible != null)
         {
             if (ProjectileManager.Instance != null)

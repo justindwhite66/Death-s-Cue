@@ -10,7 +10,7 @@ public class Sword : MonoBehaviour, IWeapon
     [SerializeField] private Transform slashAnimSpawnPoint;
     [SerializeField] private float swordAttackCD = .5f;
         [SerializeField] private WeaponInfo weaponInfo;
-    [SerializeField] private float parryWindow = 0.2f;
+ 
 
 
     private Animator myAnimator;
@@ -73,19 +73,27 @@ public class Sword : MonoBehaviour, IWeapon
     }
    
    private void MouseFollowWithOffset(){
-    Vector3 mousePos = Input.mousePosition;
-    
-    Vector3 playerScreenPoint = Camera.main.WorldToScreenPoint(PlayerController.Instance.transform.position);
-   float angle = Mathf.Atan2(mousePos.y - playerScreenPoint.y, Mathf.Abs(mousePos.x - playerScreenPoint.x)) * Mathf.Rad2Deg;
+    Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    Vector3 playerPos = PlayerController.Instance.transform.position;
+    Vector2 direction = mousePos - playerPos;
 
-   if (mousePos.x < playerScreenPoint.x) {
-            ActiveWeapon.Instance.transform.rotation = Quaternion.Euler(0, -180, angle);
-            weaponCollider.transform.rotation = Quaternion.Euler(0, -180, 0);
-        } else {
-            ActiveWeapon.Instance.transform.rotation = Quaternion.Euler(0, 0, angle);
-            weaponCollider.transform.rotation = Quaternion.Euler(0, 0, 0);
+    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        }
+    // Apply rotation directly on Z axis
+    ActiveWeapon.Instance.transform.rotation = Quaternion.Euler(0, 0, angle);
+
+    // Flip the sword sprite vertically if pointing left
+    if (Mathf.Abs(angle) > 90f)
+    {
+        ActiveWeapon.Instance.transform.localScale = new Vector3(1, -1, 1);
+    }
+    else
+    {
+        ActiveWeapon.Instance.transform.localScale = new Vector3(1, 1, 1);
+    }
+
+    // Optionally align weaponCollider too (if it’s rotated separately)
+    weaponCollider.transform.rotation = Quaternion.Euler(0, 0, angle);
 
    }
    public bool IsParrying(){

@@ -6,6 +6,7 @@ public class ParryCollider : MonoBehaviour
 {
 [SerializeField] private GameObject reflectedProjectilePrefab;
     private Sword sword;
+ 
   private void Start() {
     sword = ActiveWeapon.Instance.CurrentActiveWeapon as Sword;
   }
