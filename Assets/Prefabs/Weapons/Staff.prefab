@@ -101,7 +101,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1404068951092917185
 Transform:
   m_ObjectHideFlags: 0
@@ -4956,6 +4956,7 @@ GameObject:
   - component: {fileID: 8194918385036155054}
   - component: {fileID: -241745181678999548}
   - component: {fileID: 3127006624060514705}
+  - component: {fileID: 7705729131781585570}
   m_Layer: 0
   m_Name: Staff
   m_TagString: Untagged
@@ -4979,7 +4980,7 @@ Transform:
   - {fileID: 2280354939492086080}
   - {fileID: 1404068951092917185}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8194918385036155054
 MonoBehaviour:
@@ -4996,6 +4997,8 @@ MonoBehaviour:
   weaponInfo: {fileID: 11400000, guid: c47de2b32c8d4e343bc9af79f54f8b0e, type: 2}
   magicLaser: {fileID: 7086922940495002364, guid: 1d0cf257a6b240141b95b96596a93f93, type: 3}
   magicLaserSpawnPoint: {fileID: 2280354939492086080}
+  chargeTimeThreshold: 1.5
+  chargeVFX: {fileID: 5343491793806019332}
 --- !u!212 &-241745181678999548
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5069,3 +5072,15 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7705729131781585570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8354057414415199885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7956c1bab49a21439bf7fdf80825cb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

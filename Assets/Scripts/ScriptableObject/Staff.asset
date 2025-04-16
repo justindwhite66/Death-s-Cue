@@ -16,5 +16,5 @@ MonoBehaviour:
   weaponCooldown: 2.5
   weaponDamage: 3
   weaponRange: 12
-  flipOnLeftSide: 1
+  flipOnLeftSide: 0
   flipXWhenLeft: 0

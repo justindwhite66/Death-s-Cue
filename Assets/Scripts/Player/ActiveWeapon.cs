@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.Search;
 using UnityEngine;
 
@@ -57,15 +58,25 @@ public class ActiveWeapon : Singleton<ActiveWeapon>
 
     private void StartAttacking(){
         attackButtonDown = true;
+        if (CurrentActiveWeapon is Staff staffWeapon){
+            staffWeapon.StartCharging();
+        }
     }
     private void StopAttacking(){
 
         attackButtonDown = false;
+
+        if (CurrentActiveWeapon is Staff staffWeapon){
+            staffWeapon.StopChargingAndTryFire();
+        }
     }
 
     private void Attack(){
 
         if (attackButtonDown && !isAttacking && CurrentActiveWeapon){
+            if (CurrentActiveWeapon is Staff){
+                return;
+            }
             AttackCooldown();
             (CurrentActiveWeapon as IWeapon).Attack();
         }
