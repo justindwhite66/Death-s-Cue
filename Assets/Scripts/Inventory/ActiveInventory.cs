@@ -79,12 +79,14 @@ public class ActiveInventory : Singleton<ActiveInventory>
 
     
       GameObject newWeapon = Instantiate(weaponToSpawn, ActiveWeapon.Instance.transform.position, Quaternion.Euler(0f, 0f, angle));
-      Debug.Log($"Spawning {weaponInfo.weaponPrefab} at angle {angle} with flip: {(weaponInfo.flipOnLeftSide && Mathf.Abs(angle) > 90f)}");
+      
 
        newWeapon.transform.localScale = Vector3.one;
-      if (weaponInfo.flipOnLeftSide && Mathf.Abs(angle) > 90f)
-      {
-        newWeapon.transform.localScale = new Vector3(1f, -1f, 1f);
+      if (weaponInfo.useSpriteFlipY){
+         SpriteRenderer sr = newWeapon.GetComponent<SpriteRenderer>();
+         if (sr != null){
+            sr.flipY = Mathf.Abs(angle) > 90f;
+         }
       }
 
       if (weaponInfo.flipXWhenLeft && Mathf.Abs(angle) > 90f)

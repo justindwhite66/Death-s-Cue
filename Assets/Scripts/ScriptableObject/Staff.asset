@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Staff
   m_EditorClassIdentifier: 
   weaponPrefab: {fileID: 8354057414415199885, guid: a968b24bb9494b84ba68903351647bb3, type: 3}
-  weaponCooldown: 2.5
+  weaponCooldown: 0.5
   weaponDamage: 3
   weaponRange: 12
-  flipOnLeftSide: 0
+  useSpriteFlipY: 0
   flipXWhenLeft: 0

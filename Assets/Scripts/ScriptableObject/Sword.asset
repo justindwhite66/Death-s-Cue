@@ -16,3 +16,5 @@ MonoBehaviour:
   weaponCooldown: 1.5
   weaponDamage: 1
   weaponRange: 0
+  useSpriteFlipY: 0
+  flipXWhenLeft: 0

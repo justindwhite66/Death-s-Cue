@@ -16,6 +16,7 @@ public class Sword : MonoBehaviour, IWeapon
     private Animator myAnimator;
     private Transform weaponCollider;
     private GameObject slashAnim;
+    private SwordUIController cooldownUI;
     private bool isParrying = false;
     private void Awake(){
         
@@ -26,6 +27,11 @@ public class Sword : MonoBehaviour, IWeapon
     private void Start(){
         weaponCollider = PlayerController.Instance.GetWeaponCollider();
         slashAnimSpawnPoint = GameObject.Find("SlashAnimationSpawnPoint").transform;
+
+        GameObject uiObj = GameObject.Find("Sword Slider");
+        if (uiObj != null){
+            cooldownUI = uiObj.GetComponent<SwordUIController>();
+        }
     }
 
     private void Update(){
@@ -44,6 +50,8 @@ public class Sword : MonoBehaviour, IWeapon
             isParrying = true;
             slashAnim = Instantiate(slashAnimPrefab, slashAnimSpawnPoint.position, Quaternion.identity);
             slashAnim.transform.parent = this.transform.parent;
+
+            cooldownUI?.StartCooldown(weaponInfo.weaponCooldown);
             
         
     }
