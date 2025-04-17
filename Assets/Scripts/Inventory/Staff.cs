@@ -41,6 +41,8 @@ public class Staff : MonoBehaviour, IWeapon
 }
 
     private void Update() {
+
+       
         if (!isCooldown && attackButtonHeld && chargeUIController != null) {
         currentChargeTime += Time.deltaTime;
 
@@ -112,6 +114,7 @@ public class Staff : MonoBehaviour, IWeapon
     {
         return weaponInfo;
     }
+
 
 
     

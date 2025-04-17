@@ -16,5 +16,5 @@ MonoBehaviour:
   weaponCooldown: 0.5
   weaponDamage: 3
   weaponRange: 12
-  useSpriteFlipY: 0
-  flipXWhenLeft: 0
+  isStaff: 1
+  isBow: 0

@@ -28,7 +28,8 @@ Transform:
   m_LocalPosition: {x: 0.645, y: 0.307, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2280354939492086080}
   m_Father: {fileID: 3445291205038812393}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4936,12 +4937,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7296018018854891009}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.07, y: 0.223, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.42500007, y: -0.08400001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3445291205038812393}
+  m_Father: {fileID: 6584043535420162386}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8354057414415199885
@@ -4976,10 +4977,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6584043535420162386}
-  - {fileID: 2280354939492086080}
   - {fileID: 1404068951092917185}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8194918385036155054
 MonoBehaviour:
@@ -4996,7 +4996,7 @@ MonoBehaviour:
   weaponInfo: {fileID: 11400000, guid: c47de2b32c8d4e343bc9af79f54f8b0e, type: 2}
   magicLaser: {fileID: 7086922940495002364, guid: 1d0cf257a6b240141b95b96596a93f93, type: 3}
   magicLaserSpawnPoint: {fileID: 2280354939492086080}
-  chargeTimeThreshold: 3
+  chargeTimeThreshold: 2
   chargeVFX: {fileID: 5343491793806019332}
 --- !u!212 &-241745181678999548
 SpriteRenderer:

@@ -9,6 +9,6 @@ public class WeaponInfo : ScriptableObject
    public float weaponCooldown;
    public int weaponDamage;
    public float weaponRange;
-   public bool useSpriteFlipY = false;
-   public bool flipXWhenLeft = false;
+   public bool isStaff = false;
+   public bool isBow = false;
 }

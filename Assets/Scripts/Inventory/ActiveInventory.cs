@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
@@ -11,10 +14,13 @@ public class ActiveInventory : Singleton<ActiveInventory>
    private int activeSlotIndexNum = 0;
 
    private PlayerControls playerControls;
+   private SpriteRenderer sr;
 
    protected override void Awake() {
       base.Awake();
     playerControls = new PlayerControls();
+    sr = GetComponent<SpriteRenderer>();
+    
    }
 
    private void Start() {
@@ -72,28 +78,47 @@ public class ActiveInventory : Singleton<ActiveInventory>
       }
 
       Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-      mousePos.z = 0f;
-      Vector3 direction = mousePos - ActiveWeapon.Instance.transform.position;
-      float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+    mousePos.z = 0f;
+    Vector3 direction = mousePos - ActiveWeapon.Instance.transform.position;
+    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
+GameObject newWeapon = Instantiate(weaponToSpawn, ActiveWeapon.Instance.transform.position, Quaternion.identity);
 
-    
-      GameObject newWeapon = Instantiate(weaponToSpawn, ActiveWeapon.Instance.transform.position, Quaternion.Euler(0f, 0f, angle));
-      
+if (weaponInfo.isBow && Mathf.Abs(angle) > 90f)
+    {
+        sr = newWeapon.GetComponent<SpriteRenderer>();
+        if (sr != null)
+        {
+            sr.flipY = true;
+        }
+    }
 
-       newWeapon.transform.localScale = Vector3.one;
-      if (weaponInfo.useSpriteFlipY){
-         SpriteRenderer sr = newWeapon.GetComponent<SpriteRenderer>();
-         if (sr != null){
-            sr.flipY = Mathf.Abs(angle) > 90f;
-         }
-      }
+if (weaponInfo.isStaff && Math.Abs(angle) > 90f){
+   sr = newWeapon.GetComponent<SpriteRenderer>();
+   if (sr != null){
+      sr.flipY = true;
+   }
 
-      if (weaponInfo.flipXWhenLeft && Mathf.Abs(angle) > 90f)
-      {
-      Vector3 currentScale = newWeapon.transform.localScale;
-      newWeapon.transform.localScale = new Vector3(-currentScale.x, currentScale.y, currentScale.z);
-      }
+   Transform gem = newWeapon.transform.Find("Gem");
+   if (gem != null){
+      Vector3 localPos = gem.localPosition;
+      gem.localPosition = new UnityEngine.Vector3(localPos.x, -localPos.y, localPos.z);
+   }
+}else if(weaponInfo.isStaff){
+   SpriteRenderer sr = newWeapon.GetComponent<SpriteRenderer>();
+    if (sr != null)
+    {
+        sr.flipY = false;
+    }
+
+    // Reset gem to original position if mirrored earlier
+    Transform gem = newWeapon.transform.Find("Gem");
+    if (gem != null)
+    {
+        Vector3 localPos = gem.localPosition;
+        gem.localPosition = new Vector3(localPos.x, Mathf.Abs(localPos.y), localPos.z);
+    }
+}
 ActiveWeapon.Instance.transform.rotation = Quaternion.Euler(0, 0, 0);
 newWeapon.transform.parent = ActiveWeapon.Instance.transform;
 ActiveWeapon.Instance.NewWeapon(newWeapon.GetComponent<MonoBehaviour>());
