@@ -13,6 +13,8 @@ public class ParryCollider : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
+      sword = ActiveWeapon.Instance.CurrentActiveWeapon as Sword;
         if (sword == null || !sword.IsParrying()) return;
 
         Projectile projectile = collision.GetComponent<Projectile>();

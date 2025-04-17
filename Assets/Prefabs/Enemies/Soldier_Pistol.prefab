@@ -21,8 +21,9 @@ GameObject:
   - component: {fileID: 7390656210198334722}
   - component: {fileID: 2761430120221057008}
   - component: {fileID: -5117179461219558723}
+  - component: {fileID: 3347210589842304234}
   m_Layer: 0
-  m_Name: Ghost
+  m_Name: Soldier_Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37,12 +38,12 @@ Transform:
   m_GameObject: {fileID: 8353367449962127221}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.7283816, y: -1.0497305, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8181763800210678038}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1102126002919405490
 SpriteRenderer:
@@ -85,7 +86,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 436a6041c768788499adb3e979d31b11, type: 3}
+  m_Sprite: {fileID: 1151491762, guid: 45d79aa0d18a3684fa7f8684e9e5dfd7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -155,8 +156,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.01930666, y: 0.16504985}
-  m_Size: {x: 0.81948185, y: 1.095025}
+  m_Offset: {x: 0.0899452, y: -0.06256342}
+  m_Size: {x: 1.2747109, y: 1.9583845}
   m_Direction: 0
 --- !u!114 &7921524630763821978
 MonoBehaviour:
@@ -170,12 +171,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ec31d07d16eba148a0253d0539b47a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roamChangeDirFloat: 2
-  attackRange: 12
+  roamChangeDirFloat: 5
+  attackRange: 6
   enemyType: {fileID: 2761430120221057008}
-  attackCooldown: 2
+  attackCooldown: 1
   stopMovingWhileAttacking: 1
-  roamCooldown: 1.5
+  roamCooldown: 5
 --- !u!114 &3719140219343187240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,7 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f68f2c1ef992cff45bc98c3ea8dbca49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
+  moveSpeed: 1
 --- !u!114 &7581571925253030669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,13 +271,13 @@ MonoBehaviour:
   bulletPrefab: {fileID: 4967771683981118066, guid: bace6ae77fe1e6a428c560b332f29fe0, type: 3}
   bulletMoveSpeed: 8
   burstCount: 1
-  timeBetweenBursts: 0.31
-  restTime: 1
-  projectilesPerBurst: 4
-  angleSpread: 49
-  startingDistance: 0.5
-  stagger: 1
-  oscillate: 1
+  timeBetweenBursts: 0.1
+  restTime: 0.3
+  projectilesPerBurst: 1
+  angleSpread: 0
+  startingDistance: 1
+  stagger: 0
+  oscillate: 0
 --- !u!114 &-5117179461219558723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -293,6 +294,27 @@ MonoBehaviour:
   heartPrefab: {fileID: 7078403650545668064, guid: f5a4c43a9bdb6cb49ae3dfae47316c21, type: 3}
   staminaPrefab: {fileID: 141441811316167965, guid: 1e80ec224d5cad84e9db478ccaadd30f, type: 3}
   pickUpLifetime: 3
+--- !u!95 &3347210589842304234
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8353367449962127221}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c0939df8a77b5e341b0e8dbaf24e9a39, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8435471382941104130
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,7 +340,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8435471382941104130}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.13, y: -0.29, z: 0}
+  m_LocalPosition: {x: 0.08, y: -0.91, z: 0}
   m_LocalScale: {x: 1, y: 1.05, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

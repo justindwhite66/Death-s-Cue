@@ -21,7 +21,7 @@ public class Shooter : MonoBehaviour, IEnemy
 
     private Animator myAnimator;
     private SpriteRenderer spriteRenderer;
-    readonly int ATTACK_HASH = Animator.StringToHash("Attack");
+    readonly int ATTACK_HASH = Animator.StringToHash("IsAttacking");
 
     private bool isShooting = false;
 
@@ -41,7 +41,7 @@ public class Shooter : MonoBehaviour, IEnemy
         if (bulletMoveSpeed <=0) { bulletMoveSpeed = 0.1f;}
     }
     public void Attack() {
-        myAnimator.SetTrigger(ATTACK_HASH);
+        
         if (transform.position.x - PlayerController.Instance.transform.position.x <0)
         spriteRenderer.flipX = false;
         else{
@@ -55,6 +55,7 @@ public class Shooter : MonoBehaviour, IEnemy
 
     private IEnumerator ShootRoutine()
     {
+        myAnimator.SetBool(ATTACK_HASH, true);
         isShooting = true;
 
         float startAngle, currentAngle, angleStep, endAngle;
@@ -111,7 +112,9 @@ public class Shooter : MonoBehaviour, IEnemy
             }
             
         }
+        myAnimator.SetBool(ATTACK_HASH, false);
         yield return new WaitForSeconds(restTime);
+        
         isShooting = false;
     }
 
