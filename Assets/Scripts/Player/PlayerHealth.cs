@@ -19,7 +19,7 @@ public class PlayerHealth : Singleton<PlayerHealth>
     private Knockback knockback;
     private Flash flash;
 
-    const string TOWN_TEXT = "Town_Scene";
+    const string SCENE_CHANGE = "Title";
     readonly int DEATH_HASH = Animator.StringToHash("Death");
 
     protected override void Awake()
@@ -81,7 +81,11 @@ public class PlayerHealth : Singleton<PlayerHealth>
     private IEnumerator DeathLoadSceneRoutine(){
         yield return new WaitForSeconds(2f);
         Destroy(gameObject);
+        if (DataManager.Instance != null)
+        {
+            DataManager.Instance.ResetAllPlayerData();
+        }
         Stamina.Instance.ReplenshStaminaOnDeath();
-        SceneManager.LoadScene(TOWN_TEXT);
+        SceneManager.LoadScene(SCENE_CHANGE);
     }
 }

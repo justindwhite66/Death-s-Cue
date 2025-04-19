@@ -7,7 +7,6 @@ using UnityEngine;
 public class Pickup : MonoBehaviour
 {
     private enum PickUpType{
-        GoldCoin,
         StaminaGlobe,
         HealthGlobe
     }
@@ -77,9 +76,7 @@ public class Pickup : MonoBehaviour
 
     private void DetectPickupType(){
         switch (pickUpType){
-            case PickUpType.GoldCoin:
-                EconomyManager.Instance.UpdateCurrentGold();
-                break;
+
             case PickUpType.HealthGlobe:
                 PlayerHealth.Instance.HealDamage();
                 

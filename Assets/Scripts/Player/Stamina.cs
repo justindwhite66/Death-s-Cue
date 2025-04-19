@@ -7,19 +7,16 @@ using UnityEngine.UI;
 public class Stamina : Singleton<Stamina>
 {
     [SerializeField] private Sprite fullStaminaImage, emptyStaminaImage;
-    [SerializeField] private int timeBetweenStaminaRefresh = 3;
     private Transform staminaContainer;
     public int CurrentStamina { get; private set;}
-    private int startingStamina = 3;
-    private int maxStamina;
 
     const string STAMINA_TEXT = "Stamina Container";
 
     protected override void Awake()
     {
         base.Awake();
-        maxStamina = startingStamina;
-        CurrentStamina = startingStamina;
+        StatsManager.Instance.maxStamina = StatsManager.Instance.startingStamina;
+        CurrentStamina = StatsManager.Instance.startingStamina;
     }
 
     private void Start() {
@@ -33,13 +30,13 @@ public class Stamina : Singleton<Stamina>
         StartCoroutine(RefreshStaminaRoutine());
     }
     public void ReplenshStaminaOnDeath(){
-        CurrentStamina = startingStamina;
+        CurrentStamina = StatsManager.Instance.startingStamina;
         UpdateStaminaImages();
 
     }
 
     public void RefreshStamina(){
-        if(CurrentStamina< maxStamina && !PlayerHealth.Instance.isDead){
+        if(CurrentStamina< StatsManager.Instance.maxStamina && !PlayerHealth.Instance.isDead){
             CurrentStamina++;
         }
         UpdateStaminaImages();
@@ -47,13 +44,13 @@ public class Stamina : Singleton<Stamina>
     private IEnumerator RefreshStaminaRoutine(){
         while (true){
 
-            yield return new WaitForSeconds(timeBetweenStaminaRefresh);
+            yield return new WaitForSeconds(StatsManager.Instance.staminaRefreshRate);
             RefreshStamina();
         }
     }
 
     private void UpdateStaminaImages(){
-        for (int i = 0; i < maxStamina; i++)
+        for (int i = 0; i < StatsManager.Instance.maxStamina; i++)
         {
             Transform child = staminaContainer.GetChild(i);
             Image image = child?.GetComponent<Image>();
