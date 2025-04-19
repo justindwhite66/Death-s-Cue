@@ -9,8 +9,6 @@ public class LootSO : ScriptableObject
   [TextArea] public string lootDescription;
   public Sprite lootIcon;
 
-  public bool isGold;
-
   [Header("Loot Stats")]
   public int currentHealth;
   public int maxHealth;

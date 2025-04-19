@@ -32,10 +32,16 @@ public class StatsUI : MonoBehaviour
         statValue[2].GetComponent<TMP_Text>().text = StatsManager.Instance.moveSpeed.ToString();
     }
 
+    public void UpdateStaminaRefreshRate()
+    {
+        statValue[3].GetComponent<TMP_Text>().text = StatsManager.Instance.staminaRefreshRate.ToString();
+    }
+
     public void UpdateAllStats()
     {
         UpdateMaxHealth();
         UpdateCurrentHealth();
         UpdateMoveSpeed();
+        UpdateStaminaRefreshRate();
     }
 }

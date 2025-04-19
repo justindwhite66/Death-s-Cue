@@ -14,6 +14,9 @@ public class StatsManager : MonoBehaviour
 
     [Header("Movement Stats")]
     [SerializeField] public float moveSpeed = 1f;
+    [SerializeField] public int maxStamina = 3;
+    [SerializeField] public int startingStamina = 3;
+    [SerializeField] public int staminaRefreshRate = 3;
 
     //[Header("Combat Stats")]
     //[SerializeField] public float teleportCooldownTime;

@@ -304,6 +304,12 @@ public class PauseMenuManager : MonoBehaviour
     {
         // Resume normal time before loading
         Time.timeScale = 1f;
+
+        // Reset all player data
+        if (DataManager.Instance != null)
+        {
+            DataManager.Instance.ResetAllPlayerData();
+        }
         
         // Load the title screen
         SceneManager.LoadScene(titleSceneName);
