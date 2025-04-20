@@ -229,6 +229,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19a55ba00dea9018cb31675fa8b6960b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxShield: 3
+  currentShield: 0
   maxHealth: 3
   currentHealth: 0
   moveSpeed: 4

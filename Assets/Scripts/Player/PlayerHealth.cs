@@ -47,12 +47,27 @@ public class PlayerHealth : Singleton<PlayerHealth>
         if (PlayerController.Instance != null && PlayerController.Instance.IsInvincible()){ return;}
         if (!canTakeDamage) {return ;}
 
+        if (StatsManager.Instance.HasShield())
+        {
+            // Damage shield instead of health
+            StatsManager.Instance.currentShield -= damageAmount;
+
+            // Play shield impact effect
+            StartCoroutine(flash.ShieldFlashRoutine());
+            knockback.GetKnockedBack(hitTransform, knockBackThrustAmount);
+
+            StartCoroutine(DamageRecoveryRoutine());
+            return;
+        }
+
+        // if player has no shield, damage health
         ScreenShakeManager.Instance.ShakeScreen();
         knockback.GetKnockedBack(hitTransform, knockBackThrustAmount);
-        StartCoroutine(flash.FlashRoutine());
+        StartCoroutine(flash.HealthFlashRoutine());
         canTakeDamage = false;
         StatsManager.Instance.currentHealth -= damageAmount;
         StartCoroutine(DamageRecoveryRoutine());
+
         CheckPlayerDeath();
     }
    
@@ -80,12 +95,23 @@ public class PlayerHealth : Singleton<PlayerHealth>
     }
     private IEnumerator DeathLoadSceneRoutine(){
         yield return new WaitForSeconds(2f);
-        Destroy(gameObject);
+        
+        // Reset player data BEFORE destroying the player
         if (DataManager.Instance != null)
         {
             DataManager.Instance.ResetAllPlayerData();
         }
-        Stamina.Instance.ReplenshStaminaOnDeath();
-        SceneManager.LoadScene(SCENE_CHANGE);
+        
+        // Reset stamina
+        if (Stamina.Instance != null)
+        {
+            Stamina.Instance.ReplenshStaminaOnDeath();
+        }
+        
+        // Load the scene before destroying the player
+        SceneManager.LoadSceneAsync(SCENE_CHANGE);
+        
+        // Now it's safe to destroy the player
+        Destroy(gameObject);
     }
 }

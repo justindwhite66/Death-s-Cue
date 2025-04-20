@@ -6,9 +6,9 @@ public class StatsManager : MonoBehaviour
 {
     public static StatsManager Instance;
 
-    //[Header("Health Stats")]
-    //[SerializeField] public int maxShield;
-    //[SerializeField] public int currentShield;
+    [Header("Health Stats")]
+    [SerializeField] public int maxShield = 3;
+    [SerializeField] public int currentShield = 0;
     [SerializeField] public int maxHealth = 3;
     [SerializeField] public int currentHealth;
 
@@ -32,5 +32,16 @@ public class StatsManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    // Add shield functionality
+    public void AddShield(int amount)
+    {
+        currentShield = Mathf.Min(currentShield + amount, maxShield);
+    }
+
+    public bool HasShield()
+    {
+        return currentShield > 0;
     }
 }
