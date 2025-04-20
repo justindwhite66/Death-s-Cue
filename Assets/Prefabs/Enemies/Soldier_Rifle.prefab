@@ -217,7 +217,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff65dd2702f71a148b1b0be915810d4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  whiteFlashMat: {fileID: 2100000, guid: 9ffbb9c8e0b71ee43a792a81ea4ce78a, type: 2}
+  shieldFlashMat: {fileID: 2100000, guid: 9ffbb9c8e0b71ee43a792a81ea4ce78a, type: 2}
+  healthFlashMat: {fileID: 2100000, guid: e6c20b6e6faa1660082968cd57d64cbf, type: 2}
   restoreDefaultMatTime: 0.2
 --- !u!114 &7773789192975883422
 MonoBehaviour:
@@ -292,6 +293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heartPrefab: {fileID: 7078403650545668064, guid: f5a4c43a9bdb6cb49ae3dfae47316c21, type: 3}
   staminaPrefab: {fileID: 141441811316167965, guid: 1e80ec224d5cad84e9db478ccaadd30f, type: 3}
+  shieldPrefab: {fileID: 7078403650545668064, guid: 6b214602cccd9c6eb8b1b38dede874df, type: 3}
   pickUpLifetime: 3
 --- !u!95 &3347210589842304234
 Animator:

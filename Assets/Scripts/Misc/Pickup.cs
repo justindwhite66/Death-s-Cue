@@ -8,7 +8,8 @@ public class Pickup : MonoBehaviour
 {
     private enum PickUpType{
         StaminaGlobe,
-        HealthGlobe
+        HealthGlobe,
+        ShieldGlobe
     }
 
     [SerializeField] private PickUpType pickUpType;
@@ -83,6 +84,9 @@ public class Pickup : MonoBehaviour
                 break;
             case PickUpType.StaminaGlobe:
                 Stamina.Instance.RefreshStamina();
+                break;
+            case PickUpType.ShieldGlobe:
+                StatsManager.Instance.AddShield(1);
                 break;
             default:
                 break;
