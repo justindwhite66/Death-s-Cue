@@ -18975,11 +18975,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3632646174740430178, guid: 31631956861bcef46b68a04fca1aeb5d, type: 3}
       propertyPath: sceneToLoad
-      value: Scene_1
+      value: Indoor_4
       objectReference: {fileID: 0}
     - target: {fileID: 3632646174740430178, guid: 31631956861bcef46b68a04fca1aeb5d, type: 3}
       propertyPath: sceneTransitionName
-      value: East_Entrance
+      value: South_Entrance
       objectReference: {fileID: 0}
     - target: {fileID: 4016331910293662101, guid: 31631956861bcef46b68a04fca1aeb5d, type: 3}
       propertyPath: m_Name
