@@ -376,9 +376,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c8617768d7a17a44a0a23cfa2d5f283, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goldCoinPrefab: {fileID: 3228183879847457439, guid: dcbcc335032a7ad44b375e36c5e3e38b, type: 3}
   heartPrefab: {fileID: 7078403650545668064, guid: f5a4c43a9bdb6cb49ae3dfae47316c21, type: 3}
   staminaPrefab: {fileID: 141441811316167965, guid: 1e80ec224d5cad84e9db478ccaadd30f, type: 3}
+  shieldPrefab: {fileID: 0}
   pickUpLifetime: 3
 --- !u!114 &7220312363368709118
 MonoBehaviour:

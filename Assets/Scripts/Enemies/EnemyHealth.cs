@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -26,15 +28,19 @@ public class EnemyHealth : MonoBehaviour
    }
    private void Start(){
     currentHealth = startingHealth;
-    if (GameObject.FindObjectsOfType<EnemyHealth>().Length >= 5){
-            slider.enabled = true;
-        }else{
-            slider.enabled = false;
-        }
+    
     if (isBoss && slider != null){
-        
+        string currentScene = SceneManager.GetActiveScene().name;
+
+        if (currentScene == "Indoor_5"){
+
+        slider.gameObject.SetActive(true);
         slider.maxValue = startingHealth;
         slider.value = currentHealth;
+        }
+        else{
+            slider.gameObject.SetActive(false);
+        }
     }
 
    }
@@ -60,6 +66,10 @@ public class EnemyHealth : MonoBehaviour
 
    private void DetectDeath(){
     if (currentHealth <= 0){
+
+        if (isBoss && slider != null){
+            slider.gameObject.SetActive(false);
+        }
         Instantiate(deathVFXPrefab, transform.position, Quaternion.identity);
         GetComponent<PickUpSpawner>().DropItems();
         Destroy(gameObject);
