@@ -162,6 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 8
+  smallTeleportPrefab: {fileID: 0}
   particleOnHitPrefabVFX: {fileID: 3942932078270590173, guid: 249c75f35c3a327408e16b6596e2ea9b, type: 3}
   isEnemyProjectile: 1
   projectileRange: 30

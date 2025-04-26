@@ -123,4 +123,3 @@ MonoBehaviour:
   slashAnimSpawnPoint: {fileID: 0}
   swordAttackCD: 1
   weaponInfo: {fileID: 11400000, guid: 059dd4b8b34399f49819298eb277a41d, type: 2}
-  parryWindow: 0.6
