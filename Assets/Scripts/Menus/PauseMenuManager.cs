@@ -278,6 +278,35 @@ public class PauseMenuManager : MonoBehaviour
         panel.SetActive(true);
         if (backButton != null) backButton.gameObject.SetActive(true);
         currentActivePanel = panel;
+
+        // if opening loot panel, update the UI
+        if (panel == lootPanel)
+        {
+            // Try to use the singleton first
+            if (LootManager.Instance != null)
+            {
+                Debug.Log("Updating loot UI via singleton");
+                LootManager.Instance.UpdateAllLootUI();
+            }
+            else
+            {
+                // Fallback to FindObjectOfType
+                LootManager lootManager = FindObjectOfType<LootManager>();
+                if (lootManager != null)
+                {
+                    Debug.Log("Updating loot UI via FindObjectOfType");
+                    lootManager.UpdateAllLootUI();
+                }
+                else
+                {
+                    Debug.LogError("No LootManager found in scene!");
+                }
+            }
+            
+            // Additional debug output for LootSlots
+            LootSlots[] slots = lootPanel.GetComponentsInChildren<LootSlots>();
+            Debug.Log($"Found {slots.Length} LootSlots in lootPanel");
+        }
     }
 
     void BackToMainMenu()
@@ -313,5 +342,10 @@ public class PauseMenuManager : MonoBehaviour
         
         // Load the title screen
         SceneManager.LoadScene(titleSceneName);
+    }
+
+    public bool IsLootPanelActive()
+    {
+        return lootPanel != null && lootPanel.activeSelf;
     }
 }

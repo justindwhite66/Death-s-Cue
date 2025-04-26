@@ -11,8 +11,8 @@ public class LootSO : ScriptableObject
 
   [Header("Loot Stats")]
   public int currentHealth;
-  public int maxHealth;
   public float moveSpeed;
+  public int staminaRefreshRate;
 
   [Header("Temporary Stats")]
   public float duration;

@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 00
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 28504cd8b6079504da22ef4b8626db3a, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: cc335d1574731964a804f364391b3085, type: 2}
@@ -152,7 +152,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4123289691709529259
 RectTransform:
   m_ObjectHideFlags: 0
@@ -201,7 +201,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 74e969859e140a6e6921117be8af001c, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -222,6 +222,7 @@ GameObject:
   - component: {fileID: 1092493240353253814}
   - component: {fileID: 5987712692984578653}
   - component: {fileID: 4171226500736815176}
+  - component: {fileID: 3155761257274226112}
   m_Layer: 5
   m_Name: LootSlot
   m_TagString: Untagged
@@ -289,3 +290,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3155761257274226112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7460077469509303470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0aec6ac4ff1a070d99a074f707cadde2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lootSO: {fileID: 0}
+  quantity: 0
+  lootIcon: {fileID: 3974455145196483961}
+  quantityText: {fileID: 8758418370620395837}

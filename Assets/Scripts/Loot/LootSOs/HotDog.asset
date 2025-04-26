@@ -15,3 +15,7 @@ MonoBehaviour:
   lootName: Hot Dog
   lootDescription: A timeless classic.
   lootIcon: {fileID: 21300000, guid: 2279aaff0315aaa99a279f7bf98cc5d0, type: 3}
+  currentHealth: 0
+  moveSpeed: 0
+  staminaRefreshRate: 2
+  duration: 0
