@@ -199,6 +199,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8579936640759130826}
   - component: {fileID: 8190794763955582077}
+  - component: {fileID: 7848928259236898457}
   m_Layer: 0
   m_Name: LootManager
   m_TagString: Untagged
@@ -249,6 +250,22 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+--- !u!114 &7848928259236898457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3826638771106931338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b70d9d13f91d46820a5e13f3ec6d3f18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemIconDisplay: {fileID: 0}
+  itemNameText: {fileID: 0}
+  itemDescriptionText: {fileID: 0}
+  detailsContainer: {fileID: 0}
 --- !u!1 &4469099306282210014
 GameObject:
   m_ObjectHideFlags: 0

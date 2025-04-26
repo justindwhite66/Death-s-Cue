@@ -10,8 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b28d9b64b7a323749c5f23edf239451, type: 3}
-  m_Name: Steak
+  m_Name: Bread
   m_EditorClassIdentifier: 
-  lootName: Steak
-  lootDescription: How am I supposed to cook this?
-  lootIcon: {fileID: 21300000, guid: 74e969859e140a6e6921117be8af001c, type: 3}
+  lootName: Bread
+  lootDescription: Might have been able to make a sandwich if it was sliced.
+  lootIcon: {fileID: 21300000, guid: 822fd88cb306dd08aaff3ddad5c19003, type: 3}
+  currentHealth: 1
+  moveSpeed: 0
+  staminaRefreshRate: 0
+  duration: 0
