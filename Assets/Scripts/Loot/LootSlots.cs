@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine;
-using UnityEngine.EventSystems;  // Add this for UI interaction
+using UnityEngine.EventSystems;
 
-// Add these interfaces to handle clicks
 public class LootSlots : MonoBehaviour, IPointerClickHandler
 {
     public LootSO lootSO;
@@ -15,13 +14,15 @@ public class LootSlots : MonoBehaviour, IPointerClickHandler
     public TMP_Text quantityText;
     
     // Add selection visual indicator
-    public Image selectionOutline; // Assign this in inspector - add an Image child with outline sprite
-    
+    public Image selectionOutline;
+
     // Track if this slot is selected
     private bool isSelected = false;
     
     // Static reference to currently selected slot
     public static LootSlots SelectedSlot { get; private set; }
+
+    public static event System.Action<LootSO> OnSlotSelectionChanged;
 
     public void UpdateLootUI()
     {
@@ -47,15 +48,6 @@ public class LootSlots : MonoBehaviour, IPointerClickHandler
     // Handle click events
     public void OnPointerClick(PointerEventData eventData)
     {
-        // Check if the click was actually on this slot specifically
-        if (!RectTransformUtility.RectangleContainsScreenPoint(
-            GetComponent<RectTransform>(), 
-            eventData.position, 
-            eventData.enterEventCamera))
-        {
-            return; // Click wasn't properly on this slot
-        }
-
         // Only allow selection if the slot has an item
         if (lootSO != null)
         {
@@ -89,7 +81,8 @@ public class LootSlots : MonoBehaviour, IPointerClickHandler
             selectionOutline.gameObject.SetActive(true);
         }
         
-        Debug.Log($"Selected item: {lootSO.lootName}");
+        // Trigger event for Loot Description Panel update
+        OnSlotSelectionChanged?.Invoke(lootSO);
     }
     
     private void DeselectSlot()
@@ -107,5 +100,8 @@ public class LootSlots : MonoBehaviour, IPointerClickHandler
         {
             selectionOutline.gameObject.SetActive(false);
         }
+
+        // Trigger event for Loot Description Panel update
+        OnSlotSelectionChanged?.Invoke(null);
     }
 }

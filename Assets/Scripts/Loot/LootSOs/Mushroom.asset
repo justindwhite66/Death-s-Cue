@@ -13,5 +13,13 @@ MonoBehaviour:
   m_Name: Mushroom
   m_EditorClassIdentifier: 
   lootName: Mushroom
-  lootDescription: Looks poisonous...
+  lootDescription: 'Looks poisonous...
+
+    -1 Health
+
+    +1 Speed'
   lootIcon: {fileID: 21300000, guid: bf9c5a431765f6c9ebcb478d9e76ee2a, type: 3}
+  currentHealth: -1
+  moveSpeed: 1
+  staminaRefreshRate: 0
+  duration: 0

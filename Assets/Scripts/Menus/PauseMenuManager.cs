@@ -49,10 +49,10 @@ public class PauseMenuManager : MonoBehaviour
         
         // Register callback for pause action
         playerControls.UI.Pause.performed += ctx => {
-            // Don't allow P to toggle the menu if we're in a sub-panel
+            // Don't allow [Tab] to toggle menu if in sub-panel
             if (IsAnySubPanelActive())
             {
-                // Ignore pause input when in a sub-panel
+                // Ignore pause input when in sub-panel
                 return;
             }
             
@@ -60,7 +60,6 @@ public class PauseMenuManager : MonoBehaviour
         };
     }
 
-    // Add this helper method to check if any sub-panel is active
     private bool IsAnySubPanelActive()
     {
         return (lootPanel != null && lootPanel.activeSelf) ||
@@ -71,18 +70,15 @@ public class PauseMenuManager : MonoBehaviour
 
     void OnEnable()
     {
-        // Enable the UI action map
         playerControls.UI.Enable();
         
-        // Make sure playerControls exists and is properly initialized
+        // Make sure playerControls exists and initialized
         if (playerControls == null)
         {
             playerControls = new PlayerControls();
             playerControls.UI.Pause.performed += ctx => {
-                // Don't allow P to toggle the menu if we're in a sub-panel
                 if (IsAnySubPanelActive())
                 {
-                    // Ignore pause input when in a sub-panel
                     return;
                 }
                 
