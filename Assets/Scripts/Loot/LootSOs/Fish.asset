@@ -13,5 +13,11 @@ MonoBehaviour:
   m_Name: Fish
   m_EditorClassIdentifier: 
   lootName: Fish
-  lootDescription: Stinks a lot, must be old.
+  lootDescription: 'Stinks a lot, must be old.
+
+    -1 Health'
   lootIcon: {fileID: 21300000, guid: cbaa434c5e3ddf644a68e6039b8e5a55, type: 3}
+  currentHealth: -1
+  moveSpeed: 0
+  staminaRefreshRate: 0
+  duration: 0

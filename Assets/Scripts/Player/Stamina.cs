@@ -21,12 +21,15 @@ public class Stamina : Singleton<Stamina>
 
     private void Start() {
         staminaContainer = GameObject.Find(STAMINA_TEXT).transform;
+        
+        // Start the stamina refresh coroutine when the game starts
+        StartCoroutine(RefreshStaminaRoutine());
     }
 
     public void UseStamina(){
         CurrentStamina--;
         UpdateStaminaImages();
-         StopAllCoroutines();
+        StopAllCoroutines();
         StartCoroutine(RefreshStaminaRoutine());
     }
     public void ReplenshStaminaOnDeath(){
@@ -36,15 +39,21 @@ public class Stamina : Singleton<Stamina>
     }
 
     public void RefreshStamina(){
-        if(CurrentStamina< StatsManager.Instance.maxStamina && !PlayerHealth.Instance.isDead){
+        if(CurrentStamina < StatsManager.Instance.maxStamina && !PlayerHealth.Instance.isDead){
             CurrentStamina++;
         }
         UpdateStaminaImages();
     }
     private IEnumerator RefreshStaminaRoutine(){
-        while (true){
-
-            yield return new WaitForSeconds(StatsManager.Instance.staminaRefreshRate);
+        Debug.Log("Starting stamina refresh routine with rate: " + StatsManager.Instance.staminaRefreshRate);
+        
+        while (true)
+        {
+            int secondsToWait = 15 - StatsManager.Instance.staminaRefreshRate;
+            Debug.Log("Waiting for " + secondsToWait + " seconds before refreshing stamina");
+            yield return new WaitForSeconds(secondsToWait);
+            
+            Debug.Log("Refreshing stamina...");
             RefreshStamina();
         }
     }
@@ -61,7 +70,17 @@ public class Stamina : Singleton<Stamina>
                 image.sprite = emptyStaminaImage;
 
             }
-        }
+        }     
+    }
+
+    public void RestartStaminaRefreshRoutine()
+    {
+        // Stop any existing coroutines
+        StopAllCoroutines();
         
+        // Start a new refresh routine with the updated rate
+        StartCoroutine(RefreshStaminaRoutine());
+        
+        Debug.Log($"Restarted stamina refresh routine with rate: {StatsManager.Instance.staminaRefreshRate}");
     }
 }

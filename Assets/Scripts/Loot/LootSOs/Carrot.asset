@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: Carrot
   m_EditorClassIdentifier: 
   lootName: Carrot
-  lootDescription: What am I, a rabbit?
+  lootDescription: 'What am I, a rabbit?
+
+    +1 Health
+
+    +1 Move Speed
+
+    +1
+    Dash Refresh'
   lootIcon: {fileID: 21300000, guid: 6c4b2b793b2c50cf6be5b1ecc185886b, type: 3}
-  currentHealth: 0
-  moveSpeed: 0
-  staminaRefreshRate: 0
+  currentHealth: 1
+  moveSpeed: 1
+  staminaRefreshRate: 1
   duration: 0
