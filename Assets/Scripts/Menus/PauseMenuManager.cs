@@ -348,4 +348,10 @@ public class PauseMenuManager : MonoBehaviour
     {
         return lootPanel != null && lootPanel.activeSelf;
     }
+
+    // Check if any menu is active
+    public bool IsAnyMenuActive()
+    {
+        return isPaused || IsAnySubPanelActive();
+    }
 }
