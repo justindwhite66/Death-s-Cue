@@ -12,7 +12,7 @@ public class Loot : MonoBehaviour
   public int quantity;
   public static event Action<LootSO, int> OnLootPickup;
 
-  private void OnValidate()
+  public void OnValidate()
   {
     if (lootSO == null)
     {
