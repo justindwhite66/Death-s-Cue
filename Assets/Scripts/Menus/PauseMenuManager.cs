@@ -96,10 +96,9 @@ public class PauseMenuManager : MonoBehaviour
         PlayerPrefs.SetFloat("MusicVolume", volume);
 
         // Apply volume change immediately
-        AudioManager audioManager = FindObjectOfType<AudioManager>();
-        if (audioManager != null)
+        if (AudioManager.Instance != null)
         {
-            audioManager.SetMusicVolume(volume);
+            AudioManager.Instance.SetMusicVolume(volume);
         }
     }
 
