@@ -6,7 +6,7 @@ public class RewardRoomManager : MonoBehaviour
 {
     [Header("Loot Settings")]
     [SerializeField] private LootSO[] availableLoot;
-    [SerializeField] private Transform[] spawnPoints; // Exactly 3 spawn points
+    [SerializeField] private Transform[] spawnPoints;
     [SerializeField] private GameObject lootPrefab;
     
     [Header("Animation")]
@@ -17,13 +17,7 @@ public class RewardRoomManager : MonoBehaviour
     {
         if (availableLoot.Length == 0)
         {
-            Debug.LogError("No loot available to spawn!");
             return;
-        }
-        
-        if (spawnPoints.Length != 3)
-        {
-            Debug.LogWarning("Expected exactly 3 spawn points. Found: " + spawnPoints.Length);
         }
         
         // Start spawning loot
@@ -42,7 +36,7 @@ public class RewardRoomManager : MonoBehaviour
         // Select 3 random loot items
         LootSO[] selectedLoot = SelectRandomLoot();
         
-        // Spawn each item with a delay
+        // Spawn each item with delay
         for (int i = 0; i < selectedLoot.Length; i++)
         {
             if (i < spawnPoints.Length)
@@ -58,7 +52,7 @@ public class RewardRoomManager : MonoBehaviour
         // Select 3 random loot items
         LootSO[] selectedLoot = SelectRandomLoot();
         
-        // Spawn each item at a fixed spawn point
+        // Spawn each item at fixed spawn point
         for (int i = 0; i < selectedLoot.Length; i++)
         {
             if (i < spawnPoints.Length)
@@ -70,15 +64,13 @@ public class RewardRoomManager : MonoBehaviour
     
     private LootSO[] SelectRandomLoot()
     {
-        // Create a temporary list to shuffle
+        // Create temporary list to shuffle
         List<LootSO> lootPool = new List<LootSO>(availableLoot);
-        LootSO[] selectedLoot = new LootSO[3]; // Always select exactly 3 items
+        LootSO[] selectedLoot = new LootSO[3];
         
-        // Make sure we have enough items to choose from
+        // Make sure enough items to choose from
         if (lootPool.Count < 3)
-        {
-            Debug.LogWarning("Not enough loot items available. Needed: 3, Found: " + lootPool.Count);
-            
+        {            
             // Fill with available items and duplicate if necessary
             for (int i = 0; i < 3; i++)
             {
@@ -101,7 +93,12 @@ public class RewardRoomManager : MonoBehaviour
     
     private void SpawnLootItem(LootSO lootSO, Transform spawnPoint)
     {
-        GameObject lootObject = Instantiate(lootPrefab, spawnPoint.position, Quaternion.identity);
+        GameObject lootObject = Instantiate(
+            lootPrefab, 
+            spawnPoint.position, 
+            Quaternion.identity
+        );
+        
         Loot lootComponent = lootObject.GetComponent<Loot>();
         
         if (lootComponent != null)
@@ -114,7 +111,7 @@ public class RewardRoomManager : MonoBehaviour
         }
     }
     
-    // Generate a random quantity based on the loot type
+    // Generate a quantity based on loot type
     private int GenerateRandomQuantity(LootSO lootSO)
     {
         if (lootSO.lootName.Contains("Coffee"))
@@ -123,15 +120,16 @@ public class RewardRoomManager : MonoBehaviour
         }
         else if (lootSO.lootName.Contains("Burrito"))
         {
-            return Random.Range(1,2);
+            return Random.Range(1, 2);
         }
         else if (lootSO.lootName.Contains("Soda"))
         {
-            return Random.Range(1,2);
+            return Random.Range(1, 2);
         }
         else
         {
-            return Random.Range(1,5); // Default for normal loot
+            // Default for normal loot
+            return Random.Range(1, 5);
         }
     }
 }

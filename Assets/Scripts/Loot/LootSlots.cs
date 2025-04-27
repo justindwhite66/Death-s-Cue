@@ -37,7 +37,7 @@ public class LootSlots : MonoBehaviour, IPointerClickHandler
             lootIcon.gameObject.SetActive(false);
             quantityText.text = "";
             
-            // Make sure selection is cleared if item is removed
+            // Make sure selection cleared if item removed
             if (isSelected)
             {
                 DeselectSlot();
@@ -48,10 +48,10 @@ public class LootSlots : MonoBehaviour, IPointerClickHandler
     // Handle click events
     public void OnPointerClick(PointerEventData eventData)
     {
-        // Only allow selection if the slot has an item
+        // Only allow selection if slot has item
         if (lootSO != null)
         {
-            // If this slot is already selected, deselect it
+            // If slot already selected, deselect
             if (isSelected)
             {
                 DeselectSlot();
@@ -64,7 +64,7 @@ public class LootSlots : MonoBehaviour, IPointerClickHandler
                     SelectedSlot.DeselectSlot();
                 }
                 
-                // Select this slot
+                // Select slot
                 SelectSlot();
             }
         }
@@ -89,7 +89,7 @@ public class LootSlots : MonoBehaviour, IPointerClickHandler
     {
         isSelected = false;
         
-        // Clear static reference if this was the selected slot
+        // Clear static reference if this was selected slot
         if (SelectedSlot == this)
         {
             SelectedSlot = null;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Loot", menuName = "Inventory/Loot")]
+
 public class LootSO : ScriptableObject
 {
   public string lootName;

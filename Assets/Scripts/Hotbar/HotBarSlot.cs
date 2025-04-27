@@ -22,7 +22,7 @@ public class HotbarSlot : MonoBehaviour
         }
     }
     
-    // Assign an item to this hotbar slot
+    // Assign item to hotbar slot
     public void AssignItem(LootSO item)
     {
         assignedItem = item;
@@ -91,7 +91,7 @@ public class HotbarSlot : MonoBehaviour
                 }
             }
             
-            // If item is no longer in inventory, clear the slot
+            // If item no longer in inventory, clear slot
             if (!foundInInventory)
             {
                 ClearSlot();
@@ -128,7 +128,7 @@ public class HotbarSlot : MonoBehaviour
     {
         if (assignedItem != null && quantity > 0)
         {         
-            // Find the corresponding inventory slot and reduce quantity
+            // Find corresponding inventory slot and reduce quantity
             LootManager lootManager = LootManager.Instance;
             if (lootManager != null)
             {
@@ -139,22 +139,19 @@ public class HotbarSlot : MonoBehaviour
                         // Reduce quantity in inventory
                         slot.quantity--;
                         
-                        // Update local quantity
                         quantity = slot.quantity;
                         
                         // Apply item effect
                         ApplyItemEffect(assignedItem);
                         
-                        // Update inventory UI if open
                         if (IsInventoryOpen())
                         {
                             slot.UpdateLootUI();
                         }
                         
-                        // Update hotbar UI
                         UpdateUI();
                         
-                        // If quantity reached 0, clear the slot in inventory too
+                        // If quantity reached 0, clear slot in inventory too
                         if (quantity <= 0)
                         {
                             slot.lootSO = null;
@@ -173,7 +170,7 @@ public class HotbarSlot : MonoBehaviour
                 }
             }
             
-            // If item not in inventory but still in hotbar, decrease local count
+            // Item not in inventory but still in hotbar, decrease local count
             quantity--;
             if (quantity <= 0)
             {
@@ -191,7 +188,7 @@ public class HotbarSlot : MonoBehaviour
     {
         if (item == null) return;
 
-        // Handle healing (or damage items if value is negative)
+        // Handle healing or damage items
         if (item.currentHealth != 0)
         {
             int currentHealth = StatsManager.Instance.currentHealth;
@@ -200,27 +197,28 @@ public class HotbarSlot : MonoBehaviour
             if (item.currentHealth > 0)
             {
                 // Calculate how much healing can be applied
-                int healthToAdd = Mathf.Min(item.currentHealth, maxHealth - currentHealth);
+                int healthToAdd = Mathf.Min(
+                    item.currentHealth, 
+                    maxHealth - currentHealth
+                );
                 
-                // Apply the healing (only if healing to do)
+                // Apply the healing (except overheal)
                 if (healthToAdd > 0)
                 {
                     StatsManager.Instance.currentHealth += healthToAdd;
-                    Debug.Log($"Applied healing: +{healthToAdd} HP. Current health: {StatsManager.Instance.currentHealth}");
                 }
             }
             else
             {
                 // Apply damage (negative health)
-                StatsManager.Instance.currentHealth += item.currentHealth; // Already negative
-                Debug.Log($"Applied health change: {item.currentHealth} HP. Current health: {StatsManager.Instance.currentHealth}");
+                StatsManager.Instance.currentHealth += item.currentHealth;
             }
         }
         
         // Handle move speed boost items
         if (item.moveSpeed != 0)
         {
-            // Add the modifier to our tracking dictionary
+            // Add modifier to tracking dictionary
             if (!activeFloatModifiers.ContainsKey("moveSpeed"))
             {
                 activeFloatModifiers["moveSpeed"] = new List<float>();
@@ -235,35 +233,39 @@ public class HotbarSlot : MonoBehaviour
             newMoveSpeed = Mathf.Max(0.5f, newMoveSpeed);
             
             StatsManager.Instance.moveSpeed = newMoveSpeed;
-            Debug.Log($"Applied speed change: {item.moveSpeed}. New speed: {StatsManager.Instance.moveSpeed}");
             
-            // If this is a temporary effect, start coroutine to remove it after duration
+            // If temporary effect, start coroutine to remove after duration
             if (item.duration > 0)
             {
-                // Store reference to the coroutine so we can stop it if needed
-                StartCoroutine(ResetFloatStatAfterDelay("moveSpeed", item.moveSpeed, item.duration));
+                // Store reference to the coroutine if stop needed
+                StartCoroutine(ResetFloatStatAfterDelay(
+                    "moveSpeed", 
+                    item.moveSpeed, 
+                    item.duration
+                ));
             }
         }
         
         // Handle stamina refresh rate items
         if (item.staminaRefreshRate != 0)
         {
-            // Add the modifier to our tracking dictionary
+            // Add modifier to tracking dictionary
             if (!activeIntModifiers.ContainsKey("staminaRefresh"))
             {
                 activeIntModifiers["staminaRefresh"] = new List<int>();
             }
-            activeIntModifiers["staminaRefresh"].Add(item.staminaRefreshRate);
+            var refreshKey = "staminaRefresh";
+            activeIntModifiers[refreshKey].Add(item.staminaRefreshRate);
             
-            // Apply the modifier
+            // Apply modifier
             int currentRate = StatsManager.Instance.staminaRefreshRate;
             int newRate = currentRate + item.staminaRefreshRate;
-            newRate = Mathf.Max(1, newRate); // Ensure it doesn't go below 1
+            // Ensure it doesn't go below 1
+            newRate = Mathf.Max(1, newRate); 
             
             StatsManager.Instance.staminaRefreshRate = newRate;
-            Debug.Log($"Applied stamina refresh rate change: +{item.staminaRefreshRate}. New rate: {newRate}");
             
-            // Restart the stamina refresh routine with the updated rate
+            // Restart stamina refresh routine with updated rate
             if (Stamina.Instance != null)
             {
                 Stamina.Instance.RestartStaminaRefreshRoutine();
@@ -272,25 +274,36 @@ public class HotbarSlot : MonoBehaviour
             // If temporary effect, start coroutine to remove it
             if (item.duration > 0)
             {
-                StartCoroutine(ResetIntStatAfterDelay("staminaRefresh", item.staminaRefreshRate, item.duration));
+                StartCoroutine(ResetIntStatAfterDelay(
+                    refreshKey,
+                    item.staminaRefreshRate, 
+                    item.duration
+                ));
             }
         }
         
-        // Update the stats UI if it exists
         UpdateStatsUI();
     }
 
-   // Add these static collections to track active stat modifiers in HotbarSlot class
-    private static Dictionary<string, List<float>> activeFloatModifiers = new Dictionary<string, List<float>>();
-    private static Dictionary<string, List<int>> activeIntModifiers = new Dictionary<string, List<int>>();
-    private static Dictionary<string, List<Coroutine>> activeCoroutines = new Dictionary<string, List<Coroutine>>();
+    // Track active stat modifiers in HotbarSlot class
+    private static Dictionary<string, List<float>> activeFloatModifiers = 
+        new Dictionary<string, List<float>>();
+    private static Dictionary<string, List<int>> activeIntModifiers = 
+        new Dictionary<string, List<int>>();
+    private static Dictionary<string, List<Coroutine>> activeCoroutines = 
+        new Dictionary<string, List<Coroutine>>();
 
     // Modified coroutine to reset float stat after delay
-    private IEnumerator ResetFloatStatAfterDelay(string statType, float boostAmount, float duration)
+    private IEnumerator ResetFloatStatAfterDelay(
+        string statType, 
+        float boostAmount, 
+        float duration
+    )
     {
-        if (duration <= 0) yield break; // If duration is 0 or negative, effect is permanent
+        // If duration is 0 or negative, effect is permanent
+        if (duration <= 0) yield break;
         
-        // Track this modifier
+        // Track modifier
         if (!activeFloatModifiers.ContainsKey(statType))
         {
             activeFloatModifiers[statType] = new List<float>();
@@ -308,26 +321,29 @@ public class HotbarSlot : MonoBehaviour
         if (statType == "moveSpeed")
         {
             float currentSpeed = StatsManager.Instance.moveSpeed;
-            StatsManager.Instance.moveSpeed = Mathf.Max(0.5f, currentSpeed - boostAmount);
-            Debug.Log($"Move speed boost expired. Speed returned to {StatsManager.Instance.moveSpeed}");
+            float newSpeed = currentSpeed - boostAmount;
+            StatsManager.Instance.moveSpeed = Mathf.Max(0.5f, newSpeed);
         }
         
-        // Remove this modifier from tracking
+        // Remove modifier from tracking
         if (activeFloatModifiers.ContainsKey(statType))
         {
             activeFloatModifiers[statType].Remove(boostAmount);
         }
         
-        // Update the stats UI
         UpdateStatsUI();
     }
 
     // Modified coroutine to reset int stat after delay
-    private IEnumerator ResetIntStatAfterDelay(string statType, int boostAmount, float duration)
+    private IEnumerator ResetIntStatAfterDelay(
+        string statType, 
+        int boostAmount, 
+        float duration
+    )
     {
-        if (duration <= 0) yield break; // If duration is 0 or negative, effect is permanent
+        if (duration <= 0) yield break;
         
-        // Track this modifier
+        // Track modifier
         if (!activeIntModifiers.ContainsKey(statType))
         {
             activeIntModifiers[statType] = new List<int>();
@@ -345,70 +361,64 @@ public class HotbarSlot : MonoBehaviour
         if (statType == "staminaRefresh")
         {
             int currentRefresh = StatsManager.Instance.staminaRefreshRate;
-            StatsManager.Instance.staminaRefreshRate = Mathf.Max(1, currentRefresh - boostAmount);
-            Debug.Log($"Stamina refresh boost expired. Rate returned to {StatsManager.Instance.staminaRefreshRate}");
+            int newRefresh = currentRefresh - boostAmount;
+            StatsManager.Instance.staminaRefreshRate = Mathf.Max(1, newRefresh);
             
-            // Restart the stamina refresh routine with the new rate
+            // Restart the stamina refresh routine with new rate
             if (Stamina.Instance != null)
             {
                 Stamina.Instance.RestartStaminaRefreshRoutine();
             }
         }
         
-        // Remove this modifier from tracking
+        // Remove modifier from tracking
         if (activeIntModifiers.ContainsKey(statType))
         {
             activeIntModifiers[statType].Remove(boostAmount);
         }
         
-        // Update the stats UI
         UpdateStatsUI();
     }
 
-    // Add a public static method to reapply all active modifiers
+    // Add public static method to reapply all active modifiers
     public static void ReapplyAllActiveModifiers()
     {
         // Get base values from StatsManager
         float baseSpeed = StatsManager.Instance.GetBaseSpeed();
-        int baseStaminaRefresh = StatsManager.Instance.GetBaseStaminaRefreshRate();
-        
-        Debug.Log($"Reapplying modifiers - Base speed: {baseSpeed}, Base stamina refresh: {baseStaminaRefresh}");
-        
+        int baseRefresh = StatsManager.Instance.GetBaseStaminaRefreshRate();
+                
         // Set back to base values first
         StatsManager.Instance.moveSpeed = baseSpeed;
-        StatsManager.Instance.staminaRefreshRate = baseStaminaRefresh;
+        StatsManager.Instance.staminaRefreshRate = baseRefresh;
         
-        // Now apply all active modifiers from scratch
+        // Apply all active modifiers from scratch
         if (activeFloatModifiers.ContainsKey("moveSpeed"))
         {
             foreach (float modifier in activeFloatModifiers["moveSpeed"])
             {
                 StatsManager.Instance.moveSpeed += modifier;
             }
-            Debug.Log($"Applied {activeFloatModifiers["moveSpeed"].Count} move speed modifiers. New speed: {StatsManager.Instance.moveSpeed}");
         }
         
         // Apply stamina refresh rate modifiers
-        if (activeIntModifiers.ContainsKey("staminaRefresh"))
+        var refreshKey = "staminaRefresh";
+        if (activeIntModifiers.ContainsKey(refreshKey))
         {
-            foreach (int modifier in activeIntModifiers["staminaRefresh"])
+            foreach (int modifier in activeIntModifiers[refreshKey])
             {
                 StatsManager.Instance.staminaRefreshRate += modifier;
             }
-            Debug.Log($"Applied {activeIntModifiers["staminaRefresh"].Count} stamina refresh modifiers. New rate: {StatsManager.Instance.staminaRefreshRate}");
             
-            // Crucial part: restart the stamina refresh routine with the updated rate
+            // Restart stamina refresh routine with updated rate
             if (Stamina.Instance != null)
             {
                 Stamina.Instance.RestartStaminaRefreshRoutine();
             }
         }
         
-        // Update the UI if necessary
         UpdateStatsUI();
     }
 
-    // Add this method to update the stats UI
     private static void UpdateStatsUI()
     {
         // Find the StatsUI component if it exists

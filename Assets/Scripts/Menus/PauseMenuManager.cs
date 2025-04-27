@@ -9,12 +9,12 @@ public class PauseMenuManager : MonoBehaviour
 {
     // References to all menu panels
     [Header("Menu Panels")]
-    [SerializeField] private GameObject pauseCanvas;        // Main canvas
-    [SerializeField] private GameObject mainMenuPanel;      // Main panel
-    [SerializeField] private GameObject lootPanel;          // Inventory
-    [SerializeField] private GameObject equipmentPanel;     // Equipment
-    [SerializeField] private GameObject statsPanel;         // Stats
-    [SerializeField] private GameObject settingsPanel;      // Settings
+    [SerializeField] private GameObject pauseCanvas;      // Main canvas
+    [SerializeField] private GameObject mainMenuPanel;    // Main panel
+    [SerializeField] private GameObject lootPanel;        // Inventory
+    [SerializeField] private GameObject equipmentPanel;   // Equipment
+    [SerializeField] private GameObject statsPanel;       // Stats
+    [SerializeField] private GameObject settingsPanel;    // Settings
 
     // References to all buttons
     [Header("Buttons")]
@@ -48,7 +48,8 @@ public class PauseMenuManager : MonoBehaviour
         playerControls = new PlayerControls();
         
         // Register callback for pause action
-        playerControls.UI.Pause.performed += ctx => {
+        playerControls.UI.Pause.performed += ctx => 
+        {
             // Don't allow [Tab] to toggle menu if in sub-panel
             if (IsAnySubPanelActive())
             {
@@ -76,7 +77,8 @@ public class PauseMenuManager : MonoBehaviour
         if (playerControls == null)
         {
             playerControls = new PlayerControls();
-            playerControls.UI.Pause.performed += ctx => {
+            playerControls.UI.Pause.performed += ctx => 
+            {
                 if (IsAnySubPanelActive())
                 {
                     return;
@@ -105,22 +107,22 @@ public class PauseMenuManager : MonoBehaviour
             return;
         }
         
-        // Set the canvas to ignore timescale
+        // Set canvas to ignore timescale
         Canvas canvas = pauseCanvas.GetComponent<Canvas>();
         if (canvas != null)
         {
             canvas.overrideSorting = true;
-            canvas.sortingOrder = 10; // High value to ensure it renders on top
+            canvas.sortingOrder = 10; // High value to ensure renders on top
         }
         
-        // Configure the GraphicRaycaster to ignore timescale
+        // Configure GraphicRaycaster to ignore timescale
         GraphicRaycaster raycaster = pauseCanvas.GetComponent<GraphicRaycaster>();
         if (raycaster != null)
         {
             raycaster.ignoreReversedGraphics = false;
         }
         
-        // Add this component to handle input when timescale is 0
+        // Component to handle input when timescale 0
         if (!pauseCanvas.TryGetComponent<CanvasGroup>(out var canvasGroup))
         {
             canvasGroup = pauseCanvas.AddComponent<CanvasGroup>();
@@ -133,16 +135,16 @@ public class PauseMenuManager : MonoBehaviour
             return;
         }
 
-        // Initialize the pause menu
+        // Initialize pause menu
         isPaused = false;
 
-        // Ensure pauseCanvas is always enabled
+        // Ensure pauseCanvas always enabled
         pauseCanvas.SetActive(true);
         
         // Hide all panels except pauseCanvas
         HideAllPanels();
         
-        // Set main menu as default (but don't show it yet)
+        // Set main menu as default (but don't show yet)
         currentActivePanel = mainMenuPanel;
         
         // Add listeners to all buttons
@@ -175,38 +177,47 @@ public class PauseMenuManager : MonoBehaviour
 
     void SetupButtonListeners()
     {
+        // Open inventory panel
         if (inventoryButton != null)
-            inventoryButton.onClick.AddListener(
-                () => OpenSubMenu(lootPanel, lootBackButton)
-            );
-        else
-            Debug.LogError("Inventory button is not assigned in inspector!");
+        {
+            inventoryButton.onClick.AddListener(() => 
+            {
+                OpenSubMenu(lootPanel, lootBackButton);
+            });
+        }
             
+        // Open equipment panel
         if (equipmentButton != null)
-            equipmentButton.onClick.AddListener(
-                () => OpenSubMenu(equipmentPanel, equipmentBackButton)
-            );
-        else
-            Debug.LogError("Equipment button is not assigned in inspector!");
+        {
+            equipmentButton.onClick.AddListener(() => 
+            {
+                OpenSubMenu(equipmentPanel, equipmentBackButton);
+            });
+        }
             
+        // Open stats panel
         if (statsButton != null)
-            statsButton.onClick.AddListener(
-                () => OpenSubMenu(statsPanel, statsBackButton)
-            );
-        else
-            Debug.LogError("Stats button is not assigned in inspector!");
+        {
+            statsButton.onClick.AddListener(() => 
+            {
+                OpenSubMenu(statsPanel, statsBackButton);
+            });
+        }
             
+        // Open settings panel
         if (settingsButton != null)
-            settingsButton.onClick.AddListener(
-                () => OpenSubMenu(settingsPanel, settingsBackButton)
-            );
-        else
-            Debug.LogError("Settings button is not assigned in inspector!");
+        {
+            settingsButton.onClick.AddListener(() => 
+            {
+                OpenSubMenu(settingsPanel, settingsBackButton);
+            });
+        }
             
+        // Handle quit button
         if (quitButton != null)
+        {
             quitButton.onClick.AddListener(ReturnToTitleScreen);
-        else
-            Debug.LogError("Quit button is not assigned in inspector!");
+        }
         
         // Back buttons
         if (lootBackButton) 
@@ -239,10 +250,6 @@ public class PauseMenuManager : MonoBehaviour
                 mainMenuPanel.SetActive(true);
                 currentActivePanel = mainMenuPanel;
             }
-            else
-            {
-                Debug.LogError("mainMenuPanel is null!");
-            }
             
             // Make cursor visible
             Cursor.lockState = CursorLockMode.None;
@@ -250,7 +257,7 @@ public class PauseMenuManager : MonoBehaviour
         }
         else
         {
-            // Unpause the game
+            // Unpause game
             Time.timeScale = previousTimeScale;
             
             // Hide all panels but keep pauseCanvas active
@@ -263,25 +270,23 @@ public class PauseMenuManager : MonoBehaviour
         // Additional check for null references
         if (panel == null)
         {
-            Debug.LogError("Trying to open a null panel!");
             return;
         }
         
         // Hide main menu panel
         mainMenuPanel.SetActive(false);
         
-        // Show the requested panel
+        // Show requested panel
         panel.SetActive(true);
         if (backButton != null) backButton.gameObject.SetActive(true);
         currentActivePanel = panel;
 
-        // if opening loot panel, update the UI
+        // If opening loot panel, update UI
         if (panel == lootPanel)
         {
-            // Try to use the singleton first
+            // Try to use singleton first
             if (LootManager.Instance != null)
             {
-                Debug.Log("Updating loot UI via singleton");
                 LootManager.Instance.UpdateAllLootUI();
             }
             else
@@ -290,18 +295,12 @@ public class PauseMenuManager : MonoBehaviour
                 LootManager lootManager = FindObjectOfType<LootManager>();
                 if (lootManager != null)
                 {
-                    Debug.Log("Updating loot UI via FindObjectOfType");
                     lootManager.UpdateAllLootUI();
-                }
-                else
-                {
-                    Debug.LogError("No LootManager found in scene!");
                 }
             }
             
             // Additional debug output for LootSlots
             LootSlots[] slots = lootPanel.GetComponentsInChildren<LootSlots>();
-            Debug.Log($"Found {slots.Length} LootSlots in lootPanel");
         }
     }
 
@@ -336,7 +335,7 @@ public class PauseMenuManager : MonoBehaviour
             DataManager.Instance.ResetAllPlayerData();
         }
         
-        // Load the title screen
+        // Load title screen
         SceneManager.LoadScene(titleSceneName);
     }
 
@@ -345,7 +344,7 @@ public class PauseMenuManager : MonoBehaviour
         return lootPanel != null && lootPanel.activeSelf;
     }
 
-    // Check if any menu is active
+    // Check if any menu active
     public bool IsAnyMenuActive()
     {
         return isPaused || IsAnySubPanelActive();
