@@ -6,6 +6,17 @@ using UnityEngine;
 public class StatsUI : MonoBehaviour
 {
     public GameObject[] statValue;
+    private TMP_Text[] statTexts;
+
+    private void Awake()
+    {
+        // Cache TMP_Text components to avoid GetComponent calls every frame
+        statTexts = new TMP_Text[statValue.Length];
+        for (int i = 0; i < statValue.Length; i++)
+        {
+            statTexts[i] = statValue[i].GetComponent<TMP_Text>();
+        }
+    }
 
     private void Start()
     {
@@ -19,22 +30,22 @@ public class StatsUI : MonoBehaviour
 
     public void UpdateMaxHealth()
     {
-        statValue[0].GetComponent<TMP_Text>().text = StatsManager.Instance.maxHealth.ToString();
+        statTexts[0].text = StatsManager.Instance.maxHealth.ToString();
     }
 
     public void UpdateCurrentHealth()
     {
-        statValue[1].GetComponent<TMP_Text>().text = StatsManager.Instance.currentHealth.ToString();
+        statTexts[1].text = StatsManager.Instance.currentHealth.ToString();
     }
 
     public void UpdateMoveSpeed()
     {
-        statValue[2].GetComponent<TMP_Text>().text = StatsManager.Instance.moveSpeed.ToString();
+        statTexts[2].text = StatsManager.Instance.moveSpeed.ToString();
     }
 
     public void UpdateStaminaRefreshRate()
     {
-        statValue[3].GetComponent<TMP_Text>().text = StatsManager.Instance.staminaRefreshRate.ToString();
+        statTexts[3].text = StatsManager.Instance.staminaRefreshRate.ToString();
     }
 
     public void UpdateAllStats()

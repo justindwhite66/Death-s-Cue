@@ -21,12 +21,15 @@ public class Stamina : Singleton<Stamina>
 
     private void Start() {
         staminaContainer = GameObject.Find(STAMINA_TEXT).transform;
+        
+        // Start  stamina refresh coroutine when  game starts
+        StartCoroutine(RefreshStaminaRoutine());
     }
 
     public void UseStamina(){
         CurrentStamina--;
         UpdateStaminaImages();
-         StopAllCoroutines();
+        StopAllCoroutines();
         StartCoroutine(RefreshStaminaRoutine());
     }
     public void ReplenshStaminaOnDeath(){
@@ -36,15 +39,18 @@ public class Stamina : Singleton<Stamina>
     }
 
     public void RefreshStamina(){
-        if(CurrentStamina< StatsManager.Instance.maxStamina && !PlayerHealth.Instance.isDead){
+        if(CurrentStamina < StatsManager.Instance.maxStamina && !PlayerHealth.Instance.isDead){
             CurrentStamina++;
         }
         UpdateStaminaImages();
     }
     private IEnumerator RefreshStaminaRoutine(){
-        while (true){
-
-            yield return new WaitForSeconds(StatsManager.Instance.staminaRefreshRate);
+        
+        while (true)
+        {
+            int secondsToWait = 15 - StatsManager.Instance.staminaRefreshRate;
+            yield return new WaitForSeconds(secondsToWait);
+            
             RefreshStamina();
         }
     }
@@ -61,7 +67,15 @@ public class Stamina : Singleton<Stamina>
                 image.sprite = emptyStaminaImage;
 
             }
-        }
+        }     
+    }
+
+    public void RestartStaminaRefreshRoutine()
+    {
+        // Stop any existing coroutines
+        StopAllCoroutines();
         
+        // Start new refresh routine with updated rate
+        StartCoroutine(RefreshStaminaRoutine());
     }
 }

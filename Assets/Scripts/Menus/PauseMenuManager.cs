@@ -4,22 +4,21 @@ using System.Collections;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using UnityEngine.Audio;
 
 public class PauseMenuManager : MonoBehaviour
 {
     // References to all menu panels
     [Header("Menu Panels")]
-    [SerializeField] private GameObject pauseCanvas;        // Main canvas
-    [SerializeField] private GameObject mainMenuPanel;      // Main panel
-    [SerializeField] private GameObject lootPanel;          // Inventory
-    [SerializeField] private GameObject equipmentPanel;     // Equipment
-    [SerializeField] private GameObject statsPanel;         // Stats
-    [SerializeField] private GameObject settingsPanel;      // Settings
+    [SerializeField] private GameObject pauseCanvas;      // Main canvas
+    [SerializeField] private GameObject mainMenuPanel;    // Main panel
+    [SerializeField] private GameObject lootPanel;        // Inventory
+    [SerializeField] private GameObject statsPanel;       // Stats
+    [SerializeField] private GameObject settingsPanel;    // Settings
 
     // References to all buttons
     [Header("Buttons")]
     [SerializeField] private Button inventoryButton;
-    [SerializeField] private Button equipmentButton;
     [SerializeField] private Button statsButton;
     [SerializeField] private Button settingsButton;
     [SerializeField] private Button quitButton;
@@ -27,9 +26,14 @@ public class PauseMenuManager : MonoBehaviour
     // References to back buttons
     [Header("Back Buttons")]
     [SerializeField] private Button lootBackButton;
-    [SerializeField] private Button equipmentBackButton;
     [SerializeField] private Button statsBackButton;
     [SerializeField] private Button settingsBackButton;
+
+    // References to Settings
+    [Header("Settings")]
+    [SerializeField] private Slider musicVolumeSlider;
+    //[SerializeField] private Slider sfxVolumeSlider;
+    [SerializeField] private Toggle fullscreenToggle;
 
     // Scene to load when quitting
     [SerializeField] private string titleSceneName = "Title";
@@ -48,11 +52,12 @@ public class PauseMenuManager : MonoBehaviour
         playerControls = new PlayerControls();
         
         // Register callback for pause action
-        playerControls.UI.Pause.performed += ctx => {
-            // Don't allow P to toggle the menu if we're in a sub-panel
+        playerControls.UI.Pause.performed += ctx => 
+        {
+            // Don't allow [Tab] to toggle menu if in sub-panel
             if (IsAnySubPanelActive())
             {
-                // Ignore pause input when in a sub-panel
+                // Ignore pause input when in sub-panel
                 return;
             }
             
@@ -60,29 +65,85 @@ public class PauseMenuManager : MonoBehaviour
         };
     }
 
-    // Add this helper method to check if any sub-panel is active
+    private void InitializeSettingsValues()
+    {
+        // Initialize settings values
+        if (musicVolumeSlider != null)
+        {
+            // Set initial value from saved data
+            musicVolumeSlider.value = PlayerPrefs.GetFloat("MusicVolume", 0.5f);
+            musicVolumeSlider.onValueChanged.AddListener(SetMusicVolume);
+        }
+
+        /*if (sfxVolumeSlider != null)
+        {
+            // Set initial value from saved data
+            sfxVolumeSlider.value = PlayerPrefs.GetFloat("SFXVolume", 0.5f);
+            sfxVolumeSlider.onValueChanged.AddListener(SetSFXVolume);
+        }*/
+
+        if (fullscreenToggle != null)
+        {
+            // Set initial value from saved data
+            fullscreenToggle.isOn = PlayerPrefs.GetInt("Fullscreen", 1) == 1;
+            fullscreenToggle.onValueChanged.AddListener(SetFullscreen);
+        }
+    }
+
+    // Handles music volume changes
+    private void SetMusicVolume(float volume)
+    {
+        PlayerPrefs.SetFloat("MusicVolume", volume);
+
+        // Apply volume change immediately
+        AudioManager audioManager = FindObjectOfType<AudioManager>();
+        if (audioManager != null)
+        {
+            audioManager.SetMusicVolume(volume);
+        }
+    }
+
+    // Handles SFX volume changes
+    /*private void SetSFXVolume(float volume)
+    {
+        PlayerPrefs.SetFloat("SFXVolume", volume);
+
+        // Apply volume change immediately
+        AudioManager audioManager = FindObjectOfType<AudioManager>();
+        if (audioManager != null)
+        {
+            audioManager.SetSFXVolume(volume);
+        }
+    }*/
+
+    // Handles fullscreen toggle
+    private void SetFullscreen(bool isFullscreen)
+    {
+        PlayerPrefs.SetInt("Fullscreen", isFullscreen ? 1 : 0);
+
+        // Apply fullscreen change immediately
+        Screen.fullScreen = isFullscreen;
+    }
+
     private bool IsAnySubPanelActive()
     {
         return (lootPanel != null && lootPanel.activeSelf) ||
-               (equipmentPanel != null && equipmentPanel.activeSelf) ||
                (statsPanel != null && statsPanel.activeSelf) ||
                (settingsPanel != null && settingsPanel.activeSelf);
     }
 
     void OnEnable()
     {
-        // Enable the UI action map
         playerControls.UI.Enable();
         
-        // Make sure playerControls exists and is properly initialized
+        // Make sure playerControls exists and initialized
         if (playerControls == null)
         {
             playerControls = new PlayerControls();
-            playerControls.UI.Pause.performed += ctx => {
-                // Don't allow P to toggle the menu if we're in a sub-panel
+            playerControls.UI.Pause.performed += ctx => 
+            {
                 if (IsAnySubPanelActive())
                 {
-                    // Ignore pause input when in a sub-panel
                     return;
                 }
                 
@@ -109,22 +170,22 @@ public class PauseMenuManager : MonoBehaviour
             return;
         }
         
-        // Set the canvas to ignore timescale
+        // Set canvas to ignore timescale
         Canvas canvas = pauseCanvas.GetComponent<Canvas>();
         if (canvas != null)
         {
             canvas.overrideSorting = true;
-            canvas.sortingOrder = 10; // High value to ensure it renders on top
+            canvas.sortingOrder = 10; // High value to ensure renders on top
         }
         
-        // Configure the GraphicRaycaster to ignore timescale
+        // Configure GraphicRaycaster to ignore timescale
         GraphicRaycaster raycaster = pauseCanvas.GetComponent<GraphicRaycaster>();
         if (raycaster != null)
         {
             raycaster.ignoreReversedGraphics = false;
         }
         
-        // Add this component to handle input when timescale is 0
+        // Component to handle input when timescale 0
         if (!pauseCanvas.TryGetComponent<CanvasGroup>(out var canvasGroup))
         {
             canvasGroup = pauseCanvas.AddComponent<CanvasGroup>();
@@ -137,16 +198,16 @@ public class PauseMenuManager : MonoBehaviour
             return;
         }
 
-        // Initialize the pause menu
+        // Initialize pause menu
         isPaused = false;
 
-        // Ensure pauseCanvas is always enabled
+        // Ensure pauseCanvas always enabled
         pauseCanvas.SetActive(true);
         
         // Hide all panels except pauseCanvas
         HideAllPanels();
         
-        // Set main menu as default (but don't show it yet)
+        // Set main menu as default (but don't show yet)
         currentActivePanel = mainMenuPanel;
         
         // Add listeners to all buttons
@@ -167,9 +228,6 @@ public class PauseMenuManager : MonoBehaviour
         if (lootPanel) lootPanel.SetActive(false);
         if (lootBackButton) lootBackButton.gameObject.SetActive(false);
 
-        if (equipmentPanel) equipmentPanel.SetActive(false);
-        if (equipmentBackButton) equipmentBackButton.gameObject.SetActive(false);
-
         if (statsPanel) statsPanel.SetActive(false);
         if (statsBackButton) statsBackButton.gameObject.SetActive(false);
 
@@ -179,44 +237,42 @@ public class PauseMenuManager : MonoBehaviour
 
     void SetupButtonListeners()
     {
+        // Open inventory panel
         if (inventoryButton != null)
-            inventoryButton.onClick.AddListener(
-                () => OpenSubMenu(lootPanel, lootBackButton)
-            );
-        else
-            Debug.LogError("Inventory button is not assigned in inspector!");
+        {
+            inventoryButton.onClick.AddListener(() => 
+            {
+                OpenSubMenu(lootPanel, lootBackButton);
+            });
+        }
             
-        if (equipmentButton != null)
-            equipmentButton.onClick.AddListener(
-                () => OpenSubMenu(equipmentPanel, equipmentBackButton)
-            );
-        else
-            Debug.LogError("Equipment button is not assigned in inspector!");
-            
+        // Open stats panel
         if (statsButton != null)
-            statsButton.onClick.AddListener(
-                () => OpenSubMenu(statsPanel, statsBackButton)
-            );
-        else
-            Debug.LogError("Stats button is not assigned in inspector!");
+        {
+            statsButton.onClick.AddListener(() => 
+            {
+                OpenSubMenu(statsPanel, statsBackButton);
+            });
+        }
             
+        // Open settings panel
         if (settingsButton != null)
-            settingsButton.onClick.AddListener(
-                () => OpenSubMenu(settingsPanel, settingsBackButton)
-            );
-        else
-            Debug.LogError("Settings button is not assigned in inspector!");
+        {
+            settingsButton.onClick.AddListener(() => 
+            {
+                OpenSubMenu(settingsPanel, settingsBackButton);
+            });
+        }
             
+        // Handle quit button
         if (quitButton != null)
+        {
             quitButton.onClick.AddListener(ReturnToTitleScreen);
-        else
-            Debug.LogError("Quit button is not assigned in inspector!");
+        }
         
         // Back buttons
         if (lootBackButton) 
             lootBackButton.onClick.AddListener(BackToMainMenu);
-        if (equipmentBackButton) 
-            equipmentBackButton.onClick.AddListener(BackToMainMenu);
         if (statsBackButton) 
             statsBackButton.onClick.AddListener(BackToMainMenu);
         if (settingsBackButton) 
@@ -243,10 +299,6 @@ public class PauseMenuManager : MonoBehaviour
                 mainMenuPanel.SetActive(true);
                 currentActivePanel = mainMenuPanel;
             }
-            else
-            {
-                Debug.LogError("mainMenuPanel is null!");
-            }
             
             // Make cursor visible
             Cursor.lockState = CursorLockMode.None;
@@ -254,7 +306,7 @@ public class PauseMenuManager : MonoBehaviour
         }
         else
         {
-            // Unpause the game
+            // Unpause game
             Time.timeScale = previousTimeScale;
             
             // Hide all panels but keep pauseCanvas active
@@ -267,17 +319,44 @@ public class PauseMenuManager : MonoBehaviour
         // Additional check for null references
         if (panel == null)
         {
-            Debug.LogError("Trying to open a null panel!");
             return;
         }
         
         // Hide main menu panel
         mainMenuPanel.SetActive(false);
         
-        // Show the requested panel
+        // Show requested panel
         panel.SetActive(true);
         if (backButton != null) backButton.gameObject.SetActive(true);
         currentActivePanel = panel;
+
+        // If opening loot panel, update UI
+        if (panel == lootPanel)
+        {
+            // Try to use singleton first
+            if (LootManager.Instance != null)
+            {
+                LootManager.Instance.UpdateAllLootUI();
+            }
+            else
+            {
+                // Fallback to FindObjectOfType
+                LootManager lootManager = FindObjectOfType<LootManager>();
+                if (lootManager != null)
+                {
+                    lootManager.UpdateAllLootUI();
+                }
+            }
+            
+            // Additional debug output for LootSlots
+            LootSlots[] slots = lootPanel.GetComponentsInChildren<LootSlots>();
+        }
+
+        if (panel == settingsPanel)
+        {
+            // Initialize settings values
+            InitializeSettingsValues();
+        }
     }
 
     void BackToMainMenu()
@@ -285,9 +364,6 @@ public class PauseMenuManager : MonoBehaviour
         // Hide all submenus
         if (lootPanel) lootPanel.SetActive(false);
         if (lootBackButton) lootBackButton.gameObject.SetActive(false);
-
-        if (equipmentPanel) equipmentPanel.SetActive(false);
-        if (equipmentBackButton) equipmentBackButton.gameObject.SetActive(false);
 
         if (statsPanel) statsPanel.SetActive(false);
         if (statsBackButton) statsBackButton.gameObject.SetActive(false);
@@ -298,6 +374,17 @@ public class PauseMenuManager : MonoBehaviour
         // Show main menu
         mainMenuPanel.SetActive(true);
         currentActivePanel = mainMenuPanel;
+
+        if (currentActivePanel == settingsPanel)
+        {
+            SaveSettings();
+        }
+    }
+
+    public void SaveSettings()
+    {
+        // Save settings to PlayerPrefs
+        PlayerPrefs.Save();
     }
 
     void ReturnToTitleScreen()
@@ -311,7 +398,69 @@ public class PauseMenuManager : MonoBehaviour
             DataManager.Instance.ResetAllPlayerData();
         }
         
-        // Load the title screen
+        // Destroy all DontDestroyOnLoad objects before loading title
+        DestroyAllPersistentObjects();
+        
+        // Load title screen
         SceneManager.LoadScene(titleSceneName);
+    }
+
+    private void DestroyAllPersistentObjects()
+    {
+        // Find and destroy player if it exists
+        if (PlayerController.Instance != null)
+        {
+            Destroy(PlayerController.Instance.gameObject);
+        }
+        
+        // Find and destroy other key singleton instances
+        if (StatsManager.Instance != null)
+        {
+            Destroy(StatsManager.Instance.gameObject);
+        }
+        
+        if (Stamina.Instance != null)
+        {
+            Destroy(Stamina.Instance.gameObject);
+        }
+        
+        if (ActiveWeapon.Instance != null)
+        {
+            Destroy(ActiveWeapon.Instance.gameObject);
+        }
+        
+        if (PlayerHealth.Instance != null)
+        {
+            Destroy(PlayerHealth.Instance.gameObject);
+        }
+        
+        if (LootManager.Instance != null)
+        {
+            Destroy(LootManager.Instance.gameObject);
+        }
+        
+        // Additionally destroy any music-related objects
+        if (AudioManager.Instance != null)
+        {
+            Destroy(AudioManager.Instance.gameObject);
+        }
+        
+        // Find all active AudioSources and stop them
+        AudioSource[] audioSources = FindObjectsOfType<AudioSource>();
+        foreach (AudioSource audioSource in audioSources)
+        {
+            audioSource.Stop();
+        }
+    }
+
+    public bool IsLootPanelActive()
+    {
+        return lootPanel != null && lootPanel.activeSelf;
+    }
+
+    // Check if any menu active
+    public bool IsAnyMenuActive()
+    {
+        return isPaused || IsAnySubPanelActive();
     }
 }

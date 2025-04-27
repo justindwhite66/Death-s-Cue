@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Loot", menuName = "Inventory/Loot")]
+
 public class LootSO : ScriptableObject
 {
   public string lootName;
@@ -11,8 +12,8 @@ public class LootSO : ScriptableObject
 
   [Header("Loot Stats")]
   public int currentHealth;
-  public int maxHealth;
   public float moveSpeed;
+  public int staminaRefreshRate;
 
   [Header("Temporary Stats")]
   public float duration;

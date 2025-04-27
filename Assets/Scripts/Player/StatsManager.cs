@@ -13,13 +13,10 @@ public class StatsManager : MonoBehaviour
     [SerializeField] public int currentHealth;
 
     [Header("Movement Stats")]
-    [SerializeField] public float moveSpeed = 1f;
+    [SerializeField] public float moveSpeed = 3f;
     [SerializeField] public int maxStamina = 3;
     [SerializeField] public int startingStamina = 3;
     [SerializeField] public int staminaRefreshRate = 3;
-
-    //[Header("Combat Stats")]
-    //[SerializeField] public float teleportCooldownTime;
 
     private void Awake()
     {
@@ -43,5 +40,16 @@ public class StatsManager : MonoBehaviour
     public bool HasShield()
     {
         return currentShield > 0;
+    }
+
+    // Getter methods to get base stat values
+    public float GetBaseSpeed()
+    {
+        return 3f;
+    }
+
+    public int GetBaseStaminaRefreshRate()
+    {
+        return 3;
     }
 }

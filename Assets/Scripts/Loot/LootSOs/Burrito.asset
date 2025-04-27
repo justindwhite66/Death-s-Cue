@@ -13,5 +13,13 @@ MonoBehaviour:
   m_Name: Burrito
   m_EditorClassIdentifier: 
   lootName: Burrito
-  lootDescription: I sure hope this isn't spicy.
+  lootDescription: 'I sure hope this isn''t spicy.
+
+    +2 Health
+
+    +1 Move Speed'
   lootIcon: {fileID: 21300000, guid: e1a966443994e5a4ea3cefd9c5372e38, type: 3}
+  currentHealth: 2
+  moveSpeed: 1
+  staminaRefreshRate: 0
+  duration: 0

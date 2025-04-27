@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: Donut
   m_EditorClassIdentifier: 
   lootName: Donut
-  lootDescription: Mmmmm... Tasty...
+  lootDescription: 'Mmmmm... Tasty...
+
+    +1 Health
+
+    -1 Speed'
   lootIcon: {fileID: 21300000, guid: 70702e66b54674e528e588f6a3366098, type: 3}
-  isGold: 0
   currentHealth: 1
-  maxHealth: 0
-  moveSpeed: 0
+  moveSpeed: -1
+  staminaRefreshRate: 0
   duration: 0

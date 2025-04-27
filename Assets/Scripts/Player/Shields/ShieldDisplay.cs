@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class ShieldDisplay : MonoBehaviour
 {
-    [SerializeField] private GameObject shieldIconPrefab; // Prefab of single shield icon
-    [SerializeField] private Transform shieldPanel; // Parent panel for shield icons    
-    private List<GameObject> activeShields = new List<GameObject>(); // Track active shield icons
-    private int previousShieldCount = 0; // To detect changes
+    [SerializeField] private GameObject shieldIconPrefab;
+    [SerializeField] private Transform shieldPanel;  
+    private List<GameObject> activeShields = new List<GameObject>();
+    private int previousShieldCount = 0;
     
     void Start()
     {
@@ -18,7 +18,7 @@ public class ShieldDisplay : MonoBehaviour
     
     void Update()
     {
-        // Only update if shield count has changed
+        // Only update if shield count changed
         if (StatsManager.Instance != null && 
             StatsManager.Instance.currentShield != previousShieldCount)
         {
@@ -29,9 +29,10 @@ public class ShieldDisplay : MonoBehaviour
     private void UpdateShieldDisplay()
     {
         // Make sure references exist
-        if (shieldPanel == null || shieldIconPrefab == null || StatsManager.Instance == null) 
+        if (shieldPanel == null || 
+            shieldIconPrefab == null || 
+            StatsManager.Instance == null) 
         {
-            Debug.LogWarning("ShieldDisplay: Missing required references");
             return;
         }
         
@@ -53,16 +54,16 @@ public class ShieldDisplay : MonoBehaviour
     
     private void AddShieldIcon()
     {
-        // Instantiate a new shield icon
+        // Instantiate new shield icon
         GameObject newShield = Instantiate(shieldIconPrefab, shieldPanel);
         
-        // Set its color
+        // Set color
         Image shieldImage = newShield.GetComponent<Image>();
         
-        // Add to our tracking list
+        // Add to tracking list
         activeShields.Add(newShield);
         
-        // Optional: Play add animation
+        // Play add animation (add if time)
         StartCoroutine(AnimateShieldAdd(newShield));
     }
     
@@ -70,7 +71,7 @@ public class ShieldDisplay : MonoBehaviour
     {
         if (activeShields.Count == 0) return;
         
-        // Get the last shield in the list
+        // Get last shield in list
         GameObject shieldToRemove = activeShields[activeShields.Count - 1];
         activeShields.RemoveAt(activeShields.Count - 1);
         
@@ -90,7 +91,8 @@ public class ShieldDisplay : MonoBehaviour
         {
             timer += Time.deltaTime;
             float progress = timer / duration;
-            shield.transform.localScale = Vector3.one * Mathf.SmoothStep(0, 1, progress);
+            shield.transform.localScale = Vector3.one * 
+                Mathf.SmoothStep(0, 1, progress);
             yield return null;
         }
         

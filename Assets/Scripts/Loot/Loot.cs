@@ -10,9 +10,12 @@ public class Loot : MonoBehaviour
   public Animator anim;
 
   public int quantity;
+
+  // Event trigger when loot picked up
   public static event Action<LootSO, int> OnLootPickup;
 
-  private void OnValidate()
+  // Assign sprite and name
+  public void OnValidate()
   {
     if (lootSO == null)
     {
@@ -23,6 +26,7 @@ public class Loot : MonoBehaviour
     this.name = lootSO.lootName;
   }
 
+  // Plays animation and destroys object on pickup
   private void OnTriggerEnter2D(Collider2D collision)
   {
     if (collision.CompareTag("Player"))

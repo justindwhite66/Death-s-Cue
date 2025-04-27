@@ -293,11 +293,139 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""cd89910d-205d-4bad-9630-55f4391ccd8d"",
-                    ""path"": ""<Keyboard>/p"",
+                    ""path"": ""<Keyboard>/tab"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Hotbar"",
+            ""id"": ""ac158e96-d118-4512-8368-f22cdf95e572"",
+            ""actions"": [
+                {
+                    ""name"": ""HotbarZ"",
+                    ""type"": ""Button"",
+                    ""id"": ""2aac6ab0-cce6-488b-9427-266e562a6602"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""HotbarX"",
+                    ""type"": ""Button"",
+                    ""id"": ""dd99c924-a6c4-4cce-9d99-d0b11d769e7c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""HotbarC"",
+                    ""type"": ""Button"",
+                    ""id"": ""7805d67b-ce98-4eb3-bd49-845efceaf1d8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UseHotbarZ"",
+                    ""type"": ""Button"",
+                    ""id"": ""bc7e6e0f-c62b-4dcc-9bb9-b712e57b7037"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UseHotbarX"",
+                    ""type"": ""Button"",
+                    ""id"": ""3888e5d1-24fd-44aa-94a1-e569674866cb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UseHotbarC"",
+                    ""type"": ""Button"",
+                    ""id"": ""6c25ff8b-a324-4d6f-bb7f-609b98c87f6d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""d6f55578-16a5-476a-ac12-a433608e86cc"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HotbarZ"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f951f157-0c4b-4a58-b770-65434d2789e8"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HotbarX"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d586b202-04d8-4f85-b784-66c15edbf302"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HotbarC"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""94580b7e-fc72-4fd0-a418-247c5d199252"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UseHotbarZ"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9f537a2a-05cc-4987-a86c-b36904eb67bb"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UseHotbarX"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""13f683d9-f3e2-482c-bca7-3c745dcaf0a6"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UseHotbarC"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -322,6 +450,14 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
+        // Hotbar
+        m_Hotbar = asset.FindActionMap("Hotbar", throwIfNotFound: true);
+        m_Hotbar_HotbarZ = m_Hotbar.FindAction("HotbarZ", throwIfNotFound: true);
+        m_Hotbar_HotbarX = m_Hotbar.FindAction("HotbarX", throwIfNotFound: true);
+        m_Hotbar_HotbarC = m_Hotbar.FindAction("HotbarC", throwIfNotFound: true);
+        m_Hotbar_UseHotbarZ = m_Hotbar.FindAction("UseHotbarZ", throwIfNotFound: true);
+        m_Hotbar_UseHotbarX = m_Hotbar.FindAction("UseHotbarX", throwIfNotFound: true);
+        m_Hotbar_UseHotbarC = m_Hotbar.FindAction("UseHotbarC", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -595,6 +731,92 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         }
     }
     public UIActions @UI => new UIActions(this);
+
+    // Hotbar
+    private readonly InputActionMap m_Hotbar;
+    private List<IHotbarActions> m_HotbarActionsCallbackInterfaces = new List<IHotbarActions>();
+    private readonly InputAction m_Hotbar_HotbarZ;
+    private readonly InputAction m_Hotbar_HotbarX;
+    private readonly InputAction m_Hotbar_HotbarC;
+    private readonly InputAction m_Hotbar_UseHotbarZ;
+    private readonly InputAction m_Hotbar_UseHotbarX;
+    private readonly InputAction m_Hotbar_UseHotbarC;
+    public struct HotbarActions
+    {
+        private @PlayerControls m_Wrapper;
+        public HotbarActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @HotbarZ => m_Wrapper.m_Hotbar_HotbarZ;
+        public InputAction @HotbarX => m_Wrapper.m_Hotbar_HotbarX;
+        public InputAction @HotbarC => m_Wrapper.m_Hotbar_HotbarC;
+        public InputAction @UseHotbarZ => m_Wrapper.m_Hotbar_UseHotbarZ;
+        public InputAction @UseHotbarX => m_Wrapper.m_Hotbar_UseHotbarX;
+        public InputAction @UseHotbarC => m_Wrapper.m_Hotbar_UseHotbarC;
+        public InputActionMap Get() { return m_Wrapper.m_Hotbar; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(HotbarActions set) { return set.Get(); }
+        public void AddCallbacks(IHotbarActions instance)
+        {
+            if (instance == null || m_Wrapper.m_HotbarActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_HotbarActionsCallbackInterfaces.Add(instance);
+            @HotbarZ.started += instance.OnHotbarZ;
+            @HotbarZ.performed += instance.OnHotbarZ;
+            @HotbarZ.canceled += instance.OnHotbarZ;
+            @HotbarX.started += instance.OnHotbarX;
+            @HotbarX.performed += instance.OnHotbarX;
+            @HotbarX.canceled += instance.OnHotbarX;
+            @HotbarC.started += instance.OnHotbarC;
+            @HotbarC.performed += instance.OnHotbarC;
+            @HotbarC.canceled += instance.OnHotbarC;
+            @UseHotbarZ.started += instance.OnUseHotbarZ;
+            @UseHotbarZ.performed += instance.OnUseHotbarZ;
+            @UseHotbarZ.canceled += instance.OnUseHotbarZ;
+            @UseHotbarX.started += instance.OnUseHotbarX;
+            @UseHotbarX.performed += instance.OnUseHotbarX;
+            @UseHotbarX.canceled += instance.OnUseHotbarX;
+            @UseHotbarC.started += instance.OnUseHotbarC;
+            @UseHotbarC.performed += instance.OnUseHotbarC;
+            @UseHotbarC.canceled += instance.OnUseHotbarC;
+        }
+
+        private void UnregisterCallbacks(IHotbarActions instance)
+        {
+            @HotbarZ.started -= instance.OnHotbarZ;
+            @HotbarZ.performed -= instance.OnHotbarZ;
+            @HotbarZ.canceled -= instance.OnHotbarZ;
+            @HotbarX.started -= instance.OnHotbarX;
+            @HotbarX.performed -= instance.OnHotbarX;
+            @HotbarX.canceled -= instance.OnHotbarX;
+            @HotbarC.started -= instance.OnHotbarC;
+            @HotbarC.performed -= instance.OnHotbarC;
+            @HotbarC.canceled -= instance.OnHotbarC;
+            @UseHotbarZ.started -= instance.OnUseHotbarZ;
+            @UseHotbarZ.performed -= instance.OnUseHotbarZ;
+            @UseHotbarZ.canceled -= instance.OnUseHotbarZ;
+            @UseHotbarX.started -= instance.OnUseHotbarX;
+            @UseHotbarX.performed -= instance.OnUseHotbarX;
+            @UseHotbarX.canceled -= instance.OnUseHotbarX;
+            @UseHotbarC.started -= instance.OnUseHotbarC;
+            @UseHotbarC.performed -= instance.OnUseHotbarC;
+            @UseHotbarC.canceled -= instance.OnUseHotbarC;
+        }
+
+        public void RemoveCallbacks(IHotbarActions instance)
+        {
+            if (m_Wrapper.m_HotbarActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IHotbarActions instance)
+        {
+            foreach (var item in m_Wrapper.m_HotbarActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_HotbarActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public HotbarActions @Hotbar => new HotbarActions(this);
     public interface IMovementActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -614,5 +836,14 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     public interface IUIActions
     {
         void OnPause(InputAction.CallbackContext context);
+    }
+    public interface IHotbarActions
+    {
+        void OnHotbarZ(InputAction.CallbackContext context);
+        void OnHotbarX(InputAction.CallbackContext context);
+        void OnHotbarC(InputAction.CallbackContext context);
+        void OnUseHotbarZ(InputAction.CallbackContext context);
+        void OnUseHotbarX(InputAction.CallbackContext context);
+        void OnUseHotbarC(InputAction.CallbackContext context);
     }
 }
