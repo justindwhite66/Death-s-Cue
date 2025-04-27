@@ -8,7 +8,7 @@ public class LootManager : MonoBehaviour
     public static LootManager Instance { get; private set; }
     public LootSlots[] lootSlots;
     
-    // Add an event that gets triggered when inventory changes
+    // Add event that gets triggered when inventory changes
     public static event Action OnInventoryChanged;
     
     private void Awake()
@@ -38,7 +38,6 @@ public class LootManager : MonoBehaviour
     {
         if (lootSO == null)
         {
-            Debug.LogError("LootSO is null");
             return;
         }
         
@@ -46,20 +45,19 @@ public class LootManager : MonoBehaviour
         
         foreach (var slot in lootSlots)
         {
-            // make sure the loot slot is not null
+            // Make sure loot slot is not null
             if (slot == null)
             {
-                Debug.LogError("LootSlot is null");
                 continue;
             }
 
-            // If this slot has the same LootSO, add to the quantity
+            // If slot has same LootSO, add to quantity
             if (slot.lootSO == lootSO)
             {
                 slot.quantity += quantity;
                 inventoryChanged = true;
                 
-                // Only update UI if the inventory is currently visible
+                // Only update UI if inventory is currently visible
                 if (IsPauseMenuActive())
                 {
                     slot.UpdateLootUI();
@@ -77,14 +75,13 @@ public class LootManager : MonoBehaviour
 
         foreach (var slot in lootSlots)
         {
-            // make sure the loot slot is not null
+            // Make sure loot slot is not null
             if (slot == null)
             {
-                Debug.LogError("LootSlot is null");
                 continue;
             }
 
-            // If this slot is empty, add the LootSO and quantity
+            // If slot empty, add LootSO and quantity
             if (slot.lootSO == null)
             {
                 slot.lootSO = lootSO;
@@ -105,10 +102,7 @@ public class LootManager : MonoBehaviour
                 
                 return;
             }
-        }
-        
-        // inventory is full
-        Debug.Log("Inventory is full");
+        }   
     }
     
     // Method to remove items from inventory
@@ -128,14 +122,14 @@ public class LootManager : MonoBehaviour
                 slot.quantity -= amount;
                 inventoryChanged = true;
                 
-                // If quantity reached 0, clear the slot
+                // If quantity reached 0, clear slot
                 if (slot.quantity <= 0)
                 {
                     slot.lootSO = null;
                     slot.quantity = 0;
                 }
                 
-                // Update UI if inventory is open
+                // Update UI if inventory open
                 if (IsPauseMenuActive())
                 {
                     slot.UpdateLootUI();

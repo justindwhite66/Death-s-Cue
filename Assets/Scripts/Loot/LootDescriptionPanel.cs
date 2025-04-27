@@ -26,7 +26,6 @@ public class LootDetailsPanel : MonoBehaviour
 
     private void Start()
     {
-        // Clear the panel on start
         ClearDetailsPanel();
     }
 
@@ -38,7 +37,7 @@ public class LootDetailsPanel : MonoBehaviour
             return;
         }
 
-        // Show the details container
+        // Show details container
         if (detailsContainer != null)
             detailsContainer.SetActive(true);
 
@@ -59,7 +58,7 @@ public class LootDetailsPanel : MonoBehaviour
 
     public void ClearDetailsPanel()
     {
-        // Hide the details container
+        // Hide details container
         if (detailsContainer != null)
             detailsContainer.SetActive(false);
 
