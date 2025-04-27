@@ -4,6 +4,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using UnityEngine.Audio;
 
 public class PauseMenuManager : MonoBehaviour
 {
@@ -27,6 +28,12 @@ public class PauseMenuManager : MonoBehaviour
     [SerializeField] private Button lootBackButton;
     [SerializeField] private Button statsBackButton;
     [SerializeField] private Button settingsBackButton;
+
+    // References to Settings
+    [Header("Settings")]
+    [SerializeField] private Slider musicVolumeSlider;
+    //[SerializeField] private Slider sfxVolumeSlider;
+    [SerializeField] private Toggle fullscreenToggle;
 
     // Scene to load when quitting
     [SerializeField] private string titleSceneName = "Title";
@@ -56,6 +63,66 @@ public class PauseMenuManager : MonoBehaviour
             
             TogglePauseMenu();
         };
+    }
+
+    private void InitializeSettingsValues()
+    {
+        // Initialize settings values
+        if (musicVolumeSlider != null)
+        {
+            // Set initial value from saved data
+            musicVolumeSlider.value = PlayerPrefs.GetFloat("MusicVolume", 0.5f);
+            musicVolumeSlider.onValueChanged.AddListener(SetMusicVolume);
+        }
+
+        /*if (sfxVolumeSlider != null)
+        {
+            // Set initial value from saved data
+            sfxVolumeSlider.value = PlayerPrefs.GetFloat("SFXVolume", 0.5f);
+            sfxVolumeSlider.onValueChanged.AddListener(SetSFXVolume);
+        }*/
+
+        if (fullscreenToggle != null)
+        {
+            // Set initial value from saved data
+            fullscreenToggle.isOn = PlayerPrefs.GetInt("Fullscreen", 1) == 1;
+            fullscreenToggle.onValueChanged.AddListener(SetFullscreen);
+        }
+    }
+
+    // Handles music volume changes
+    private void SetMusicVolume(float volume)
+    {
+        PlayerPrefs.SetFloat("MusicVolume", volume);
+
+        // Apply volume change immediately
+        AudioManager audioManager = FindObjectOfType<AudioManager>();
+        if (audioManager != null)
+        {
+            audioManager.SetMusicVolume(volume);
+        }
+    }
+
+    // Handles SFX volume changes
+    /*private void SetSFXVolume(float volume)
+    {
+        PlayerPrefs.SetFloat("SFXVolume", volume);
+
+        // Apply volume change immediately
+        AudioManager audioManager = FindObjectOfType<AudioManager>();
+        if (audioManager != null)
+        {
+            audioManager.SetSFXVolume(volume);
+        }
+    }*/
+
+    // Handles fullscreen toggle
+    private void SetFullscreen(bool isFullscreen)
+    {
+        PlayerPrefs.SetInt("Fullscreen", isFullscreen ? 1 : 0);
+
+        // Apply fullscreen change immediately
+        Screen.fullScreen = isFullscreen;
     }
 
     private bool IsAnySubPanelActive()
@@ -284,6 +351,12 @@ public class PauseMenuManager : MonoBehaviour
             // Additional debug output for LootSlots
             LootSlots[] slots = lootPanel.GetComponentsInChildren<LootSlots>();
         }
+
+        if (panel == settingsPanel)
+        {
+            // Initialize settings values
+            InitializeSettingsValues();
+        }
     }
 
     void BackToMainMenu()
@@ -301,6 +374,17 @@ public class PauseMenuManager : MonoBehaviour
         // Show main menu
         mainMenuPanel.SetActive(true);
         currentActivePanel = mainMenuPanel;
+
+        if (currentActivePanel == settingsPanel)
+        {
+            SaveSettings();
+        }
+    }
+
+    public void SaveSettings()
+    {
+        // Save settings to PlayerPrefs
+        PlayerPrefs.Save();
     }
 
     void ReturnToTitleScreen()
@@ -314,8 +398,59 @@ public class PauseMenuManager : MonoBehaviour
             DataManager.Instance.ResetAllPlayerData();
         }
         
+        // Destroy all DontDestroyOnLoad objects before loading title
+        DestroyAllPersistentObjects();
+        
         // Load title screen
         SceneManager.LoadScene(titleSceneName);
+    }
+
+    private void DestroyAllPersistentObjects()
+    {
+        // Find and destroy player if it exists
+        if (PlayerController.Instance != null)
+        {
+            Destroy(PlayerController.Instance.gameObject);
+        }
+        
+        // Find and destroy other key singleton instances
+        if (StatsManager.Instance != null)
+        {
+            Destroy(StatsManager.Instance.gameObject);
+        }
+        
+        if (Stamina.Instance != null)
+        {
+            Destroy(Stamina.Instance.gameObject);
+        }
+        
+        if (ActiveWeapon.Instance != null)
+        {
+            Destroy(ActiveWeapon.Instance.gameObject);
+        }
+        
+        if (PlayerHealth.Instance != null)
+        {
+            Destroy(PlayerHealth.Instance.gameObject);
+        }
+        
+        if (LootManager.Instance != null)
+        {
+            Destroy(LootManager.Instance.gameObject);
+        }
+        
+        // Additionally destroy any music-related objects
+        if (AudioManager.Instance != null)
+        {
+            Destroy(AudioManager.Instance.gameObject);
+        }
+        
+        // Find all active AudioSources and stop them
+        AudioSource[] audioSources = FindObjectsOfType<AudioSource>();
+        foreach (AudioSource audioSource in audioSources)
+        {
+            audioSource.Stop();
+        }
     }
 
     public bool IsLootPanelActive()
