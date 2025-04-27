@@ -75,7 +75,7 @@ public class PlayerController : Singleton<PlayerController>
    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
    {
      playerControls.Disable();
-     playerControls.Enable(); // Reset input actions to prevent missing references
+     playerControls.Enable(); // Reset input actions, prevent missing references
    }
 
    private void Update()
@@ -160,9 +160,6 @@ public class PlayerController : Singleton<PlayerController>
    {
       yield return new WaitForSeconds(dashDuration);
       
-      // Reset to base speed
-      //StatsManager.Instance.moveSpeed = startingMoveSpeed;
-      
       // IMPORTANT: Reapply any active modifiers AFTER resetting the speed
       HotbarSlot.ReapplyAllActiveModifiers();
       
@@ -188,7 +185,7 @@ public class PlayerController : Singleton<PlayerController>
 
       TeleportField[] teleportFields = FindObjectsOfType<TeleportField>();
 
-      // Check if the target position is inside any teleport field
+      // Check if target position inside any teleport field
       foreach (TeleportField field in teleportFields)
       {
          if (Vector3.Distance(field.transform.position, targetPosition) <= field.GetRadius())

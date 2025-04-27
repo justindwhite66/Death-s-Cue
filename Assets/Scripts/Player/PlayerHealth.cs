@@ -5,9 +5,6 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
 
-
-
-
 public class PlayerHealth : Singleton<PlayerHealth>
 {
     [SerializeField] private float knockBackThrustAmount = 10f;
@@ -60,7 +57,7 @@ public class PlayerHealth : Singleton<PlayerHealth>
             return;
         }
 
-        // if player has no shield, damage health
+        // If player has no shield, damage health
         ScreenShakeManager.Instance.ShakeScreen();
         knockback.GetKnockedBack(hitTransform, knockBackThrustAmount);
         StartCoroutine(flash.HealthFlashRoutine());
@@ -96,7 +93,7 @@ public class PlayerHealth : Singleton<PlayerHealth>
     private IEnumerator DeathLoadSceneRoutine(){
         yield return new WaitForSeconds(2f);
         
-        // Reset player data BEFORE destroying the player
+        // Reset player data BEFORE destroying player
         if (DataManager.Instance != null)
         {
             DataManager.Instance.ResetAllPlayerData();
@@ -108,10 +105,9 @@ public class PlayerHealth : Singleton<PlayerHealth>
             Stamina.Instance.ReplenshStaminaOnDeath();
         }
         
-        // Load the scene before destroying the player
+        // Load scene before destroying the player
         SceneManager.LoadSceneAsync(SCENE_CHANGE);
         
-        // Now it's safe to destroy the player
         Destroy(gameObject);
     }
 }

@@ -12,14 +12,12 @@ public class PauseMenuManager : MonoBehaviour
     [SerializeField] private GameObject pauseCanvas;      // Main canvas
     [SerializeField] private GameObject mainMenuPanel;    // Main panel
     [SerializeField] private GameObject lootPanel;        // Inventory
-    [SerializeField] private GameObject equipmentPanel;   // Equipment
     [SerializeField] private GameObject statsPanel;       // Stats
     [SerializeField] private GameObject settingsPanel;    // Settings
 
     // References to all buttons
     [Header("Buttons")]
     [SerializeField] private Button inventoryButton;
-    [SerializeField] private Button equipmentButton;
     [SerializeField] private Button statsButton;
     [SerializeField] private Button settingsButton;
     [SerializeField] private Button quitButton;
@@ -27,7 +25,6 @@ public class PauseMenuManager : MonoBehaviour
     // References to back buttons
     [Header("Back Buttons")]
     [SerializeField] private Button lootBackButton;
-    [SerializeField] private Button equipmentBackButton;
     [SerializeField] private Button statsBackButton;
     [SerializeField] private Button settingsBackButton;
 
@@ -64,7 +61,6 @@ public class PauseMenuManager : MonoBehaviour
     private bool IsAnySubPanelActive()
     {
         return (lootPanel != null && lootPanel.activeSelf) ||
-               (equipmentPanel != null && equipmentPanel.activeSelf) ||
                (statsPanel != null && statsPanel.activeSelf) ||
                (settingsPanel != null && settingsPanel.activeSelf);
     }
@@ -165,9 +161,6 @@ public class PauseMenuManager : MonoBehaviour
         if (lootPanel) lootPanel.SetActive(false);
         if (lootBackButton) lootBackButton.gameObject.SetActive(false);
 
-        if (equipmentPanel) equipmentPanel.SetActive(false);
-        if (equipmentBackButton) equipmentBackButton.gameObject.SetActive(false);
-
         if (statsPanel) statsPanel.SetActive(false);
         if (statsBackButton) statsBackButton.gameObject.SetActive(false);
 
@@ -183,15 +176,6 @@ public class PauseMenuManager : MonoBehaviour
             inventoryButton.onClick.AddListener(() => 
             {
                 OpenSubMenu(lootPanel, lootBackButton);
-            });
-        }
-            
-        // Open equipment panel
-        if (equipmentButton != null)
-        {
-            equipmentButton.onClick.AddListener(() => 
-            {
-                OpenSubMenu(equipmentPanel, equipmentBackButton);
             });
         }
             
@@ -222,8 +206,6 @@ public class PauseMenuManager : MonoBehaviour
         // Back buttons
         if (lootBackButton) 
             lootBackButton.onClick.AddListener(BackToMainMenu);
-        if (equipmentBackButton) 
-            equipmentBackButton.onClick.AddListener(BackToMainMenu);
         if (statsBackButton) 
             statsBackButton.onClick.AddListener(BackToMainMenu);
         if (settingsBackButton) 
@@ -309,9 +291,6 @@ public class PauseMenuManager : MonoBehaviour
         // Hide all submenus
         if (lootPanel) lootPanel.SetActive(false);
         if (lootBackButton) lootBackButton.gameObject.SetActive(false);
-
-        if (equipmentPanel) equipmentPanel.SetActive(false);
-        if (equipmentBackButton) equipmentBackButton.gameObject.SetActive(false);
 
         if (statsPanel) statsPanel.SetActive(false);
         if (statsBackButton) statsBackButton.gameObject.SetActive(false);

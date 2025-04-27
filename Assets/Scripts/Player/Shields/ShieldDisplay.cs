@@ -29,7 +29,9 @@ public class ShieldDisplay : MonoBehaviour
     private void UpdateShieldDisplay()
     {
         // Make sure references exist
-        if (shieldPanel == null || shieldIconPrefab == null || StatsManager.Instance == null) 
+        if (shieldPanel == null || 
+            shieldIconPrefab == null || 
+            StatsManager.Instance == null) 
         {
             return;
         }
@@ -89,7 +91,8 @@ public class ShieldDisplay : MonoBehaviour
         {
             timer += Time.deltaTime;
             float progress = timer / duration;
-            shield.transform.localScale = Vector3.one * Mathf.SmoothStep(0, 1, progress);
+            shield.transform.localScale = Vector3.one * 
+                Mathf.SmoothStep(0, 1, progress);
             yield return null;
         }
         

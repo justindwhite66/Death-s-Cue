@@ -42,7 +42,7 @@ public class StatsManager : MonoBehaviour
         return currentShield > 0;
     }
 
-    // getter methods to get the base stat values
+    // Getter methods to get base stat values
     public float GetBaseSpeed()
     {
         return 3f;
