@@ -444,11 +444,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7880078023362730199, guid: d1eedb5894b82e84abd5dd6d1c333414, type: 3}
       propertyPath: m_LocalPosition.x
+
       value: -8.57
       objectReference: {fileID: 0}
     - target: {fileID: 7880078023362730199, guid: d1eedb5894b82e84abd5dd6d1c333414, type: 3}
       propertyPath: m_LocalPosition.y
       value: -12.28
+
       objectReference: {fileID: 0}
     - target: {fileID: 7880078023362730199, guid: d1eedb5894b82e84abd5dd6d1c333414, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8185,11 +8187,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 388516132874294714, guid: ec7f141eb8f08a9489977f2b14b26c0c, type: 3}
       propertyPath: m_LocalPosition.x
+
       value: -8.989184
       objectReference: {fileID: 0}
     - target: {fileID: 388516132874294714, guid: ec7f141eb8f08a9489977f2b14b26c0c, type: 3}
       propertyPath: m_LocalPosition.y
       value: -5.20083
+
       objectReference: {fileID: 0}
     - target: {fileID: 705352115871122193, guid: ec7f141eb8f08a9489977f2b14b26c0c, type: 3}
       propertyPath: m_Follow
@@ -8325,11 +8329,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8675898772164210878, guid: ec7f141eb8f08a9489977f2b14b26c0c, type: 3}
       propertyPath: m_LocalPosition.x
+
       value: -8.889002
       objectReference: {fileID: 0}
     - target: {fileID: 8675898772164210878, guid: ec7f141eb8f08a9489977f2b14b26c0c, type: 3}
       propertyPath: m_LocalPosition.y
       value: -12.28485
+
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -39176,6 +39182,18 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741824
+<<<<<<< HEAD
+  m_AnimatedTiles: {}
+  m_TileAssetArray: []
+  m_TileSpriteArray: []
+  m_TileMatrixArray: []
+  m_TileColorArray: []
+  m_TileObjectToInstantiateArray: []
+  m_AnimationFrameRate: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Origin: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0, y: 0, z: 1}
+=======
   - first: {x: -17, y: 16, z: 0}
     second:
       serializedVersion: 2
@@ -39554,6 +39572,7 @@ Tilemap:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -17, y: 0, z: 0}
   m_Size: {x: 20, y: 18, z: 1}
+
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
