@@ -9654,11 +9654,8 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 52
-<<<<<<< HEAD:Assets/Scenes/Indoor_Test.unity
-      m_TileSpriteIndex: 40
-=======
       m_TileSpriteIndex: 53
->>>>>>> 09571f911174560069d479960217949ee5076e27:Assets/Scenes/Indoor_1.unity
+
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -39634,11 +39631,9 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 52
-<<<<<<< HEAD:Assets/Scenes/Indoor_Test.unity
-      m_TileSpriteIndex: 47
-=======
+
       m_TileSpriteIndex: 27
->>>>>>> 09571f911174560069d479960217949ee5076e27:Assets/Scenes/Indoor_1.unity
+
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -40695,13 +40690,9 @@ Tilemap:
     second:
       serializedVersion: 2
       m_AnimatedSprites:
-<<<<<<< HEAD:Assets/Scenes/Indoor_Test.unity
-      - {fileID: -1910475335, guid: 51b0fcf3ec9b6ec4cbbc88447a4b6ae3, type: 3}
-      - {fileID: -1070993712, guid: b19e5ba9d13a8834e90fe3cc870f2e1d, type: 3}
-=======
       - {fileID: -1798669061, guid: 51b0fcf3ec9b6ec4cbbc88447a4b6ae3, type: 3}
       - {fileID: 1123837898, guid: b19e5ba9d13a8834e90fe3cc870f2e1d, type: 3}
->>>>>>> 09571f911174560069d479960217949ee5076e27:Assets/Scenes/Indoor_1.unity
+
       m_AnimationSpeed: 1
       m_AnimationTimeOffset: 0
       m_Flags: 0
@@ -41090,15 +41081,10 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-<<<<<<< HEAD:Assets/Scenes/Indoor_Test.unity
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-=======
+
   - m_RefCount: 2
     m_Data: {fileID: 229174540, guid: 51b0fcf3ec9b6ec4cbbc88447a4b6ae3, type: 3}
->>>>>>> 09571f911174560069d479960217949ee5076e27:Assets/Scenes/Indoor_1.unity
+
   - m_RefCount: 3
     m_Data: {fileID: 875137155, guid: 51b0fcf3ec9b6ec4cbbc88447a4b6ae3, type: 3}
   - m_RefCount: 2
