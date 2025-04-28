@@ -1,0 +1,3 @@
+CURRENT BUGS
+  - Loot items are not persistent
+  - 
