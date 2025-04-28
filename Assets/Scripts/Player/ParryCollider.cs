@@ -26,6 +26,11 @@ public class ParryCollider : MonoBehaviour
             Destroy(projectile.gameObject);
             GameObject reflected = Instantiate(reflectedProjectilePrefab, spawnPosition, Quaternion.identity);
             reflected.transform.right = reflectedDirection;
+            Projectile reflectedProjectile = reflected.GetComponent<Projectile>();
+        if (reflectedProjectile != null)
+        {
+            reflectedProjectile.InitializeAsReflected();
+        }
         }
     }
 }

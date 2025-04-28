@@ -144,7 +144,6 @@ MonoBehaviour:
   weaponCollider: {fileID: 3263194381365041602}
   teleportRange: 8
   teleportCooldownTime: 0.3
-  teleportFieldPrefab: {fileID: 0}
   fieldDestroyDelay: 3
   invincibilityTimer: 1
   invincibilityDamageCollider: {fileID: 3456908943991950460}
