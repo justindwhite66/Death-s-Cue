@@ -290,7 +290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 22
-  smallTeleportPrefab: {fileID: 0}
+  smallTeleportPrefab: {fileID: 2606110239911276568, guid: e3b99b3a1b018b54eb9ce1208372d7da, type: 3}
   particleOnHitPrefabVFX: {fileID: 3942932078270590173, guid: 249c75f35c3a327408e16b6596e2ea9b, type: 3}
   isEnemyProjectile: 0
   projectileRange: 10

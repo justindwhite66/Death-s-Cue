@@ -886,4 +886,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 188de206c65d9094cba7b03c5b540070, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: Indoor_Test
+  sceneToLoad: Indoor_1

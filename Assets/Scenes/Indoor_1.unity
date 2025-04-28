@@ -444,11 +444,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7880078023362730199, guid: d1eedb5894b82e84abd5dd6d1c333414, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.38
+      value: -19.17
       objectReference: {fileID: 0}
     - target: {fileID: 7880078023362730199, guid: d1eedb5894b82e84abd5dd6d1c333414, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -12.66
+      value: 18.7
       objectReference: {fileID: 0}
     - target: {fileID: 7880078023362730199, guid: d1eedb5894b82e84abd5dd6d1c333414, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7414,11 +7414,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 388516132874294714, guid: ec7f141eb8f08a9489977f2b14b26c0c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.843941
+      value: -8.92467
       objectReference: {fileID: 0}
     - target: {fileID: 388516132874294714, guid: ec7f141eb8f08a9489977f2b14b26c0c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.1999397
+      value: 14.930639
       objectReference: {fileID: 0}
     - target: {fileID: 705352115871122193, guid: ec7f141eb8f08a9489977f2b14b26c0c, type: 3}
       propertyPath: m_Follow
@@ -7554,11 +7554,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8675898772164210878, guid: ec7f141eb8f08a9489977f2b14b26c0c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.699002
+      value: -19.489002
       objectReference: {fileID: 0}
     - target: {fileID: 8675898772164210878, guid: ec7f141eb8f08a9489977f2b14b26c0c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -12.66485
+      value: 18.69515
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8744,11 +8744,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2191080645825892145, guid: 31631956861bcef46b68a04fca1aeb5d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.39
+      value: -0.93
       objectReference: {fileID: 0}
     - target: {fileID: 2191080645825892145, guid: 31631956861bcef46b68a04fca1aeb5d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.14
+      value: -34.94
       objectReference: {fileID: 0}
     - target: {fileID: 2396657631751795138, guid: 31631956861bcef46b68a04fca1aeb5d, type: 3}
       propertyPath: m_RootOrder
@@ -8812,7 +8812,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3632646174740430178, guid: 31631956861bcef46b68a04fca1aeb5d, type: 3}
       propertyPath: sceneToLoad
-      value: Indoor_2
+      value: Reward_1
       objectReference: {fileID: 0}
     - target: {fileID: 3632646174740430178, guid: 31631956861bcef46b68a04fca1aeb5d, type: 3}
       propertyPath: sceneTransitionName
@@ -9533,7 +9533,8 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 52
-      m_TileSpriteIndex: 53
+      m_TileSpriteIndex: 56
+
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -9653,7 +9654,11 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 52
+<<<<<<< HEAD:Assets/Scenes/Indoor_Test.unity
       m_TileSpriteIndex: 40
+=======
+      m_TileSpriteIndex: 53
+>>>>>>> 09571f911174560069d479960217949ee5076e27:Assets/Scenes/Indoor_1.unity
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -10321,8 +10326,8 @@ Tilemap:
     second:
       serializedVersion: 2
       m_AnimatedSprites:
-      - {fileID: -1402817953, guid: 51b0fcf3ec9b6ec4cbbc88447a4b6ae3, type: 3}
-      - {fileID: -1400825808, guid: b19e5ba9d13a8834e90fe3cc870f2e1d, type: 3}
+      - {fileID: 1337051204, guid: 51b0fcf3ec9b6ec4cbbc88447a4b6ae3, type: 3}
+      - {fileID: 837874842, guid: b19e5ba9d13a8834e90fe3cc870f2e1d, type: 3}
       m_AnimationSpeed: 1
       m_AnimationTimeOffset: 0
       m_Flags: 0
@@ -10375,8 +10380,8 @@ Tilemap:
     second:
       serializedVersion: 2
       m_AnimatedSprites:
-      - {fileID: 1337051204, guid: 51b0fcf3ec9b6ec4cbbc88447a4b6ae3, type: 3}
-      - {fileID: 837874842, guid: b19e5ba9d13a8834e90fe3cc870f2e1d, type: 3}
+      - {fileID: -1402817953, guid: 51b0fcf3ec9b6ec4cbbc88447a4b6ae3, type: 3}
+      - {fileID: -1400825808, guid: b19e5ba9d13a8834e90fe3cc870f2e1d, type: 3}
       m_AnimationSpeed: 1
       m_AnimationTimeOffset: 0
       m_Flags: 0
@@ -10447,8 +10452,8 @@ Tilemap:
     second:
       serializedVersion: 2
       m_AnimatedSprites:
-      - {fileID: -1074481694, guid: 51b0fcf3ec9b6ec4cbbc88447a4b6ae3, type: 3}
-      - {fileID: 346348646, guid: b19e5ba9d13a8834e90fe3cc870f2e1d, type: 3}
+      - {fileID: -2003172601, guid: 51b0fcf3ec9b6ec4cbbc88447a4b6ae3, type: 3}
+      - {fileID: -577564420, guid: b19e5ba9d13a8834e90fe3cc870f2e1d, type: 3}
       m_AnimationSpeed: 1
       m_AnimationTimeOffset: 0
       m_Flags: 0
@@ -10465,8 +10470,8 @@ Tilemap:
     second:
       serializedVersion: 2
       m_AnimatedSprites:
-      - {fileID: 682675493, guid: 51b0fcf3ec9b6ec4cbbc88447a4b6ae3, type: 3}
-      - {fileID: -1825383189, guid: b19e5ba9d13a8834e90fe3cc870f2e1d, type: 3}
+      - {fileID: 229174540, guid: 51b0fcf3ec9b6ec4cbbc88447a4b6ae3, type: 3}
+      - {fileID: 393259340, guid: b19e5ba9d13a8834e90fe3cc870f2e1d, type: 3}
       m_AnimationSpeed: 1
       m_AnimationTimeOffset: 0
       m_Flags: 0
@@ -39629,7 +39634,11 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 52
+<<<<<<< HEAD:Assets/Scenes/Indoor_Test.unity
       m_TileSpriteIndex: 47
+=======
+      m_TileSpriteIndex: 27
+>>>>>>> 09571f911174560069d479960217949ee5076e27:Assets/Scenes/Indoor_1.unity
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -39829,7 +39838,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 52
-      m_TileSpriteIndex: 51
+      m_TileSpriteIndex: 27
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -40686,8 +40695,13 @@ Tilemap:
     second:
       serializedVersion: 2
       m_AnimatedSprites:
+<<<<<<< HEAD:Assets/Scenes/Indoor_Test.unity
       - {fileID: -1910475335, guid: 51b0fcf3ec9b6ec4cbbc88447a4b6ae3, type: 3}
       - {fileID: -1070993712, guid: b19e5ba9d13a8834e90fe3cc870f2e1d, type: 3}
+=======
+      - {fileID: -1798669061, guid: 51b0fcf3ec9b6ec4cbbc88447a4b6ae3, type: 3}
+      - {fileID: 1123837898, guid: b19e5ba9d13a8834e90fe3cc870f2e1d, type: 3}
+>>>>>>> 09571f911174560069d479960217949ee5076e27:Assets/Scenes/Indoor_1.unity
       m_AnimationSpeed: 1
       m_AnimationTimeOffset: 0
       m_Flags: 0
@@ -40902,8 +40916,8 @@ Tilemap:
     second:
       serializedVersion: 2
       m_AnimatedSprites:
-      - {fileID: 525383075, guid: 51b0fcf3ec9b6ec4cbbc88447a4b6ae3, type: 3}
-      - {fileID: 1498895984, guid: b19e5ba9d13a8834e90fe3cc870f2e1d, type: 3}
+      - {fileID: -1189909133, guid: 51b0fcf3ec9b6ec4cbbc88447a4b6ae3, type: 3}
+      - {fileID: 695064103, guid: b19e5ba9d13a8834e90fe3cc870f2e1d, type: 3}
       m_AnimationSpeed: 1
       m_AnimationTimeOffset: 0
       m_Flags: 0
@@ -41076,10 +41090,15 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
+<<<<<<< HEAD:Assets/Scenes/Indoor_Test.unity
   - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
+=======
+  - m_RefCount: 2
+    m_Data: {fileID: 229174540, guid: 51b0fcf3ec9b6ec4cbbc88447a4b6ae3, type: 3}
+>>>>>>> 09571f911174560069d479960217949ee5076e27:Assets/Scenes/Indoor_1.unity
   - m_RefCount: 3
     m_Data: {fileID: 875137155, guid: 51b0fcf3ec9b6ec4cbbc88447a4b6ae3, type: 3}
   - m_RefCount: 2

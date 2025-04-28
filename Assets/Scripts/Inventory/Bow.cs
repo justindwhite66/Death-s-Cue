@@ -43,5 +43,21 @@ private void Start() {
         GameObject newArrow = Instantiate(arrowPrefab, arrowSpawnPoint.position, ActiveWeapon.Instance.transform.rotation);
         newArrow.GetComponent<Projectile>().UpdateProjectileRange(weaponInfo.weaponRange);
         ammoUI.ConsumeAmmo();
+
+        bool insideField = false;
+        TeleportField[] fields = FindObjectsOfType<TeleportField>();
+        foreach(TeleportField field in fields){
+            if (Vector3.Distance(field.transform.position, PlayerController.Instance.transform.position) <= field.GetRadius()){
+                insideField = true;
+                break;
+            }
+        }
+        if (insideField){
+            Projectile projectileComponent = newArrow.GetComponent<Projectile>();
+            if (projectileComponent != null){
+                projectileComponent.bornInsideField = true;
+            }
+        }
+        
     }
 }

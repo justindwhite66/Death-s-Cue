@@ -7,7 +7,7 @@ public class TeleportField : MonoBehaviour
     [SerializeField] private float fadeDelay = 3f; // Time before fade starts
     [SerializeField] private LayerMask restrictedLayersMask;
     [SerializeField] private GameObject smallTeleportPrefab;
-    [SerializeField] private bool isSmallField = false;
+    [SerializeField] public bool isSmallField = false;
     private bool playerInside = true;
     private SpriteFade spriteFade;
     private Coroutine fadeCoroutine;
@@ -65,45 +65,6 @@ public bool IsValidTeleportLocation(Vector3 position)
     Collider2D restrictedTile = Physics2D.OverlapCircle(position, checkRadius, restrictedLayersMask);
 
     return restrictedTile == null; // Valid if NO restricted tile is detected
-}
-
-
-private void OnTriggerExit2D(Collider2D other) {
-    Projectile projectile = other.GetComponent<Projectile>();
-    if (projectile != null){
-        if (projectile.TrackingCancelled){
-            return;
-        }
-        
-        StartCoroutine(CheckProjectileCollision(projectile));
-    }
-}
-private void OnTriggerEnter2D(Collider2D other)
-{
-    Projectile projectile = other.GetComponent<Projectile>();
-
-    if (projectile != null && isSmallField)
-    {
-        
-        projectile.TrackingCancelled = true; // NEW: Cancel tracking
-    }
-}
-
-private IEnumerator CheckProjectileCollision(Projectile projectile)
-{
-    // Wait until the projectile is destroyed
-    while (projectile != null)
-    {
-        yield return null;
-    }
-
-    if (ProjectileManager.Instance.HitIndestructible)
-    {
-         SpawnSmallField(ProjectileManager.Instance.LastDestroyedProjectilePosition);
-    }
-       
-    
-  
 }
 
 

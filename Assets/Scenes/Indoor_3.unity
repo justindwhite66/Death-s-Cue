@@ -18955,7 +18955,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3632646174740430178, guid: 31631956861bcef46b68a04fca1aeb5d, type: 3}
       propertyPath: sceneToLoad
-      value: Indoor_4
+      value: Reward_3
       objectReference: {fileID: 0}
     - target: {fileID: 3632646174740430178, guid: 31631956861bcef46b68a04fca1aeb5d, type: 3}
       propertyPath: sceneTransitionName

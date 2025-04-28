@@ -17,7 +17,6 @@ public class PlayerController : Singleton<PlayerController>
    [SerializeField] private Transform weaponCollider;
    [SerializeField] private float teleportRange = 8f;
    [SerializeField] private float teleportCooldownTime = 1.5f;
-   [SerializeField] private GameObject teleportFieldPrefab;
    [SerializeField] private float fieldDestroyDelay = 3f;
    [SerializeField] private float invincibilityTimer = 0.2f;
    [SerializeField] private Collider2D invincibilityDamageCollider;
@@ -194,10 +193,13 @@ public class PlayerController : Singleton<PlayerController>
             {
                return;
             }
-
+            
             transform.position = targetPosition;
+            myTrailRenderer.emitting = true;
+            
             StartCoroutine(InvincibilityRoutine());
             StartTeleportCooldown();
+            
             return;
          }
       }
@@ -226,13 +228,15 @@ public class PlayerController : Singleton<PlayerController>
    {
       if (!isTeleporting)
       {
+        
          StartCoroutine(TeleportCooldownRoutine());
       }
    }
 
    private IEnumerator TeleportCooldownRoutine()
    {
-      isTeleporting = true;
+      isTeleporting = true; 
+      
       teleportCooldownTimer = teleportCooldownTime;
 
       while (teleportCooldownTimer> 0)
@@ -242,6 +246,7 @@ public class PlayerController : Singleton<PlayerController>
       }
 
       isTeleporting = false;
+      myTrailRenderer.emitting = false;
    }
    public bool IsInvincible()
    {

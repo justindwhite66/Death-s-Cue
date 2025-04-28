@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class HotbarManager : MonoBehaviour
+public class HotbarManager : Singleton<HotbarManager>
 {
     public static HotbarManager Instance { get; private set; }
 
@@ -12,8 +12,9 @@ public class HotbarManager : MonoBehaviour
     
     private PlayerControls playerControls;
     
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         if (Instance == null)
         {
             Instance = this;
