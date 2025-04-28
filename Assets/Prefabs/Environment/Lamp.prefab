@@ -136,8 +136,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1982216519677239575}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.09, y: -0.94, z: 0.33432397}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.03, y: -0.59, z: 0.33432397}
+  m_LocalScale: {x: 1.4154, y: 1.4154, z: 1.4154}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3704387199779286254}
@@ -315,7 +315,7 @@ Transform:
   - {fileID: 935896540664316412}
   - {fileID: 8736782280081631894}
   m_Father: {fileID: 0}
-  m_RootOrder: 43
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!210 &612047841891707841
 SortingGroup:
@@ -378,8 +378,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heartPrefab: {fileID: 7078403650545668064, guid: f5a4c43a9bdb6cb49ae3dfae47316c21, type: 3}
   staminaPrefab: {fileID: 141441811316167965, guid: 1e80ec224d5cad84e9db478ccaadd30f, type: 3}
-  shieldPrefab: {fileID: 0}
-  pickUpLifetime: 3
+  shieldPrefab: {fileID: 7078403650545668064, guid: 6b214602cccd9c6eb8b1b38dede874df, type: 3}
+  pickUpLifetime: 7
 --- !u!114 &7220312363368709118
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -43,7 +43,7 @@ Transform:
   m_Children:
   - {fileID: 8181763800210678038}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1102126002919405490
 SpriteRenderer:
@@ -174,7 +174,7 @@ MonoBehaviour:
   roamChangeDirFloat: 5
   attackRange: 50
   enemyType: {fileID: 2761430120221057008}
-  attackCooldown: 2
+  attackCooldown: 0
   stopMovingWhileAttacking: 1
   roamCooldown: 5
 --- !u!114 &3719140219343187240
@@ -274,11 +274,11 @@ MonoBehaviour:
   bulletPrefab: {fileID: 4967771683981118066, guid: bace6ae77fe1e6a428c560b332f29fe0, type: 3}
   bulletMoveSpeed: 5
   burstCount: 2
-  timeBetweenBursts: 0.5
+  timeBetweenBursts: 1
   restTime: 4
-  projectilesPerBurst: 12
-  angleSpread: 80
-  startingDistance: 2
+  projectilesPerBurst: 15
+  angleSpread: 100
+  startingDistance: 1
   stagger: 1
   oscillate: 1
 --- !u!114 &-5117179461219558723
@@ -296,7 +296,7 @@ MonoBehaviour:
   heartPrefab: {fileID: 7078403650545668064, guid: f5a4c43a9bdb6cb49ae3dfae47316c21, type: 3}
   staminaPrefab: {fileID: 141441811316167965, guid: 1e80ec224d5cad84e9db478ccaadd30f, type: 3}
   shieldPrefab: {fileID: 7078403650545668064, guid: 6b214602cccd9c6eb8b1b38dede874df, type: 3}
-  pickUpLifetime: 3
+  pickUpLifetime: 7
 --- !u!95 &3347210589842304234
 Animator:
   serializedVersion: 5

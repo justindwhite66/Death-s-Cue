@@ -59,10 +59,6 @@ private void OnTriggerEnter2D(Collider2D other)
     {
 
         bool shouldSpawn = false;
-        Debug.Log($"Projectile collision detected at {transform.position}");
-        Debug.Log($"IsReflectedProjectile: {IsReflectedProjectile}");
-        Debug.Log($"WasBornInsideField: {bornInsideField}");
-        Debug.Log($"IsEnemyProjectile: {IsEnemyProjectile()}");
 
         if (IsReflectedProjectile ||(!IsEnemyProjectile() && bornInsideField))
     
@@ -73,16 +69,14 @@ private void OnTriggerEnter2D(Collider2D other)
 
         if (shouldSpawn && smallTeleportPrefab != null)
         {
-            Debug.Log("Spawning small teleport field.");
+            
             GameObject newField = Instantiate(smallTeleportPrefab, transform.position, Quaternion.identity);
             TeleportField fieldComponent = newField.GetComponent<TeleportField>();
             if (fieldComponent != null)
             {
                 fieldComponent.isSmallField = true;
             }
-            else{
-                Debug.Log("Not spawning teleport field.");
-            }
+            
         }
 
         // Only mark impact as recorded AFTER confirming the correct collision logic

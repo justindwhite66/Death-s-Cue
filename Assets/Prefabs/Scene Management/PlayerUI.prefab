@@ -1842,7 +1842,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chargeSlider: {fileID: 6239758656705108116}
-  cooldownTime: 2
+  cooldownTime: 5
 --- !u!1 &5571727903618374177
 GameObject:
   m_ObjectHideFlags: 0
@@ -2509,7 +2509,7 @@ RectTransform:
   - {fileID: 5486320380353567341}
   - {fileID: 8146368030071402352}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
