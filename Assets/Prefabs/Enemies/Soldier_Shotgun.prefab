@@ -43,7 +43,7 @@ Transform:
   m_Children:
   - {fileID: 8181763800210678038}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1102126002919405490
 SpriteRenderer:
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roamChangeDirFloat: 5
-  attackRange: 2
+  attackRange: 12
   enemyType: {fileID: 2761430120221057008}
   attackCooldown: 1
   stopMovingWhileAttacking: 1
@@ -202,9 +202,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c0998a68df9ec242a0d66d9c833d74e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 3
+  startingHealth: 6
   deathVFXPrefab: {fileID: 3942932078270590173, guid: 14fc5858c4eed2a42ab995c25bba9fe2, type: 3}
-  knockBackThrust: 15
+  knockBackThrust: 7
   slider: {fileID: 0}
   isBoss: 0
 --- !u!114 &8906764684480904735
@@ -272,12 +272,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 4967771683981118066, guid: bace6ae77fe1e6a428c560b332f29fe0, type: 3}
-  bulletMoveSpeed: 8
-  burstCount: 1
-  timeBetweenBursts: 0.1
-  restTime: 0.3
-  projectilesPerBurst: 1
-  angleSpread: 0
+  bulletMoveSpeed: 6
+  burstCount: 2
+  timeBetweenBursts: 1
+  restTime: 3
+  projectilesPerBurst: 8
+  angleSpread: 59
   startingDistance: 1
   stagger: 0
   oscillate: 0

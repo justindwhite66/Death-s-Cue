@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: -5117179461219558723}
   - component: {fileID: 3347210589842304234}
   m_Layer: 0
-  m_Name: Soldier_Pistol 1
+  m_Name: Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
