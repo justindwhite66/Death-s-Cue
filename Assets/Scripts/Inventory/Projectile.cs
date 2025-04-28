@@ -11,7 +11,8 @@ public class Projectile : MonoBehaviour
     [SerializeField] private bool isEnemyProjectile = false;
     [SerializeField] private float projectileRange = 10f;
     [SerializeField] private float collisionIgnoreTime = 1f;
-    public bool TrackingCancelled {get; set;} = false;
+    public bool bornInsideField {get; set;} = false;
+    public bool IsReflectedProjectile {get; set;} = false;
      
 
     private Vector3 startPosition;
@@ -56,6 +57,28 @@ private void OnTriggerEnter2D(Collider2D other)
 
     if (!other.isTrigger && (enemyHealth || indestructible || player))
     {
+
+        bool shouldSpawn = false;
+
+        if (IsReflectedProjectile)
+        {
+            shouldSpawn = true;
+        }
+        else if (!IsEnemyProjectile() && bornInsideField)
+        {
+            shouldSpawn = true;
+        }
+
+        if (shouldSpawn && smallTeleportPrefab != null)
+        {
+            GameObject newField = Instantiate(smallTeleportPrefab, transform.position, Quaternion.identity);
+            TeleportField fieldComponent = newField.GetComponent<TeleportField>();
+            if (fieldComponent != null)
+            {
+                fieldComponent.isSmallField = true;
+            }
+        }
+        
         // Only mark impact as recorded AFTER confirming the correct collision logic
         if ((player && isEnemyProjectile) || (enemyHealth && !isEnemyProjectile))
         {
@@ -65,17 +88,6 @@ private void OnTriggerEnter2D(Collider2D other)
             Destroy(gameObject);
         }
         
-        else if (indestructible != null)
-        {
-            if (ProjectileManager.Instance != null)
-            {
-                ProjectileManager.Instance.SetLastDestroyedProjectile(transform.position, true);
-            }
-        }else{
-            if (ProjectileManager.Instance != null){
-                ProjectileManager.Instance.SetLastDestroyedProjectile(transform.position, false);
-            }
-        }
 
         // Now that all conditions have been checked, set impact as recorded
         Instantiate(particleOnHitPrefabVFX, transform.position, transform.rotation);

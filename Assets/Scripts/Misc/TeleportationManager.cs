@@ -9,6 +9,7 @@ public class TeleportationManager : Singleton<TeleportationManager>
    [SerializeField] private GameObject teleportFieldPrefab;
    public GameObject currentField;
    
+   
 
    protected override void Awake() {
     base.Awake();
@@ -27,7 +28,6 @@ public class TeleportationManager : Singleton<TeleportationManager>
         
         if (PlayerController.Instance == null)
         {
-            Debug.LogWarning("PlayerController not found, delaying teleport field spawn...");
             StartCoroutine(SpawnTeleportFieldWithDelay());
             return;
         }
@@ -42,12 +42,14 @@ public class TeleportationManager : Singleton<TeleportationManager>
         StartCoroutine(SpawnTeleportFieldWithDelay());
     }
 
+
     private IEnumerator SpawnTeleportFieldWithDelay()
     {
         yield return new WaitForSeconds(0.3f); // Small delay to let the player be positioned
         SpawnTeleportField();
     }
     
+  
     private void OnDestroy() {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }

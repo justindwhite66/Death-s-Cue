@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class TitleMenu : MonoBehaviour
 {
     // Serialized field allows you to set the scene name in the Inspector
-    [SerializeField] private string sceneToLoad = "Indoor_Test";
+    [SerializeField] private string sceneToLoad = "Indoor_1";
     
     public void PlayGame()
     {
