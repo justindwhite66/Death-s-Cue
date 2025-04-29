@@ -229,6 +229,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   knockBackThrustAmount: 10
   damageRecoveryTime: 1
+  bossHealthBar: {fileID: 0}
 --- !u!114 &2055983864551263952
 MonoBehaviour:
   m_ObjectHideFlags: 0

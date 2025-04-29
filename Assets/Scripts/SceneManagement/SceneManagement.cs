@@ -15,7 +15,7 @@ public class SceneManagement : Singleton<SceneManagement>
 
         SceneTransitionName = sceneName;
         SceneManager.LoadScene(sceneName);
-        TeleportationManager.Instance.SpawnTeleportField();
+        
     }
   
 }

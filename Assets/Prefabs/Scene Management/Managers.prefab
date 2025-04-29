@@ -130,8 +130,9 @@ Transform:
   - {fileID: 8910697015767692314}
   - {fileID: 8579936640759130826}
   - {fileID: 8219009094221113048}
+  - {fileID: 1427584646971355544}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5301744126790279370
 MonoBehaviour:
@@ -311,6 +312,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teleportFieldPrefab: {fileID: 2606110239911276568, guid: 560ecf9575956474a9e060d5377cd159, type: 3}
+  teleportCooldown: 10
+  slider: {fileID: 0}
   currentField: {fileID: 2606110239911276568, guid: 560ecf9575956474a9e060d5377cd159, type: 3}
 --- !u!1 &6406798362086755330
 GameObject:
@@ -550,3 +553,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8c9fdd5bf4b5b54594cc84c7f198333, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &8416890926492315062
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1427584646971355544}
+  - component: {fileID: 4298263966913326929}
+  m_Layer: 0
+  m_Name: BossHealthManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1427584646971355544
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8416890926492315062}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -9.235822, y: 14.466713, z: -1.9774725}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4610363868209731894}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4298263966913326929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8416890926492315062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaf1f001bed210c418cdaa7b40779121, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossHealthSlider: {fileID: 0}

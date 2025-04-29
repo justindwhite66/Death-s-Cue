@@ -9,6 +9,7 @@ public class PlayerHealth : Singleton<PlayerHealth>
 {
     [SerializeField] private float knockBackThrustAmount = 10f;
     [SerializeField] private float damageRecoveryTime = 1f;
+    [SerializeField] private GameObject bossHealthBar;
 
     public bool isDead {get; private set;}
     public bool isTeleporting{get; private set;}
@@ -84,6 +85,10 @@ public class PlayerHealth : Singleton<PlayerHealth>
     private void CheckPlayerDeath(){
         if (StatsManager.Instance.currentHealth <= 0 && !isDead){
             isDead = true;
+            if (bossHealthBar != null)
+        {
+            Destroy(bossHealthBar);
+        }
             Destroy(ActiveWeapon.Instance.gameObject);
             StatsManager.Instance.currentHealth = 0;
             GetComponent<Animator>().SetTrigger(DEATH_HASH);

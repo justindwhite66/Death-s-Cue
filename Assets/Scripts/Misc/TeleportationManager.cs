@@ -1,58 +1,83 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class TeleportationManager : Singleton<TeleportationManager>
 {
    
    [SerializeField] private GameObject teleportFieldPrefab;
+   [SerializeField] private float teleportCooldown = 10f;
+   [SerializeField] private Slider slider;
+   private float teleportRespawnTimer = 0f;
+   private bool canRespawnField = true;
    public GameObject currentField;
+   
    
    
 
    protected override void Awake() {
     base.Awake();
-    SceneManager.sceneLoaded += OnSceneLoaded;
    }
    
-
+private void Update() {
+    if (Input.GetKeyDown(KeyCode.Q)){
+        ManualFieldRespawn();
+    }
+    UpdateTeleportRespawnUI();
+}
  
 
     private void Start()
     {
-        StartCoroutine(SpawnTeleportFieldWithDelay());
+       if (slider == null){
+            slider = GameObject.Find("Teleport Slider").GetComponent<Slider>();
+        }
     }
 
     public void SpawnTeleportField(){
         
-        if (PlayerController.Instance == null)
-        {
-            StartCoroutine(SpawnTeleportFieldWithDelay());
-            return;
-        }
-        
         Vector3 spawnPosition = PlayerController.Instance.transform.position;
         
-        currentField = Instantiate(teleportFieldPrefab, spawnPosition, Quaternion.identity);
-        
-    }
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode){
-        
-        StartCoroutine(SpawnTeleportFieldWithDelay());
+       GameObject newField = Instantiate(teleportFieldPrefab, spawnPosition, Quaternion.identity);
+        currentField = newField;
     }
 
-
-    private IEnumerator SpawnTeleportFieldWithDelay()
-    {
-        yield return new WaitForSeconds(0.3f); // Small delay to let the player be positioned
-        SpawnTeleportField();
-    }
     
   
-    private void OnDestroy() {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
+
+    private void ManualFieldRespawn(){
+        if (!canRespawnField) return;
+
+        if (currentField != null){
+            Destroy(currentField);
+        }
+        SpawnTeleportField();
+        StartCoroutine(TeleportCooldownRoutine());
     }
 
+    private IEnumerator TeleportCooldownRoutine(){
+        canRespawnField = false;
+        teleportRespawnTimer = teleportCooldown;
+
+        while (teleportRespawnTimer > 0){
+            teleportRespawnTimer -= Time.deltaTime;
+            UpdateTeleportRespawnUI();
+            yield return null;
+        }
+        canRespawnField = true;
+        UpdateTeleportRespawnUI();
+    }
+
+    private void UpdateTeleportRespawnUI(){
+        if (slider == null) return;
+        if (canRespawnField){
+            slider.value = 1f;
+        }
+        else{
+            slider.value = 1f - (teleportRespawnTimer / teleportCooldown);
+        }
+    }
   
 }

@@ -34,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2172390700880037070
 SpriteRenderer:
@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8010a8b1b9ec0164dacd0f0bf206ec2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  moveSpeed: 12
   smallTeleportPrefab: {fileID: 2606110239911276568, guid: e3b99b3a1b018b54eb9ce1208372d7da, type: 3}
   particleOnHitPrefabVFX: {fileID: 3942932078270590173, guid: 249c75f35c3a327408e16b6596e2ea9b, type: 3}
   isEnemyProjectile: 0
@@ -186,7 +186,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.71
   m_Color: {r: 0.08627451, g: 0.9725491, b: 0.9725491, a: 1}
-  m_Intensity: 1.36
+  m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000
@@ -236,8 +236,8 @@ MonoBehaviour:
     m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 0.27
-  m_PointLightOuterRadius: 4.39
+  m_PointLightInnerRadius: 0.53
+  m_PointLightOuterRadius: 3.24
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1

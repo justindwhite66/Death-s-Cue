@@ -83,15 +83,16 @@ private void SpawnSmallField(Vector3 position)
 
     private IEnumerator FadeAndDestroy()
 {
+
     yield return new WaitForSeconds(fadeDelay);
+    if (this == null) { yield break; }
     spriteFade.StartFade();
     yield return new WaitForSeconds(spriteFade.FadeTime);
 
-    // Check if this is the MAIN teleport field before spawning a new one
     if (TeleportationManager.Instance.currentField == this.gameObject)
-    {
-        TeleportationManager.Instance.SpawnTeleportField();
-    }
+{
+    TeleportationManager.Instance.currentField = null;
+}
 
     Destroy(gameObject);
 }
@@ -107,4 +108,5 @@ private void SpawnSmallField(Vector3 position)
         Collider2D restrictedTile = Physics2D.OverlapCircle(position, checkRadius, restrictedLayersMask);
         return restrictedTile == null;
     }
+ 
 }

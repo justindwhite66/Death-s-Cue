@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -10,7 +11,7 @@ public class EnemyHealth : MonoBehaviour
    [SerializeField] private int startingHealth = 3;
    [SerializeField] private GameObject deathVFXPrefab;
    [SerializeField] private float knockBackThrust = 15f;
-   [SerializeField] private Slider slider;
+
    [SerializeField] private bool isBoss = false;
 
    private int currentHealth;
@@ -25,31 +26,15 @@ public class EnemyHealth : MonoBehaviour
     knockback = GetComponent<Knockback>();
     flash = GetComponent<Flash>();
     bossHealthThreshold = GetComponent<BossHealthThreshold>();
+   
    }
    private void Start(){
     currentHealth = startingHealth;
     
-    if (isBoss && slider != null){
-        string currentScene = SceneManager.GetActiveScene().name;
-
-        if (currentScene == "Indoor_5"){
-
-        slider.gameObject.SetActive(true);
-        slider.maxValue = startingHealth;
-        slider.value = currentHealth;
-        }
-        else{
-            slider.gameObject.SetActive(false);
-        }
-    }
-
    }
 
    public void TakeDamage(int damage){
     currentHealth -= damage;
-    if (isBoss && slider != null){
-        slider.value = currentHealth;
-    }
     if (bossHealthThreshold != null){
         bossHealthThreshold.CheckGate(currentHealth, startingHealth);
     }
@@ -67,12 +52,15 @@ public class EnemyHealth : MonoBehaviour
    private void DetectDeath(){
     if (currentHealth <= 0){
 
-        if (isBoss && slider != null){
-            slider.gameObject.SetActive(false);
-        }
         Instantiate(deathVFXPrefab, transform.position, Quaternion.identity);
         GetComponent<PickUpSpawner>().DropItems();
         Destroy(gameObject);
     }
    }
+
+
+    public bool IsBoss()
+{
+    return isBoss;
+}
 }
