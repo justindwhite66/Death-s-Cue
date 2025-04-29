@@ -1,3 +1,8 @@
 CURRENT BUGS
   - Loot items are not persistent
-  - 
+  - Boss bar persisting after death - FIXED
+  - Boss bar not spawning when entering stage  - FIXED
+  - Animations for Shotgun soldier
+  - Sword positioning on startup
+  - Main teleport field not spwaning under player at times - FIXED
+  - Reward stages design
