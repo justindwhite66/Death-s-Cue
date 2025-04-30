@@ -236,10 +236,13 @@ public class PauseMenuManager : MonoBehaviour
 
     void SetupButtonListeners()
     {
-        // Open inventory panel - change to use OpenLootPanel instead of directly using OpenSubMenu
+        // Open inventory panel
         if (inventoryButton != null)
         {
-            inventoryButton.onClick.AddListener(OpenLootPanel);
+            inventoryButton.onClick.AddListener(() => 
+            {
+                OpenSubMenu(lootPanel, lootBackButton);
+            });
         }
             
         // Open stats panel
@@ -310,25 +313,6 @@ public class PauseMenuManager : MonoBehaviour
         }
     }
 
-    // Method that opens your loot panel
-    public void OpenLootPanel()
-    {
-        Debug.Log("Opening loot panel");
-        
-        // First make the panel active so components are accessible
-        lootPanel.SetActive(true);
-        
-        // Show the panel via regular method
-        OpenSubMenu(lootPanel, lootBackButton);
-        
-        // Then call the new method to update inventory data specifically after panel is open
-        if (LootManager.Instance != null)
-        {
-            LootManager.Instance.OnLootPanelOpened();
-        }
-    }
-
-    // Method that opens your loot panel
     void OpenSubMenu(GameObject panel, Button backButton)
     {
         // Additional check for null references
@@ -348,16 +332,23 @@ public class PauseMenuManager : MonoBehaviour
         // If opening loot panel, update UI
         if (panel == lootPanel)
         {
-            // Ensure LootManager updates all UI elements
+            // Try to use singleton first
             if (LootManager.Instance != null)
             {
-                Debug.Log("Opening loot panel - updating all loot UI");
                 LootManager.Instance.UpdateAllLootUI();
             }
             else
             {
-                Debug.LogWarning("LootManager.Instance is null when opening loot panel");
+                // Fallback to FindObjectOfType
+                LootManager lootManager = FindObjectOfType<LootManager>();
+                if (lootManager != null)
+                {
+                    lootManager.UpdateAllLootUI();
+                }
             }
+            
+            // Additional debug output for LootSlots
+            LootSlots[] slots = lootPanel.GetComponentsInChildren<LootSlots>();
         }
 
         if (panel == settingsPanel)

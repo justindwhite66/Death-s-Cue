@@ -16,7 +16,7 @@ public class StatsManager : MonoBehaviour
     [SerializeField] public float moveSpeed = 3f;
     [SerializeField] public int maxStamina = 3;
     [SerializeField] public int startingStamina = 3;
-    [SerializeField] public int staminaRefreshRate = 3;
+    [SerializeField] public int staminaRefreshRate = 10;
 
     private void Awake()
     {
