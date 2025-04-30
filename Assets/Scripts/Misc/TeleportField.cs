@@ -36,6 +36,8 @@ public class TeleportField : MonoBehaviour
             if (mainCamera == null) return; // Prevents errors
         }
 
+        if (PlayerController.Instance == null) return;
+
         float distanceToPlayer = Vector3.Distance(transform.position, PlayerController.Instance.transform.position);
 
         if (distanceToPlayer > fieldRadius && playerInside)
@@ -68,7 +70,7 @@ public bool IsValidTeleportLocation(Vector3 position)
 }
 
 
-private void SpawnSmallField(Vector3 position)
+/*private void SpawnSmallField(Vector3 position)
 {
     if (smallTeleportPrefab != null)
     { 
@@ -79,7 +81,7 @@ private void SpawnSmallField(Vector3 position)
         }
     }
     
-}
+}*/
 
     private IEnumerator FadeAndDestroy()
 {

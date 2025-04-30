@@ -35,4 +35,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Indoor_5.unity
     guid: 6dcf66203a0793046b88598f394542a2
+  - enabled: 1
+    path: Assets/Scenes/Lose.unity
+    guid: 96effe77babc992448092dc1f1684deb
+  - enabled: 1
+    path: Assets/Scenes/Win.unity
+    guid: 3d3871db66a04414bb621d51ad26141c
   m_configObjects: {}

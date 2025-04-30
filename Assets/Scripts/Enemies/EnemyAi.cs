@@ -56,6 +56,8 @@ public class EnemyAi : MonoBehaviour
 
         enemyPath.MoveTo(roamPosition);
 
+        if (PlayerController.Instance == null) return;
+
         if (Vector2.Distance(transform.position, PlayerController.Instance.transform.position) < attackRange) {
             state = State.Attacking;
         }
@@ -66,6 +68,8 @@ public class EnemyAi : MonoBehaviour
     }
 
     private void Attacking() {
+        if (PlayerController.Instance == null) return;
+
         if (Vector2.Distance(transform.position, PlayerController.Instance.transform.position) > attackRange)
         {
             canAttack = false;

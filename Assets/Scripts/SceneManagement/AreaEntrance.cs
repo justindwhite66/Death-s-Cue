@@ -13,12 +13,8 @@ public class AreaEntrance : MonoBehaviour
             CameraController.Instance.SetPlayerCameraFollow();
             UIFade.Instance.FadeToClear();
 
-            StartCoroutine(SpawnTeleportAfterPositionUpdate());
         }
   }
 
-  private IEnumerator SpawnTeleportAfterPositionUpdate(){
-    yield return null;
-    TeleportationManager.Instance.SpawnTeleportField();
-  }
+  
 }

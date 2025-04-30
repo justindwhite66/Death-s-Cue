@@ -17,7 +17,7 @@ public class PlayerHealth : Singleton<PlayerHealth>
     private Knockback knockback;
     private Flash flash;
 
-    const string SCENE_CHANGE = "Title";
+    const string SCENE_CHANGE = "Lose";
     readonly int DEATH_HASH = Animator.StringToHash("Death");
 
     protected override void Awake()

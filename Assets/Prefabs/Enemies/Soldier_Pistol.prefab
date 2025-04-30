@@ -205,7 +205,6 @@ MonoBehaviour:
   startingHealth: 6
   deathVFXPrefab: {fileID: 3942932078270590173, guid: 14fc5858c4eed2a42ab995c25bba9fe2, type: 3}
   knockBackThrust: 15
-  slider: {fileID: 0}
   isBoss: 0
 --- !u!114 &8906764684480904735
 MonoBehaviour:
