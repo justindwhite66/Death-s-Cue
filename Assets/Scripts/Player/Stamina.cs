@@ -39,7 +39,7 @@ public class Stamina : Singleton<Stamina>
     }
 
     public void RefreshStamina(){
-        if(CurrentStamina < StatsManager.Instance.maxStamina && !PlayerHealth.Instance.isDead){
+        if((CurrentStamina < StatsManager.Instance.maxStamina) && !PlayerHealth.Instance.isDead){
             CurrentStamina++;
         }
         UpdateStaminaImages();
@@ -48,7 +48,7 @@ public class Stamina : Singleton<Stamina>
         
         while (true)
         {
-            int secondsToWait = 15 - StatsManager.Instance.staminaRefreshRate;
+            int secondsToWait = 7 - StatsManager.Instance.staminaRefreshRate;
             yield return new WaitForSeconds(secondsToWait);
             
             RefreshStamina();
