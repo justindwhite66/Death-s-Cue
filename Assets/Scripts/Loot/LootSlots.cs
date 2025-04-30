@@ -26,42 +26,18 @@ public class LootSlots : MonoBehaviour, IPointerClickHandler
 
     public void UpdateLootUI()
     {
-        Debug.Log($"Updating UI for slot: {(lootSO != null ? lootSO.name : "empty")}");
-
-        // More aggressive component finding logic
-        FindUIComponents();
-        
-        // Update display based on slot content
-        if (lootSO != null && quantity > 0)
+        if (lootSO != null)
         {
-            // Make sure icon is correctly set
-            if (lootIcon != null)
-            {
-                lootIcon.sprite = lootSO.lootIcon;
-                lootIcon.gameObject.SetActive(true);
-                Debug.Log($"Setting icon for {lootSO.name}");
-            }
-            
-            if (quantityText != null)
-            {
-                quantityText.text = quantity.ToString();
-                Debug.Log($"Setting quantity text: {quantity}");
-            }
+            lootIcon.sprite = lootSO.lootIcon;
+            lootIcon.gameObject.SetActive(true);
+            quantityText.text = quantity.ToString();
         }
         else
         {
-            // Clear slot if empty
-            if (lootIcon != null)
-            {
-                lootIcon.gameObject.SetActive(false);
-            }
+            lootIcon.gameObject.SetActive(false);
+            quantityText.text = "";
             
-            if (quantityText != null)
-            {
-                quantityText.text = "";
-            }
-            
-            // Make sure selection is cleared if item removed
+            // Make sure selection cleared if item removed
             if (isSelected)
             {
                 DeselectSlot();
@@ -127,80 +103,5 @@ public class LootSlots : MonoBehaviour, IPointerClickHandler
 
         // Trigger event for Loot Description Panel update
         OnSlotSelectionChanged?.Invoke(null);
-    }
-
-    public void FindUIComponents()
-    {
-        // Find lootIcon with multiple attempts
-        if (lootIcon == null)
-        {
-            // Try direct child first
-            lootIcon = GetComponentInChildren<Image>(true);
-            
-            // If that fails, try looking for an "Icon" named child
-            if (lootIcon == null || lootIcon.gameObject == gameObject)
-            {
-                Transform iconTransform = transform.Find("Icon");
-                if (iconTransform != null)
-                    lootIcon = iconTransform.GetComponent<Image>();
-            }
-            
-            // Final fallback - search all children for any image that's not on this object
-            if (lootIcon == null || lootIcon.gameObject == gameObject)
-            {
-                Image[] images = GetComponentsInChildren<Image>(true);
-                foreach (var img in images)
-                {
-                    if (img.gameObject != gameObject)
-                    {
-                        lootIcon = img;
-                        break;
-                    }
-                }
-            }
-            
-            if (lootIcon == null)
-                Debug.LogError($"Could not find lootIcon for slot {name}");
-        }
-        
-        // Find quantityText with multiple attempts
-        if (quantityText == null)
-        {
-            // Try direct child first
-            quantityText = GetComponentInChildren<TMP_Text>(true);
-            
-            // Try looking for a "Quantity" named child
-            if (quantityText == null)
-            {
-                Transform quantityTransform = transform.Find("Quantity");
-                if (quantityTransform != null)
-                    quantityText = quantityTransform.GetComponent<TMP_Text>();
-            }
-            
-            if (quantityText == null)
-                Debug.LogError($"Could not find quantityText for slot {name}");
-        }
-        
-        // Find selection outline with multiple attempts
-        if (selectionOutline == null)
-        {
-            // Try direct child first with specific name
-            Transform outlineTransform = transform.Find("SelectionOutline");
-            if (outlineTransform != null)
-                selectionOutline = outlineTransform.GetComponent<Image>();
-                
-            // Fallback to any child with "outline" in the name
-            if (selectionOutline == null)
-            {
-                foreach (Transform child in transform)
-                {
-                    if (child.name.ToLower().Contains("outline") || child.name.ToLower().Contains("selection"))
-                    {
-                        selectionOutline = child.GetComponent<Image>();
-                        if (selectionOutline != null) break;
-                    }
-                }
-            }
-        }
     }
 }
