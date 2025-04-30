@@ -9255,8 +9255,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 26
+  m_fontSizeBase: 26
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -10737,7 +10737,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "        WASD\n\n   Left Click\n\n Right Click\n\n        Space\n\n          
-    Tab\n\n       Z, X, C\n\n\tQ\n "
+    Tab\n\n       Z, X, C\n\n\t     Q\n "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 28504cd8b6079504da22ef4b8626db3a, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 828700b5b385e845bb0e72999ae22dca, type: 2}
@@ -10764,8 +10764,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 28.66
-  m_fontSizeBase: 28.66
+  m_fontSize: 26
+  m_fontSizeBase: 26
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
