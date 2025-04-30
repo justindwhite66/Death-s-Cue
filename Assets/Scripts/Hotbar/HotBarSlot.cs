@@ -380,7 +380,6 @@ public class HotbarSlot : MonoBehaviour
         UpdateStatsUI();
     }
 
-    // Add public static method to reapply all active modifiers
     public static void ReapplyAllActiveModifiers()
     {
         // Get base values from StatsManager
@@ -434,5 +433,17 @@ public class HotbarSlot : MonoBehaviour
     {
         PauseMenuManager pauseMenu = FindObjectOfType<PauseMenuManager>();
         return pauseMenu != null && pauseMenu.IsLootPanelActive();
+    }
+
+    // Get the assigned item
+    public LootSO GetAssignedItem()
+    {
+        return assignedItem;
+    }
+
+    // Get the current quantity
+    public int GetQuantity()
+    {
+        return quantity;
     }
 }
